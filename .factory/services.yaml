@@ -1,0 +1,15 @@
+commands:
+  install: cd /Users/bunyasit/dev/llm-benchmark/runner && pip install -e ".[dev]"
+  install-web: cd /Users/bunyasit/dev/llm-benchmark/web && pnpm install
+  test: cd /Users/bunyasit/dev/llm-benchmark/runner && pytest -v --tb=short 2
+  lint: cd /Users/bunyasit/dev/llm-benchmark/runner && ruff check .
+  typecheck: cd /Users/bunyasit/dev/llm-benchmark/runner && mypy src/
+  validate-tasks: cd /Users/bunyasit/dev/llm-benchmark && python3 -m benchmark.cli task validate
+
+services:
+  web:
+    start: cd /Users/bunyasit/dev/llm-benchmark/web && PORT=3200 pnpm dev
+    stop: lsof -ti :3200 2>/dev/null | xargs kill 2>/dev/null || true
+    healthcheck: curl -sf http://localhost:3200 > /dev/null 2>&1
+    port: 3200
+    depends_on: []

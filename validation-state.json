@@ -1,0 +1,27 @@
+{
+  "assertions": {
+    "VAL-TASK-001": { "status": "pending" },
+    "VAL-TASK-002": { "status": "pending" },
+    "VAL-TASK-003": { "status": "pending" },
+    "VAL-TASK-004": { "status": "pending" },
+    "VAL-TASK-005": { "status": "pending" },
+    "VAL-TASK-006": { "status": "pending" },
+    "VAL-RUNNER-001": { "status": "pending" },
+    "VAL-RUNNER-002": { "status": "pending" },
+    "VAL-RUNNER-003": { "status": "pending" },
+    "VAL-RUNNER-004": { "status": "pending" },
+    "VAL-RUNNER-005": { "status": "pending" },
+    "VAL-RUNNER-006": { "status": "pending" },
+    "VAL-RUNNER-007": { "status": "pending" },
+    "VAL-RUNNER-008": { "status": "pending" },
+    "VAL-WEB-001": { "status": "pending" },
+    "VAL-WEB-002": { "status": "pending" },
+    "VAL-WEB-003": { "status": "pending" },
+    "VAL-WEB-004": { "status": "pending" },
+    "VAL-WEB-005": { "status": "pending" },
+    "VAL-AUTHOR-001": { "status": "pending" },
+    "VAL-AUTHOR-002": { "status": "pending" },
+    "VAL-CROSS-001": { "status": "pending" },
+    "VAL-CROSS-002": { "status": "pending" }
+  }
+}

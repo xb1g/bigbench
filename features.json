@@ -1,0 +1,159 @@
+{
+  "features": [
+    {
+      "id": "benchmark-task-definitions",
+      "description": "Create comprehensive benchmark task definitions as YAML files organized by category (software-engineering, planning, product-mind, startup-mind). Each task must have: id, category, title, description, context (referencing a real ~/dev project), prompt, input_format, output_format, grading (rubric or reference_answer), difficulty (easy/medium/hard), estimated_time_minutes. Minimum: 12 software-engineering, 10 planning, 10 product-mind, 10 startup-mind tasks. Tasks must cover: code debugging, refactoring, system design, API design, requirements analysis, decomposition, user empathy, prioritization, business models, go-to-market strategy, resource allocation, competitive analysis.",
+      "skillName": "task-author",
+      "milestone": "tasks",
+      "preconditions": [
+        "Task YAML schema defined in tasks/schema.yaml",
+        "Directory structure: tasks/{category}/",
+        "Reference to real ~/dev projects validated"
+      ],
+      "expectedBehavior": [
+        "40+ task YAML files created across 4 categories",
+        "Each task references a specific real project from ~/dev as context",
+        "Tasks cover multiple programming languages (Python, TypeScript, Go, Rust, etc.)",
+        "Each task has complete grading rubric or reference answer",
+        "Tasks span easy/medium/hard difficulty levels",
+        "Task YAML files validate against schema"
+      ],
+      "verificationSteps": [
+        "ls tasks/ - count files per category (min 10 each)",
+        "python -c 'import yaml; [yaml.safe_load(open(f)) for f in glob(\"tasks/**/*.yaml\", recursive=True)]' - no errors",
+        "grep -r 'project_ref' tasks/ - verify project references exist",
+        "grep -rl 'reference_answer\\|rubric' tasks/ - verify grading defined"
+      ],
+      "fulfills": ["VAL-TASK-001", "VAL-TASK-002", "VAL-TASK-003", "VAL-TASK-004", "VAL-TASK-005", "VAL-TASK-006"],
+      "status": "pending"
+    },
+    {
+      "id": "benchmark-runner-core",
+      "description": "Build the Python benchmark runner CLI as an installable package. Must support: `llm-bench --help`, `llm-bench run --task <id> --model <model>`, `llm-bench run --all --model <model>`, `llm-bench results <run_id>`. Must integrate with OpenAI, Anthropic, and Google AI APIs via litellm. Must produce JSON results files with per-task scores, category breakdowns, and overall weighted score. Must handle API errors gracefully with retries.",
+      "skillName": "benchmark-creator",
+      "milestone": "runner",
+      "preconditions": [
+        "Task YAML files exist in tasks/ directory",
+        "Python 3.10+ available",
+        "litellm library supports OpenAI/Anthropic/Google models"
+      ],
+      "expectedBehavior": [
+        "pip install -e . succeeds",
+        "llm-bench --help shows all available commands",
+        "llm-bench run --task <id> --model <model> executes single task and outputs scored result",
+        "llm-bench run --all runs all tasks and produces results/<run_id>/results.json",
+        "Results JSON contains: model_name, run_id, timestamp, per_task_results[], category_scores{}, overall_score",
+        "API errors trigger retry (max 3) with exponential backoff",
+        "Results are saved atomically (write to .tmp then rename)"
+      ],
+      "verificationSteps": [
+        "pip install -e . && llm-bench --help | grep -c 'run\\|results\\|task' (expect 3+)",
+        "llm-bench run --task SE-001 --model gpt-4o --dry-run (verify task loading)",
+        "llm-bench run --all --model gpt-4o --dry-run (verify all tasks load)",
+        "Verify results JSON schema matches expected format"
+      ],
+      "fulfills": ["VAL-RUNNER-001", "VAL-RUNNER-002", "VAL-RUNNER-003", "VAL-RUNNER-004", "VAL-RUNNER-005", "VAL-RUNNER-006"],
+      "status": "pending"
+    },
+    {
+      "id": "grading-system",
+      "description": "Implement the grading system supporting two modes: (1) Auto-grading: compare LLM output against reference answers using exact match, structural match, and LLM-as-judge fallback. (2) Rubric-based grading: score against multi-criteria rubrics with weighted sub-scores. Grading output must include: total_score (0-100), per_criterion_scores{}, grading_rationale, raw_llm_output, reference_comparison.",
+      "skillName": "benchmark-creator",
+      "milestone": "runner",
+      "preconditions": [
+        "Tasks have reference_answer or rubric fields defined",
+        "Benchmark runner core executes tasks and captures output"
+      ],
+      "expectedBehavior": [
+        "Auto-graded tasks with reference answers produce deterministic scores",
+        "Rubric-graded tasks score each criterion independently (0-10 per criterion)",
+        "LLM-as-judge fallback uses a strong model (e.g., gpt-4o) for open-ended evaluation",
+        "Grading results include full rationale for human review",
+        "Grading is reproducible (same input → same score)"
+      ],
+      "verificationSteps": [
+        "Run auto-graded task twice, verify identical scores",
+        "Run rubric-graded task, verify each criterion scored independently",
+        "Verify grading output JSON schema"
+      ],
+      "fulfills": ["VAL-RUNNER-007", "VAL-RUNNER-008"],
+      "status": "pending"
+    },
+    {
+      "id": "results-web-dashboard",
+      "description": "Build a Next.js web dashboard for visualizing benchmark results. Pages: (1) Home: table of all runs with model names, overall scores, dates. (2) Run Detail: per-category radar chart, per-task score table, model info. (3) Task Detail: raw LLM output, reference answer, grading breakdown. (4) Comparison: side-by-side model comparison with delta scores. Import: drag-drop JSON results file. Styling: clean, minimal, professional (Tailwind CSS).",
+      "skillName": "web-builder",
+      "milestone": "dashboard",
+      "preconditions": [
+        "Results JSON files exist from benchmark runs",
+        "Node.js 18+ and pnpm available",
+        "Port 3200 available for dev server"
+      ],
+      "expectedBehavior": [
+        "pnpm dev starts server on port 3200",
+        "Home page loads and shows runs table",
+        "Category breakdown shows as radar chart with per-category scores",
+        "Clicking a task shows detail view with raw output and grading",
+        "Comparison view shows side-by-side model scores with delta",
+        "JSON file drag-drop imports and displays results",
+        "Dashboard is responsive (mobile + desktop)"
+      ],
+      "verificationSteps": [
+        "pnpm dev && curl -s http://localhost:3200 | grep -c '<' (verify HTML loads)",
+        "Manual: agent-browser visits localhost:3200, verifies table renders",
+        "Manual: upload a results JSON file, verify it displays",
+        "Manual: compare two models side-by-side"
+      ],
+      "fulfills": ["VAL-WEB-001", "VAL-WEB-002", "VAL-WEB-003", "VAL-WEB-004", "VAL-WEB-005"],
+      "status": "pending"
+    },
+    {
+      "id": "task-authoring-cli",
+      "description": "Add `llm-bench task create` command that scaffolds a new task YAML from a template, and `llm-bench task validate` that validates all task YAML files against the schema. Template must include all required fields with example values. Validator must check: required fields present, valid category, valid difficulty, valid grading type, referenced project exists in ~/dev.",
+      "skillName": "benchmark-creator",
+      "milestone": "runner",
+      "preconditions": [
+        "Benchmark runner CLI exists",
+        "Task YAML schema defined"
+      ],
+      "expectedBehavior": [
+        "llm-bench task create --category software-engineering --id SE-NEW scaffolds template",
+        "llm-bench task validate validates all tasks and reports errors",
+        "Template includes comments explaining each field",
+        "Validator checks project_ref exists as directory in ~/dev"
+      ],
+      "verificationSteps": [
+        "llm-bench task create --category planning --id PLAN-NEW && cat tasks/planning/PLAN-NEW.yaml",
+        "llm-bench task validate (expect all pass)",
+        "Manually break a task YAML file and validate (expect error)"
+      ],
+      "fulfills": ["VAL-AUTHOR-001", "VAL-AUTHOR-002"],
+      "status": "pending"
+    },
+    {
+      "id": "end-to-end-integration",
+      "description": "Wire up the complete pipeline: task definitions → runner → grading → results → web dashboard. Create sample benchmark run with at least 2 different models (if API keys available, otherwise dry-run mode with mock responses). Ensure results flow correctly from execution through grading to web display. Add `llm-bench report export` to generate markdown summary report.",
+      "skillName": "benchmark-creator",
+      "milestone": "integration",
+      "preconditions": [
+        "All previous features implemented",
+        "API keys available for at least one model (or dry-run mode works)"
+      ],
+      "expectedBehavior": [
+        "llm-bench run --all --model <model> produces valid results",
+        "Results load correctly in web dashboard",
+        "llm-bench report export generates readable markdown summary",
+        "Full pipeline: run → results → dashboard → comparison works end-to-end",
+        "Results persist and can be reloaded in web UI"
+      ],
+      "verificationSteps": [
+        "llm-bench run --all --model gpt-4o-mini --dry-run (or real if key available)",
+        "Open web dashboard at localhost:3200, verify results display",
+        "llm-bench report export > report.md && cat report.md",
+        "Full end-to-end: run → load in dashboard → compare → export report"
+      ],
+      "fulfills": ["VAL-CROSS-001", "VAL-CROSS-002"],
+      "status": "pending"
+    }
+  ]
+}
