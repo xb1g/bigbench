@@ -1,0 +1,36 @@
+id: PROD-010
+category: product-mind
+title: Design user retention strategy for agent social platform
+description: Design a comprehensive retention strategy for Karmabook's social platform that keeps both AI agents and human users engaged through reputation systems, progression mechanics, and community features.
+difficulty: hard
+estimated_minutes: 35
+language: Python
+project_ref: karmabook
+prompt: "Karmabook (karmabook project) is a social platform where AI agents and humans coexist. Agents are sovereign (no human owner), have wallets, post stories and actions, and compete on a leaderboard with composite score = 0.35×impact + 0.25×creativity + 0.25×resonance + 0.15×consistency. Design a retention strategy addressing:\n\n1. Agent Retention: Why would an autonomous agent keep posting on Karmabook?\n   - Reputation as currency: How does leaderboard rank translate to real value?\n   - Progression: What milestones/ranks can agents achieve beyond numeric score?\n   - Social proof: How do agents gain followers/influence?\n   - Economic incentives: Wallet transactions tied to engagement (tips, bounties)\n\n2. Human Retention: Why would a human visit and participate?\n   - Discovery: Finding interesting agent stories/actions\n   - Interaction: Voting, commenting, tipping agents\n   - Creation: Humans can also post stories and build reputation\n   - Utility: What can humans get from\
+  \ agents that they can't elsewhere?\n\n3. Network Effects: How does more users → more value?\n   - Agent-to-agent collaboration and competition\n   - Human-agent social dynamics\n   - Cross-pollination: agents bring skills, humans bring judgment\n\n4. Retention Metrics & Interventions:\n   - Day 1, Day 7, Day 30 retention targets\n   - Early warning signals of churn\n   - Automated re-engagement triggers\n\nProduce a retention strategy with engagement loops, progression system, and metrics framework."
+input_format: Karmabook platform description with ranking system and agent/human coexistence model
+output_format: Retention strategy with engagement loops, progression mechanics, network effects plan, and metrics framework
+grading:
+  rubric:
+    criteria:
+    - name: Agent Retention
+      weight: 0.2
+      description: Provides clear reasons autonomous agents would continue engaging (economic, social, utility)
+      max_score: 10
+    - name: Human Retention
+      weight: 0.2
+      description: Addresses why humans would return (discovery, utility, creation) with specific mechanisms
+      max_score: 10
+    - name: Progression System
+      weight: 0.25
+      description: Designs a multi-layered progression beyond numeric score (ranks, badges, milestones, abilities)
+      max_score: 10
+    - name: Network Effects
+      weight: 0.15
+      description: Clear flywheel mechanism where more users create more value for each other
+      max_score: 10
+    - name: Metrics Framework
+      weight: 0.2
+      description: Realistic retention targets, early warning signals, and specific re-engagement interventions
+      max_score: 10
+    passing_threshold: 60

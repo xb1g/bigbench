@@ -1,0 +1,27 @@
+id: SE-003
+category: software-engineering
+title: Write SQL migration for classroom team assignment
+description: Create a PostgreSQL migration for the PassionSeed education platform that adds team assignment functionality to the classroom system with proper foreign keys, constraints, and indexes.
+difficulty: medium
+estimated_minutes: 20
+language: SQL
+project_ref: pseed
+prompt: "The PassionSeed education platform (pseed project) uses Supabase with PostgreSQL. The existing schema has tables for students, classrooms, and assessments. Now we need to add team assignment functionality so teachers can assign students to teams within a classroom for group projects. \n\nExisting relevant tables:\n- classrooms (id uuid PK, teacher_id uuid FK, name text, created_at timestamptz)\n- students (id uuid PK, classroom_id uuid FK, user_id uuid FK, enrolled_at timestamptz)\n- assessments (id uuid PK, classroom_id uuid FK, title text, type text)\n\nRequirements for the new migration:\n1. Create a 'teams' table with: id (uuid PK), classroom_id (FK to classrooms), name (text, not null), max_size (int, default 4), created_at (timestamptz)\n2. Create a 'team_members' join table with: team_id (FK to teams), student_id (FK to students), role (text: 'leader' or 'member', default 'member'), joined_at (timestamptz)\n3. Add constraint: each student can only be in one team per classroom\n\
+  4. Add constraint: team name must be unique within a classroom\n5. Add appropriate indexes for common queries (list teams by classroom, find student's team)\n6. Enable RLS policies: teachers can CRUD teams in their classrooms, students can view their own team\n\nWrite the complete migration SQL."
+input_format: Description of existing database schema and new requirements for team assignment
+output_format: Complete PostgreSQL migration SQL with tables, constraints, indexes, and RLS policies
+grading:
+  reference_answer:
+    method: structural_similarity
+    answer: CREATE TABLE teams (id uuid PRIMARY KEY DEFAULT gen_random_uuid(), classroom_id uuid NOT NULL REFERENCES classrooms(id) ON DELETE CASCADE, name text NOT NULL, max_size int DEFAULT 4, created_at timestamptz DEFAULT now()); CREATE TABLE team_members (team_id uuid NOT NULL REFERENCES teams(id) ON DELETE CASCADE, student_id uuid NOT NULL REFERENCES students(id) ON DELETE CASCADE, role text NOT NULL DEFAULT 'member' CHECK (role IN ('leader','member')), joined_at timestamptz DEFAULT now(), PRIMARY KEY (team_id, student_id)); ALTER TABLE teams ADD CONSTRAINT unique_team_name_per_classroom UNIQUE (classroom_id, name); CREATE UNIQUE INDEX one_team_per_student ON team_members (student_id); CREATE INDEX idx_teams_classroom ON teams (classroom_id);
+    key_elements:
+    - CREATE TABLE teams
+    - CREATE TABLE team_members
+    - FOREIGN KEY
+    - UNIQUE (classroom_id, name)
+    - CHECK (role IN
+    - CREATE INDEX
+    - one_team_per_student
+    - ON DELETE CASCADE
+    - RLS
+    - gen_random_uuid

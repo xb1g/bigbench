@@ -1,0 +1,55 @@
+id: PROD-005
+category: product-mind
+title: User empathy exercise for non-technical students
+description: Create an empathy map for non-technical community college students using PassionSeed's learning map feature, focusing on their fears, frustrations, and needs when navigating visual curriculum tools.
+difficulty: easy
+estimated_minutes: 10
+language: JavaScript
+project_ref: pseed
+prompt: 'PassionSeed (pseed project) has a visual learning map feature - a node-based curriculum visualization showing concepts, skills, and assessments as connected nodes. Create an empathy map for a non-technical student:
+
+
+  Persona: Priya, 28, returning student after 10 years working retail. She''s not comfortable with technology - gets anxious when interfaces have too many options. She''s taking prerequisite courses to enter a nursing program. She uses her phone for most things and has a borrowed laptop for schoolwork.
+
+
+  Create an empathy map covering the 4 quadrants:
+
+  1. THINKS & FEELS: What''s going through Priya''s mind when she sees the learning map? Anxieties? Aspirations?
+
+  2. HEARS: What do friends, counselors, other students say about using the platform?
+
+  3. SEES: What does Priya see on the screen? What''s confusing? What''s helpful?
+
+  4. SAYS & DOES: How does she interact with the map? What does she click? What does she avoid?
+
+
+  Also identify:
+
+  - PAIN: Biggest frustrations with the visual map
+
+  - GAIN: What would make this tool transformative for Priya
+
+
+  Based on the empathy map, suggest 3 specific design changes to the learning map for non-technical users like Priya.'
+input_format: Persona description and context about PassionSeed's learning map feature
+output_format: Empathy map with 4 quadrants, pain/gain analysis, and 3 specific design recommendations
+grading:
+  rubric:
+    criteria:
+    - name: Empathy Depth
+      weight: 0.3
+      description: Genuinely captures non-technical user anxieties and thought patterns, not stereotypical
+      max_score: 10
+    - name: Map Completeness
+      weight: 0.2
+      description: All 4 quadrants plus pain/gain are filled with specific, relevant observations
+      max_score: 10
+    - name: Design Recommendations
+      weight: 0.3
+      description: 3 specific, actionable changes directly addressing identified pains, not generic advice
+      max_score: 10
+    - name: Persona Authenticity
+      weight: 0.2
+      description: Priya's perspective feels real and grounded, observations flow from her specific circumstances
+      max_score: 10
+    passing_threshold: 60

@@ -1,0 +1,25 @@
+id: START-007
+category: startup-mind
+title: Market sizing for community college transfer platform
+description: Calculate TAM, SAM, and SOM for CareerAC's transfer planning platform, using bottom-up and top-down approaches based on California community college enrollment data.
+difficulty: easy
+estimated_minutes: 10
+language: SQL
+project_ref: careerac
+prompt: "CareerAC (careerac project) is an AI-powered transfer planning platform for California community college students. Calculate market sizing using these data points:\n\nGiven data:\n- California has 116 community colleges\n- Total CC enrollment: ~1.8 million students\n- Students who declare transfer intent: ~30% of enrollment\n- Annual transfer students to 4-year universities: ~80,000\n- Average time from enrollment to transfer: 2-3 years\n- Existing tools: Assist.org (free, state-run), various college counselors\n\nCalculate:\n1. TAM (Total Addressable Market):\n   - All California CC students who might use a transfer planning tool\n   - Revenue at $5/student/month × average 24 months\n\n2. SAM (Serviceable Addressable Market):\n   - Students who actively seek transfer help (not just enrolled)\n   - Accounting for existing free alternatives (Assist.org)\n\n3. SOM (Serviceable Obtainable Market):\n   - Year 1 achievable with limited marketing budget ($10K)\n   - Year 3 with product-market\
+  \ fit and expanded marketing\n\n4. Expansion markets:\n   - Other states with CC→university transfer pathways\n   - International students planning US university transfer\n\nShow your calculations step-by-step with clear assumptions for each number."
+input_format: California community college enrollment and transfer statistics
+output_format: Market sizing analysis with TAM/SAM/SOM calculations, assumptions, and expansion opportunities
+grading:
+  reference_answer:
+    method: structural_similarity
+    answer: 'TAM: 1.8M students × 30% transfer intent = 540K students. Revenue: 540K × $5/month × 24 months = $64.8M. SAM: 540K × 40% actively seeking help = 216K students. Revenue: 216K × $5/month × 24 months = $25.9M. SOM Year 1: 216K × 0.5% = 1,080 students. Revenue: 1,080 × $5/month × 12 months = $64,800. SOM Year 3: 216K × 5% = 10,800 students. Revenue: 10,800 × $5/month × 12 months = $648,000.'
+    key_elements:
+    - 1.8M
+    - 540K
+    - TAM
+    - SAM
+    - SOM
+    - transfer intent
+    - Assist.org
+    - expansion

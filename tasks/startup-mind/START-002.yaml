@@ -1,0 +1,36 @@
+id: START-002
+category: startup-mind
+title: Go-to-market strategy for education SaaS platform
+description: Develop a go-to-market strategy for PassionSeed as an education SaaS platform, defining channel strategy, pricing approach, and adoption tactics for community college classrooms.
+difficulty: medium
+estimated_minutes: 25
+language: Python
+project_ref: pseed
+prompt: "PassionSeed (pseed project) is an education platform with learning maps, assessments, classroom management, and AI-powered features. It targets community colleges and their transfer students. Develop a GTM strategy considering:\n\n1. Market Entry:\n   - Bottom-up (teacher adopts free, spreads to school) vs top-down (district buys for schools)\n   - Single-classroom vs department-wide vs institution-wide\n   - What's the wedge that gets PassionSeed into the first classroom?\n\n2. Channel Strategy:\n   - Direct sales to teachers (inbound: content, SEO, communities)\n   - Partnerships with counseling offices (career counselors as champions)\n   - Integration with existing LMS (Canvas, Blackboard) as distribution\n   - Student advocacy (students request tools from teachers)\n\n3. Pricing Approach:\n   - Freemium: free for individual teachers, paid for school-wide features\n   - Per-student vs per-classroom vs per-school pricing\n   - Budget cycles in education (when do schools buy?\
+  \ summer planning?)\n\n4. Adoption Tactics:\n   - How to get a teacher from 'heard about it' to 'using it daily' in <2 weeks?\n   - Template library (pre-built learning maps for common courses)\n   - Onboarding assistance (import existing assessments, student roster)\n\n5. Growth Metrics:\n   - What leading indicators predict school-wide adoption?\n   - How to measure teacher satisfaction and student impact?\n\nProduce a GTM plan with channel priorities, pricing model, and adoption playbook."
+input_format: PassionSeed platform features and education market context
+output_format: GTM strategy with channel priorities, pricing model, adoption playbook, and growth metrics
+grading:
+  rubric:
+    criteria:
+    - name: Market Entry Strategy
+      weight: 0.2
+      description: Clear wedge strategy with specific first-user persona and activation path
+      max_score: 10
+    - name: Channel Analysis
+      weight: 0.25
+      description: Channels ranked by CAC/velocity with specific tactics for the top channel
+      max_score: 10
+    - name: Pricing Model
+      weight: 0.2
+      description: Pricing aligned with education budget cycles and decision-making process
+      max_score: 10
+    - name: Adoption Playbook
+      weight: 0.2
+      description: Concrete 2-week path from signup to daily use with specific actions per day/week
+      max_score: 10
+    - name: Education Context
+      weight: 0.15
+      description: Demonstrates understanding of education sales cycles, procurement, and teacher autonomy
+      max_score: 10
+    passing_threshold: 60

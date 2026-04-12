@@ -1,0 +1,36 @@
+id: START-010
+category: startup-mind
+title: Revenue model for open-source developer tool
+description: Design a sustainable revenue model for the Symphony Parallel Worlds tool, an open-source developer tool for exploring implementation branches, balancing community goodwill with monetization.
+difficulty: medium
+estimated_minutes: 20
+language: Python
+project_ref: symphony
+prompt: "Symphony's Parallel Worlds (symphony project) is an open-source Python tool for exploring multiple implementation branches ('worlds') simultaneously. It creates git worktrees, runs tests across worlds, compares outcomes, and lets users pick the best one. It has a web UI for visualization. Design a revenue model that:\n\n1. Open Source Constraints:\n   - Core tool must remain free and open source (community trust)\n   - Can't put basic functionality behind a paywall\n   - Community contributions are valuable - monetization shouldn't discourage them\n\n2. Revenue Options:\n   - Hosted version: Cloud service for teams (no local setup needed)\n   - Enterprise features: SSO, audit logs, team management, priority support\n   - AI-powered autopilot: Better model for world generation/selection (costs API $$)\n   - Consulting/services: Custom integration, training, support contracts\n   - Sponsorware: New features released to sponsors first, then open-sourced\n\n3. Developer Tool Revenue\
+  \ Benchmarks:\n   - Successful OSS dev tools: 1-3% conversion to paid\n   - Typical pricing: $10-50/user/month for team features\n   - Enterprise deals: $500-5000/month for org-wide deployment\n\n4. Prioritization:\n   - Which revenue stream to start with? (lowest effort, highest signal)\n   - What's the path from $0 to $1K MRR to $10K MRR?\n   - How to validate willingness-to-pay before building paid features?\n\nDesign a revenue model with tier structure, pricing, and 12-month monetization roadmap."
+input_format: Parallel Worlds tool description and open-source revenue model options
+output_format: Revenue model with tier structure, pricing, validation plan, and 12-month monetization roadmap
+grading:
+  rubric:
+    criteria:
+    - name: Tier Design
+      weight: 0.25
+      description: Clear free/paid split that preserves OSS goodwill while creating upgrade triggers
+      max_score: 10
+    - name: Pricing Logic
+      weight: 0.2
+      description: Pricing is benchmarked against developer tool norms ($10-50/user/month range)
+      max_score: 10
+    - name: Validation Plan
+      weight: 0.2
+      description: Specific experiments to test willingness-to-pay before building paid features
+      max_score: 10
+    - name: Revenue Path
+      weight: 0.2
+      description: Realistic path from $0 → $1K → $10K MRR with specific milestones and actions
+      max_score: 10
+    - name: OSS Alignment
+      weight: 0.15
+      description: Revenue model doesn't undermine community trust or discourage contributions
+      max_score: 10
+    passing_threshold: 60

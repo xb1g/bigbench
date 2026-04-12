@@ -1,0 +1,36 @@
+id: START-004
+category: startup-mind
+title: Competitive positioning for AI stock alert service
+description: Develop a competitive positioning strategy for 911Stock in the financial alert and monitoring market, differentiating its phone-call approach from dashboard-based and notification-based competitors.
+difficulty: medium
+estimated_minutes: 25
+language: Python
+project_ref: 911stock
+prompt: "911Stock (911stock project) is unique: instead of dashboards or push notifications, it calls your phone when something matters about your stocks. It also can execute trades via voice. Develop a competitive positioning strategy:\n\n1. Competitor Map:\n   - Dashboard-based: Seeking Alpha, Morningstar, Yahoo Finance (check when you remember)\n   - Notification-based: Robinhood alerts, Finviz, StockTwits (push notifications)\n   - Professional: Bloomberg Terminal, FactSet (comprehensive, expensive)\n   - AI-powered: Danelfit, Tickeron (AI analysis, dashboard delivery)\n   Where does 911Stock fit? What's its competitive moat?\n\n2. Differentiation Strategy:\n   - Phone call vs notification: Is 'interruption' a feature or a bug?\n   - Voice-based trade execution: Novelty or genuine utility?\n   - Who values interruption? (Active traders vs passive investors)\n\n3. Positioning Statement:\n   - Draft a positioning statement: 'For [target] who [need], 911Stock is [category] that [benefit]'\n\
+  \   - What emotional/functional promise does the brand make?\n\n4. Market Sizing:\n   - TAM: Individual investors in US (~15M active)\n   - SAM: Active investors who hold individual stocks (not just index funds)\n   - SOM: Achievable in first year with limited marketing budget\n\n5. Moat Building:\n   - How to make the phone-call experience defensible?\n   - Network effects, data moats, or brand moats?\n\nProduce a competitive positioning document with market map, positioning statement, and moat strategy."
+input_format: 911Stock product description and competitive landscape overview
+output_format: Competitive positioning with market map, positioning statement, market sizing, and moat strategy
+grading:
+  rubric:
+    criteria:
+    - name: Competitor Analysis
+      weight: 0.2
+      description: Thorough analysis of key competitors with strengths/weaknesses relative to 911Stock
+      max_score: 10
+    - name: Differentiation Logic
+      weight: 0.25
+      description: Clear argument for phone-call as feature (not bug), identifies who values interruption most
+      max_score: 10
+    - name: Positioning Statement
+      weight: 0.2
+      description: Compelling, specific positioning that differentiates from dashboard and notification approaches
+      max_score: 10
+    - name: Market Sizing
+      weight: 0.15
+      description: Realistic TAM/SAM/SOM with clear logic, not inflated numbers
+      max_score: 10
+    - name: Moat Strategy
+      weight: 0.2
+      description: Identifies defensible advantages beyond first-mover (data, voice UX, regulatory compliance)
+      max_score: 10
+    passing_threshold: 60

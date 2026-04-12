@@ -1,0 +1,36 @@
+id: SE-001
+category: software-engineering
+title: Debug async race condition in parallel worlds tool
+description: Identify and fix a race condition in Python async code where multiple git worktree operations execute concurrently, causing intermittent file lock errors in the Parallel Worlds branch exploration tool.
+difficulty: medium
+estimated_minutes: 30
+language: Python
+project_ref: symphony
+prompt: "You are debugging the Parallel Worlds tool (symphony project), a Python application that explores multiple implementation branches concurrently using git worktrees. The tool spawns multiple async tasks that each create a worktree, run tests, and collect results. Users report intermittent 'fatal: Unable to create .git/index.lock: File exists' errors when running 3+ worlds in parallel. \n\nThe current implementation in pw.py uses asyncio.gather() to run all worlds concurrently, but each world's subprocess calls git operations (checkout, merge, status) on the same repository. The error occurs because git's index.lock file is not released before another world tries to access it. \n\nYour task: Analyze the race condition and provide a fix that:\n1. Ensures git operations are properly serialized when accessing the same repository\n2. Maintains parallelism for independent operations (test execution, result collection)\n3. Handles the lock file gracefully (detect stale locks, wait/retry)\n\
+  4. Preserves the existing CLI interface and configuration\n\nProvide the corrected async code with clear comments explaining the fix."
+input_format: Python async code with race condition in git worktree operations
+output_format: Fixed Python async code with serialization of git operations and explanation of the fix
+grading:
+  rubric:
+    criteria:
+    - name: Root Cause Analysis
+      weight: 0.25
+      description: Correctly identifies the git index.lock race condition as the root cause
+      max_score: 10
+    - name: Solution Correctness
+      weight: 0.3
+      description: Fix properly serializes git operations while maintaining parallelism for independent tasks
+      max_score: 10
+    - name: Error Handling
+      weight: 0.2
+      description: Handles stale locks, implements retry/wait logic, provides meaningful error messages
+      max_score: 10
+    - name: Code Quality
+      weight: 0.15
+      description: Code is clean, well-commented, follows Python async best practices
+      max_score: 10
+    - name: Interface Preservation
+      weight: 0.1
+      description: Existing CLI interface and configuration remain unchanged
+      max_score: 10
+    passing_threshold: 60

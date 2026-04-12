@@ -1,0 +1,73 @@
+id: START-005
+category: startup-mind
+title: Resource allocation for solo founder productivity app
+description: Create a resource allocation plan for a solo founder building Life OS, deciding how to split limited time between product development, marketing, and user research over a 3-month period.
+difficulty: easy
+estimated_minutes: 10
+language: Rust
+project_ref: life-os
+prompt: 'Life OS (life-os project) is a solo-founder productivity app built with Next.js + SQLite. The founder has 40 hours/week and needs to decide how to allocate time across:
+
+
+  1. Product Development (building features, fixing bugs, tech debt)
+
+  2. User Research (talking to users, analyzing behavior, running experiments)
+
+  3. Marketing & Distribution (content, community, launches)
+
+  4. Operations (customer support, billing, infrastructure)
+
+
+  Current situation:
+
+  - 50 early users from a Hacker News launch
+
+  - Day-7 retention is 30% (good for productivity tools)
+
+  - Main feedback: ''I love the capture feature but need mobile access''
+
+  - No revenue yet (considering freemium with AI features as paid tier)
+
+  - Next 3 months: need to reach 500 users and launch paid tier
+
+
+  Create a weekly time allocation plan for the next 12 weeks that:
+
+  1. Breaks down hours per activity per week
+
+  2. Adjusts allocation as priorities shift (e.g., more user research early, more marketing near launch)
+
+  3. Identifies which tasks to automate or outsource
+
+  4. Sets specific weekly goals/milestones
+
+  5. Includes buffer time for unexpected issues
+
+
+  Consider: a solo founder can''t do everything - what to deprioritize and why?'
+input_format: Life OS current state, user metrics, and 3-month goals
+output_format: 12-week resource allocation plan with weekly hours breakdown, priorities, and milestones
+grading:
+  rubric:
+    criteria:
+    - name: Time Allocation
+      weight: 0.25
+      description: Realistic weekly hours breakdown that sums to 40, adjusts over time based on priorities
+      max_score: 10
+    - name: Priority Shifting
+      weight: 0.25
+      description: Plan adjusts allocation as needs change (more research early, more marketing near launch)
+      max_score: 10
+    - name: Deprioritization
+      weight: 0.2
+      description: Clearly identifies what NOT to do and why, acknowledges solo founder constraints
+      max_score: 10
+    - name: Milestones
+      weight: 0.15
+      description: Specific, measurable weekly goals that build toward 500 users and paid tier launch
+      max_score: 10
+    - name: Practicality
+      weight: 0.15
+      description: Plan is realistic for one person, includes buffer time, doesn't assume superhuman output
+      max_score: 10
+    passing_threshold: 60

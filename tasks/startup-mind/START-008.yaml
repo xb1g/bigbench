@@ -1,0 +1,36 @@
+id: START-008
+category: startup-mind
+title: Partnership strategy for EPUB-to-skill conversion platform
+description: Design a partnership strategy for Skilliglot to partner with educational publishers and LMS platforms for distribution of its EPUB-to-skill conversion service.
+difficulty: easy
+estimated_minutes: 15
+language: Go
+project_ref: skilliglot
+prompt: "Skilliglot (skilliglot project) converts EPUBs into structured skill files with a guided review workflow. It has API endpoints for upload, conversion, review, and GitHub export. Design a partnership strategy for distribution:\n\n1. Potential Partners:\n   - Educational publishers (O'Reilly, Pearson, McGraw-Hill) - have EPUB content\n   - LMS platforms (Canvas, Moodle, Blackboard) - have student access\n   - Skill platforms (LinkedIn Learning, Coursera) - need skill data\n   - Developer education (freeCodeCamp, Codecademy) - need structured skills\n\n2. Partnership Models:\n   - API integration: Partner embeds Skilliglot conversion in their platform\n   - Content licensing: Publisher licenses EPUBs for skill conversion\n   - Revenue share: Split subscription revenue with partner\n   - White label: Skilliglot powers conversion under partner's brand\n\n3. Partnership Priority:\n   - Which partner type to pursue first and why?\n   - What does Skilliglot offer that partners can't build\
+  \ themselves?\n   - How to structure a win-win deal?\n\n4. Outreach Strategy:\n   - How to get a first meeting with a publisher/LMS?\n   - What demo/pilot to offer?\n   - Partnership timeline (from first meeting to integration)\n\nProduce a partnership strategy with prioritized partner list, deal structures, and outreach plan."
+input_format: Skilliglot platform description and potential partner categories
+output_format: Partnership strategy with prioritized partners, deal structures, outreach plan, and timeline
+grading:
+  rubric:
+    criteria:
+    - name: Partner Selection
+      weight: 0.25
+      description: Partners ranked by strategic fit, reachability, and mutual value creation
+      max_score: 10
+    - name: Deal Structure
+      weight: 0.25
+      description: Partnership models are practical, protect Skilliglot's IP, and create clear value for both sides
+      max_score: 10
+    - name: Differentiation
+      weight: 0.2
+      description: Clear argument for why partners need Skilliglot (can't build EPUB-to-skill review themselves)
+      max_score: 10
+    - name: Outreach Plan
+      weight: 0.15
+      description: Specific tactics for getting meetings and structuring pilot programs
+      max_score: 10
+    - name: Timeline
+      weight: 0.15
+      description: Realistic timeline from outreach to integration, considers enterprise sales cycles
+      max_score: 10
+    passing_threshold: 60

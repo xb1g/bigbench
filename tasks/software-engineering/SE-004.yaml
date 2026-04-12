@@ -1,0 +1,62 @@
+id: SE-004
+category: software-engineering
+title: Build Go HTTP client for SEC EDGAR API
+description: Implement a Go HTTP client package for fetching and parsing SEC EDGAR filings, with rate limiting, retry logic, and XML parsing for Form 4 insider transaction reports.
+difficulty: hard
+estimated_minutes: 45
+language: Go
+project_ref: 911stock
+prompt: 'The 911Stock project monitors SEC filings and insider transactions. Currently implemented in TypeScript/Next.js, we need a high-performance Go package for fetching and parsing SEC EDGAR data. The EDGAR API has specific requirements:
+
+
+  1. Rate limiting: EDGAR requires max 10 requests/second and mandates a User-Agent header with contact email (e.g., ''911stock contact@911stock.com'')
+
+  2. Filing search: GET https://efts.api.sec.gov/v3/q?query={ticker}&dateRange=custom&startdt={start}&enddt={end}
+
+  3. Form 4 XML parsing: Full text at https://www.sec.gov/Archives/edgar/data/{cik}/{accession}/{filename}
+
+  4. The Form 4 XML has a specific schema with <ownershipDocument>, <issuer>, <reportingOwner>, <nonDerivativeTable>, <derivativeTable> elements
+
+
+  Your task: Create a Go package ''edgar'' that provides:
+
+  1. Client struct with configurable rate limiter (golang.org/x/time/rate)
+
+  2. SearchFilings(ctx, ticker, startDate, endDate) returning []Filing
+
+  3. GetForm4(ctx, filingURL) returning parsed Form4 struct with issuer, reporting owner, transactions
+
+  4. XML parsing using encoding/xml with proper struct tags
+
+  5. Retry with exponential backoff on 429/5xx errors (max 3 retries)
+
+  6. Context support for cancellation
+
+
+  Provide the complete Go package with types, client implementation, and XML parsing.'
+input_format: SEC EDGAR API documentation and Form 4 XML schema description
+output_format: Complete Go package with HTTP client, rate limiting, XML parsing, and retry logic
+grading:
+  rubric:
+    criteria:
+    - name: Rate Limiting
+      weight: 0.2
+      description: Properly implements rate limiter with 10 req/s limit and required User-Agent header
+      max_score: 10
+    - name: XML Parsing
+      weight: 0.25
+      description: Correct struct definitions with XML tags matching Form 4 schema (issuer, reportingOwner, transactions)
+      max_score: 10
+    - name: Error Handling & Retry
+      weight: 0.2
+      description: Exponential backoff retry on 429/5xx, context cancellation support, meaningful error types
+      max_score: 10
+    - name: API Design
+      weight: 0.2
+      description: Clean Client interface with SearchFilings and GetForm4 methods, proper Go idioms
+      max_score: 10
+    - name: Code Quality
+      weight: 0.15
+      description: Proper Go conventions, godoc comments, zero-value usable types, no panics
+      max_score: 10
+    passing_threshold: 60

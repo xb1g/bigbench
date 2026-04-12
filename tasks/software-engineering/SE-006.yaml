@@ -1,0 +1,64 @@
+id: SE-006
+category: software-engineering
+title: Build Rust CLI config parser for parallel worlds
+description: Implement a Rust CLI config parser that reads and validates the parallel_worlds.json configuration file, providing type-safe access to all configuration fields with proper error messages.
+difficulty: hard
+estimated_minutes: 40
+language: Rust
+project_ref: symphony
+prompt: 'The Parallel Worlds tool (symphony project) uses a parallel_worlds.json configuration file to define runner commands, codex settings, and execution parameters. Currently parsed with Python''s json module without validation. We need a Rust library that:
+
+
+  1. Parses parallel_worlds.json into strongly-typed Rust structs
+
+  2. Validates all required fields are present and have valid values
+
+  3. Provides helpful error messages when validation fails (field path, expected type, actual value)
+
+  4. Supports default values for optional fields
+
+
+  The JSON structure includes:
+
+  - runner.command (string, required): shell command template with {prompt_file} placeholder
+
+  - runner.timeout_sec (integer, default 300)
+
+  - codex.enabled (boolean, default false)
+
+  - codex.command (string, required if codex.enabled)
+
+  - codex.timeout_sec (integer, default 900)
+
+  - codex.use_agents_md_skills (boolean, default false)
+
+  - execution.workspace_mode (enum: ''worktree'' | ''branch'', default ''branch'')
+
+  - execution.max_parallel_worlds (integer, 1-8, default 3)
+
+  - render.command (string, optional)
+
+
+  Use serde and serde_json for deserialization. Implement std::error::Error for custom errors. Provide the complete Rust module with Config struct, validation logic, and unit tests.'
+input_format: JSON configuration schema specification for parallel worlds tool
+output_format: Complete Rust module with serde-derived structs, validation, error types, and tests
+grading:
+  rubric:
+    criteria:
+    - name: Struct Design
+      weight: 0.25
+      description: Proper serde derive macros, correct field types, defaults handled with serde(default)
+      max_score: 10
+    - name: Validation Logic
+      weight: 0.3
+      description: Required fields enforced, conditional requirements (codex.command when enabled), range constraints (1-8)
+      max_score: 10
+    - name: Error Handling
+      weight: 0.25
+      description: Custom error type implementing std::error::Error, helpful messages with field paths and context
+      max_score: 10
+    - name: Testing
+      weight: 0.2
+      description: Unit tests cover valid config, missing fields, invalid values, conditional requirements, defaults
+      max_score: 10
+    passing_threshold: 60

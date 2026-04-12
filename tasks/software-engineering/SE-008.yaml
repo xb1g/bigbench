@@ -1,0 +1,55 @@
+id: SE-008
+category: software-engineering
+title: Build FastAPI endpoint with request validation
+description: Implement a FastAPI endpoint for the Skilliglot EPUB-to-skill platform that handles file upload signing and job creation with proper Pydantic validation and error responses.
+difficulty: medium
+estimated_minutes: 25
+language: Python
+project_ref: skilliglot
+prompt: 'The Skilliglot platform (skilliglot project) is a FastAPI-based EPUB-to-skill conversion service. It has a monorepo with apps/api (FastAPI), apps/worker (background processor), and apps/web (React). The API needs a new endpoint for creating conversion jobs with upload signing.
+
+
+  Implement a POST /v1/jobs endpoint that:
+
+  1. Accepts a JSON body with: filename (str, must end in .epub), title (str, 1-200 chars), language (str, ISO 639-1 two-letter code), options (optional object with review_mode: bool, skill_format: ''yaml''|''json''|''markdown'')
+
+  2. Validates all inputs using Pydantic v2 BaseModel with field validators
+
+  3. Generates a pre-signed upload URL for GCS (mock this with a placeholder function)
+
+  4. Creates a job record with status ''pending_upload''
+
+  5. Returns {job_id: str, upload_url: str, upload_headers: dict}
+
+  6. Returns 422 with field-level error details for invalid input
+
+  7. Returns 409 if a job with same filename+title already exists for this user
+
+
+  Use FastAPI dependency injection for current user (mock auth). Include proper type hints, docstrings, and follow the project''s existing API patterns.'
+input_format: API specification for job creation endpoint with validation requirements
+output_format: Complete FastAPI endpoint implementation with Pydantic models, validators, and error handling
+grading:
+  rubric:
+    criteria:
+    - name: Pydantic Models
+      weight: 0.25
+      description: Proper BaseModel with field validators, constrained types, and optional fields with defaults
+      max_score: 10
+    - name: Validation Logic
+      weight: 0.25
+      description: 'All validation rules implemented: filename extension, title length, ISO language codes, format enum'
+      max_score: 10
+    - name: Error Responses
+      weight: 0.2
+      description: 422 with field-level details, 409 for duplicates, proper error format matching project conventions
+      max_score: 10
+    - name: API Design
+      weight: 0.15
+      description: Follows REST conventions, uses dependency injection, proper response model, OpenAPI docs
+      max_score: 10
+    - name: Code Quality
+      weight: 0.15
+      description: Type hints, docstrings, follows existing project patterns, no security issues
+      max_score: 10
+    passing_threshold: 60

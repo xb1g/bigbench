@@ -1,0 +1,36 @@
+id: START-003
+category: startup-mind
+title: Pricing strategy for MCP server with paid API access
+description: Design a pricing strategy for the PAL MCP Server that monetizes multi-model AI orchestration through per-call pricing, subscriptions, and x402 micropayments while maintaining developer adoption.
+difficulty: hard
+estimated_minutes: 35
+language: Go
+project_ref: pal-mcp-server
+prompt: "PAL MCP Server (pal-mcp-server) connects multiple AI models (Gemini, OpenAI, Anthropic, Grok, Ollama) through a single MCP interface. It uses x402 protocol for paid access. Design a pricing strategy that:\n\n1. Monetization Options:\n   - Per-API-call with x402 micropayments (cents per model call)\n   - Subscription tiers (free: 3 models, pro: all models, enterprise: custom)\n   - Bring-your-own-key (users provide their own API keys, PAL adds value via orchestration)\n   - Hybrid: free tier with BYOK, paid for PAL's hosted models\n\n2. Pricing Challenges:\n   - Developer tools have high price sensitivity\n   - Models are commodities (developers can call OpenAI directly)\n   - Value is in orchestration, not the models themselves\n   - x402 micropayments are novel - will developers adopt them?\n\n3. Competitive Analysis:\n   - OpenRouter: per-token pricing with model routing\n   - Litellm: open-source, free, no orchestration\n   - Cursor/Continue: bundled into IDE subscription\n \
+  \  - How does PAL differentiate in pricing?\n\n4. Pricing Experiments:\n   - What to test first: free vs paid, per-call vs subscription, BYOK vs hosted\n   - How to measure willingness-to-pay without losing early adopters\n   - Pricing metrics: ARPU, conversion rate, churn\n\nDesign a complete pricing strategy with tiers, experiment plan, and 6-month rollout."
+input_format: PAL MCP Server features, x402 integration, and competitive landscape
+output_format: Pricing strategy document with tiers, competitive positioning, experiment plan, and rollout timeline
+grading:
+  rubric:
+    criteria:
+    - name: Tier Design
+      weight: 0.25
+      description: Pricing tiers are logical, generous free tier for adoption, clear upgrade triggers
+      max_score: 10
+    - name: Value-Based Pricing
+      weight: 0.25
+      description: Prices reflect orchestration value, not model access; BYOK option acknowledges commodity nature
+      max_score: 10
+    - name: Competitive Positioning
+      weight: 0.2
+      description: Clear differentiation from OpenRouter, Litellm, and IDE-bundled alternatives
+      max_score: 10
+    - name: Experiment Plan
+      weight: 0.15
+      description: Specific A/B tests to run, metrics to track, decision criteria for pricing changes
+      max_score: 10
+    - name: Rollout Realism
+      weight: 0.15
+      description: 6-month plan is achievable, doesn't sacrifice early adoption for short-term revenue
+      max_score: 10
+    passing_threshold: 60

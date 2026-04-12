@@ -1,0 +1,66 @@
+id: PROD-003
+category: product-mind
+title: UX critique of PassionSeed education dashboard
+description: Conduct a UX critique of the PassionSeed education platform's dashboard, evaluating information architecture, visual hierarchy, navigation patterns, and accessibility for students and teachers.
+difficulty: medium
+estimated_minutes: 25
+language: TypeScript
+project_ref: pseed
+prompt: 'PassionSeed (pseed project) is an education platform with a complex dashboard that serves both students and teachers. The UI uses a Dawn (students) and Dusk (experts) atmospheric theme system with glow animations and specialized CSS. Critique the dashboard UX:
+
+
+  Current dashboard structure:
+
+  - Navigation: Side menu with 10+ items (Dashboard, Classrooms, Assessments, Maps, Students, etc.)
+
+  - Dashboard home: Cards for upcoming assessments, recent activity, progress overview
+
+  - Learning maps: Visual node-based curriculum with connections
+
+  - Assessment views: Quiz creation, submission, grading
+
+  - Classroom management: Student roster, team assignments, progress tracking
+
+
+  Critique areas:
+
+  1. Information Architecture: Is the menu structure logical? Are items where users expect them?
+
+  2. Visual Hierarchy: Does the most important info stand out? Are Dawn/Dusk themes helping or distracting?
+
+  3. Navigation: Can a new student find what they need in <3 clicks? What about teachers?
+
+  4. Cognitive Load: Are there too many features visible at once? Progressive disclosure?
+
+  5. Accessibility: Do glow animations create issues? Color contrast in Dawn/Dusk themes?
+
+  6. Mobile: Is the dashboard usable on phone? (Side menu → hamburger?)
+
+
+  For each area, rate 1-5, identify the top issue, and suggest a specific improvement.'
+input_format: Description of PassionSeed's dashboard structure, theme system, and features
+output_format: UX critique with 1-5 ratings per area, top issues, and specific improvement suggestions
+grading:
+  rubric:
+    criteria:
+    - name: Critique Depth
+      weight: 0.25
+      description: Each of the 6 areas gets a thorough analysis with specific observations, not generic feedback
+      max_score: 10
+    - name: Improvement Quality
+      weight: 0.25
+      description: Suggestions are specific, actionable, and consider technical constraints (Dawn/Dusk themes, existing patterns)
+      max_score: 10
+    - name: User-Centered Thinking
+      weight: 0.2
+      description: Critique considers both student and teacher perspectives with distinct needs
+      max_score: 10
+    - name: Accessibility Awareness
+      weight: 0.15
+      description: Identifies real accessibility issues (animations, contrast, keyboard nav) with solutions
+      max_score: 10
+    - name: Rating Consistency
+      weight: 0.15
+      description: 1-5 ratings are well-calibrated with clear justification for each score
+      max_score: 10
+    passing_threshold: 60

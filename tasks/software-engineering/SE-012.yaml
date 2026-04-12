@@ -1,0 +1,36 @@
+id: SE-012
+category: software-engineering
+title: Implement WebSocket real-time collaboration
+description: Design and implement a WebSocket-based real-time collaboration system for the RocketMap block canvas editor, handling conflict resolution and presence awareness.
+difficulty: hard
+estimated_minutes: 50
+language: TypeScript
+project_ref: rocketmap
+prompt: "The RocketMap project (rocketmap) is a block-based canvas editor using Next.js and Appwrite. Users need to collaborate in real-time on the same canvas. Currently, changes are saved to Appwrite on each edit, but there's no real-time sync between users.\n\nDesign and implement a WebSocket-based real-time collaboration system that:\n\n1. Server-side: Next.js API route that manages WebSocket connections per canvas\n   - Maintains a Map<canvasId, Set<WebSocket>> of connected users per canvas\n   - Broadcasts block updates (create, move, update, delete) to all users on same canvas\n   - Handles user presence (join/leave notifications with cursor position)\n\n2. Client-side: React hook useCollaborativeCanvas(canvasId) that:\n   - Connects to WebSocket on mount, disconnects on unmount\n   - Sends local block changes to server\n   - Applies remote changes to local state\n   - Shows other users' cursors/selections\n\n3. Conflict resolution:\n   - Last-write-wins for block property updates\
+  \ (using timestamp)\n   - Operational transform for block position/move conflicts\n   - Block creation is additive (no conflict)\n   - Block deletion: if two users edit same block, the one who deleted loses their edits\n\nProvide server route handler, client hook, and types. Use ws library for server WebSocket."
+input_format: Description of RocketMap canvas editor architecture and collaboration requirements
+output_format: Complete TypeScript implementation with WebSocket server, React hook, types, and conflict resolution
+grading:
+  rubric:
+    criteria:
+    - name: Server Implementation
+      weight: 0.25
+      description: WebSocket server with connection management, broadcasting, and presence tracking per canvas
+      max_score: 10
+    - name: Client Hook
+      weight: 0.2
+      description: React hook with connection lifecycle, change sending/receiving, and cursor display
+      max_score: 10
+    - name: Conflict Resolution
+      weight: 0.25
+      description: LWW for properties, OT for moves, proper handling of concurrent edit/delete scenarios
+      max_score: 10
+    - name: Type Safety
+      weight: 0.15
+      description: Comprehensive TypeScript types for messages, blocks, presence, and events
+      max_score: 10
+    - name: Edge Cases
+      weight: 0.15
+      description: Handles reconnection, stale connections, max connections per canvas, graceful degradation
+      max_score: 10
+    passing_threshold: 60

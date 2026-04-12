@@ -1,0 +1,36 @@
+id: PLAN-007
+category: planning
+title: Plan CI/CD pipeline for monorepo with multiple packages
+description: Design a CI/CD pipeline for the Hive monorepo that efficiently builds, tests, and deploys only changed packages using Turborepo-style caching and selective builds.
+difficulty: easy
+estimated_minutes: 15
+language: Python
+project_ref: hive
+prompt: "The Hive project (hive) is a pnpm monorepo with: apps/web (React+Vite), apps/api (Hono edge), packages/db (Prisma), packages/shared (types/validators). Design a CI/CD pipeline that:\n\n1. Change Detection: Only build and test packages that changed (or their dependents)\n   - How to detect which packages changed in a PR\n   - Dependency graph: shared → db → api, shared → web\n   - If packages/shared changes, all apps must be rebuilt\n\n2. Pipeline Stages:\n   - Lint & type-check (fast, run on all changed packages)\n   - Unit tests (per-package, only for changed packages and dependents)\n   - Build (per-package, with caching)\n   - Deploy (only on main branch merge)\n\n3. Caching Strategy:\n   - Cache node_modules, build outputs, test results\n   - Cache invalidation rules\n\n4. Deployment:\n   - apps/api deploys to Cloudflare Workers (edge)\n   - apps/web deploys to Vercel\n   - packages are published to npm only on version change\n\nProduce a pipeline configuration document (GitHub\
+  \ Actions YAML outline) with change detection logic."
+input_format: Hive monorepo structure and deployment targets
+output_format: CI/CD pipeline design with GitHub Actions YAML outline, change detection logic, and caching strategy
+grading:
+  rubric:
+    criteria:
+    - name: Change Detection
+      weight: 0.25
+      description: Correctly identifies changed packages and their dependents using dependency graph
+      max_score: 10
+    - name: Pipeline Stages
+      weight: 0.25
+      description: Logical stage ordering with appropriate gates (lint → test → build → deploy)
+      max_score: 10
+    - name: Caching Strategy
+      weight: 0.2
+      description: Effective caching for node_modules, build outputs with proper invalidation rules
+      max_score: 10
+    - name: Deployment Logic
+      weight: 0.15
+      description: Correct deployment targets per app, version-based package publishing
+      max_score: 10
+    - name: Practicality
+      weight: 0.15
+      description: GitHub Actions YAML is realistic, uses standard actions, and handles common CI issues
+      max_score: 10
+    passing_threshold: 60

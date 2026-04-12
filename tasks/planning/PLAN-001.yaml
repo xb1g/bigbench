@@ -1,0 +1,36 @@
+id: PLAN-001
+category: planning
+title: Design multi-tenant architecture for agent memory SaaS
+description: Design a multi-tenant architecture for the Platon agent memory platform that isolates tenant data while sharing infrastructure, addressing data isolation, scaling, and cost efficiency.
+difficulty: hard
+estimated_minutes: 40
+language: TypeScript
+project_ref: platon
+prompt: "The Platon project (platon) is an agent memory platform that stores AI agent session results, reflects on them, and exposes retrieval through API and MCP. Currently single-tenant. Design a multi-tenant architecture that:\n\n1. Data Isolation Strategy: Choose between schema-per-tenant, database-per-tenant, or shared-database-with-tenant-id. Justify your choice considering:\n   - Platon stores memory graphs (nodes + edges) per agent\n   - Memory retrieval must be scoped to tenant's agents only\n   - Need to support ~1000 tenants initially, growing to 10K\n   - Compliance: some tenants need guaranteed data isolation\n\n2. API Design: How to identify and authenticate tenants (API key, JWT, header-based)\n3. Worker Isolation: Reflection workers process memories - should they be per-tenant or shared?\n4. MCP Server: How does the MCP integration handle multi-tenancy?\n5. Scaling Plan: From 1K to 10K tenants - what changes?\n\nProvide: architecture decision record (ADR) format with context,\
+  \ decision, consequences, and a diagram showing tenant request flow through the system."
+input_format: Description of current single-tenant Platon architecture and multi-tenancy requirements
+output_format: Architecture decision record with data isolation strategy, API design, scaling plan, and system diagram
+grading:
+  rubric:
+    criteria:
+    - name: Isolation Strategy
+      weight: 0.3
+      description: Well-justified choice between schema/database/shared approaches with trade-off analysis
+      max_score: 10
+    - name: API & Auth Design
+      weight: 0.2
+      description: Clear tenant identification mechanism with security considerations
+      max_score: 10
+    - name: Scaling Plan
+      weight: 0.2
+      description: Realistic path from 1K to 10K tenants with specific infrastructure changes
+      max_score: 10
+    - name: Worker/MCP Tenancy
+      weight: 0.15
+      description: How reflection workers and MCP server handle tenant isolation
+      max_score: 10
+    - name: ADR Quality
+      weight: 0.15
+      description: Follows ADR format, includes diagram, considers alternatives and consequences
+      max_score: 10
+    passing_threshold: 60

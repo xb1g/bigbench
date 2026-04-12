@@ -1,0 +1,64 @@
+id: PROD-007
+category: product-mind
+title: UX audit of onboarding flow for canvas editor
+description: Audit the onboarding experience for RocketMap's block-based canvas editor, evaluating first-time user experience, time-to-value, and onboarding drop-off risk.
+difficulty: easy
+estimated_minutes: 15
+language: Rust
+project_ref: rocketmap
+prompt: 'RocketMap (rocketmap project) is a block-based canvas editor where users create visual canvases with draggable blocks. New users sign up via Google OAuth (Appwrite) and see an empty canvas on first visit. Audit the onboarding flow:
+
+
+  Current onboarding steps:
+
+  1. Landing page → ''Sign in with Google'' button
+
+  2. Google OAuth redirect → back to app
+
+  3. Empty canvas with toolbar (Add Block, Text, Image, Connector buttons)
+
+  4. No tutorial, no sample canvas, no guidance
+
+
+  Audit questions:
+
+  1. Time to first value: How long until a new user creates something meaningful? Is it too long?
+
+  2. Orientation: Does the user know what RocketMap is for? What they can create?
+
+  3. First action: Is it obvious what to do first? What blocks to add?
+
+  4. Progressive disclosure: Are there too many options on first visit? Too few?
+
+  5. Success moment: When does the user feel ''this is useful''? Is it early enough?
+
+  6. Drop-off risk: Where in the flow are users most likely to abandon?
+
+
+  Rate each question 1-5 and suggest specific improvements. Also propose an ideal onboarding flow with a sample canvas template and interactive hints.'
+input_format: Description of RocketMap's current onboarding flow and canvas editor features
+output_format: UX audit with 1-5 ratings, improvement suggestions, and proposed ideal onboarding flow
+grading:
+  rubric:
+    criteria:
+    - name: Audit Thoroughness
+      weight: 0.25
+      description: All 6 audit questions answered with specific observations about the current flow
+      max_score: 10
+    - name: Improvement Quality
+      weight: 0.25
+      description: Suggestions are specific (not 'add a tutorial' but 'show a 3-step interactive guide...')
+      max_score: 10
+    - name: Ideal Flow Design
+      weight: 0.25
+      description: Proposed onboarding has clear steps, sample content, and gets to first value faster
+      max_score: 10
+    - name: Drop-off Analysis
+      weight: 0.15
+      description: Correctly identifies the empty-canvas-as-first-screen as biggest drop-off risk
+      max_score: 10
+    - name: User Perspective
+      weight: 0.1
+      description: Analysis consistently takes the perspective of a confused new user, not an expert
+      max_score: 10
+    passing_threshold: 60

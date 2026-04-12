@@ -1,0 +1,32 @@
+id: SE-005
+category: software-engineering
+title: Review Express.js authentication middleware
+description: Conduct a code review of an Express.js authentication middleware implementation, identifying security vulnerabilities, race conditions, and suggesting improvements.
+difficulty: easy
+estimated_minutes: 15
+language: JavaScript
+project_ref: loclog-backend
+prompt: "The loclog-backend project uses Express.js with a custom authentication middleware. Review the following auth middleware code and identify all security issues, bugs, and improvements needed:\n\n```javascript\nconst jwt = require('jsonwebtoken');\nconst bcrypt = require('bcrypt');\n\nfunction authMiddleware(req, res, next) {\n  const token = req.headers.authorization;\n  if (!token) {\n    return res.status(401).json({ error: 'No token' });\n  }\n  try {\n    const decoded = jwt.verify(token, 'secret-key');\n    req.user = decoded;\n    next();\n  } catch (err) {\n    res.status(401).json({ error: 'Invalid token' });\n  }\n}\n\nasync function login(req, res) {\n  const { email, password } = req.body;\n  const user = await User.findOne({ email });\n  if (!user) {\n    return res.status(404).json({ error: 'User not found' });\n  }\n  const match = await bcrypt.compare(password, user.passwordHash);\n  if (!match) {\n    return res.status(401).json({ error: 'Wrong password' });\n  }\n\
+  \  const token = jwt.sign({ id: user.id, email: user.email }, 'secret-key');\n  res.json({ token });\n}\n```\n\nProvide a code review listing each issue with severity (critical/high/medium/low), explanation, and suggested fix."
+input_format: JavaScript authentication middleware code to review
+output_format: Structured code review with issues list, severity ratings, explanations, and suggested fixes
+grading:
+  rubric:
+    criteria:
+    - name: Security Issues Found
+      weight: 0.35
+      description: Identifies hardcoded secret, timing attacks, no Bearer prefix check, no token expiry, no rate limiting
+      max_score: 10
+    - name: Bug Identification
+      weight: 0.25
+      description: Finds user enumeration (different errors for not-found vs wrong-password), missing 'return' after res.status
+      max_score: 10
+    - name: Fix Quality
+      weight: 0.25
+      description: Suggested fixes are practical and address root cause, not just symptoms
+      max_score: 10
+    - name: Review Structure
+      weight: 0.15
+      description: Review is well-organized with clear severity ratings, explanations, and actionable suggestions
+      max_score: 10
+    passing_threshold: 60

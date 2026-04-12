@@ -1,0 +1,73 @@
+id: PLAN-009
+category: planning
+title: Plan data migration from legacy to Supabase
+description: Plan a data migration strategy for CareerAC from a legacy data source to Supabase PostgreSQL, handling schema differences, data transformation, and zero-downtime migration.
+difficulty: easy
+estimated_minutes: 15
+language: SQL
+project_ref: careerac
+prompt: 'CareerAC (careerac project) is migrating its transfer planning data to Supabase. The existing data includes articulation agreements (course equivalencies between community colleges and universities) and student transfer plans. Plan the migration considering:
+
+
+  Source data format:
+
+  - Articulation agreements in CSV files (from university APIs)
+
+  - Transfer plans stored in localStorage on client (no backend currently)
+
+
+  Target Supabase schema:
+
+  - community_colleges (id, name, city, website)
+
+  - universities (id, name, system, website)
+
+  - articulation_agreements (id, cc_course_id, uni_course_id, cc_id, uni_id, valid_through)
+
+  - cc_courses (id, cc_id, code, name, units)
+
+  - uni_courses (id, uni_id, code, name, units)
+
+  - transfer_plans (id, user_id, cc_id, uni_id, major, semesters_json)
+
+
+  Plan:
+
+  1. Data extraction: How to get data from CSV and localStorage
+
+  2. Data transformation: Mapping CSV columns to Supabase tables, handling duplicates
+
+  3. Loading strategy: Bulk insert vs batched inserts, ordering (parent tables first)
+
+  4. Validation: How to verify data integrity after migration
+
+  5. Rollback plan: If migration fails, how to revert
+
+
+  Produce a migration plan with ETL steps, SQL scripts outline, and validation queries.'
+input_format: Source data format and target Supabase schema specification
+output_format: Data migration plan with ETL steps, SQL scripts outline, validation queries, and rollback strategy
+grading:
+  rubric:
+    criteria:
+    - name: ETL Strategy
+      weight: 0.25
+      description: Clear extract-transform-load steps with specific tools and commands for each phase
+      max_score: 10
+    - name: Transformation Logic
+      weight: 0.25
+      description: Handles CSV-to-table mapping, deduplication, data type conversions, and referential integrity
+      max_score: 10
+    - name: Validation
+      weight: 0.2
+      description: Specific validation queries to verify row counts, referential integrity, and data correctness
+      max_score: 10
+    - name: Rollback Plan
+      weight: 0.15
+      description: Clear rollback strategy with backup steps and recovery procedures
+      max_score: 10
+    - name: Practicality
+      weight: 0.15
+      description: Plan is realistic, uses appropriate tools, and accounts for common migration pitfalls
+      max_score: 10
+    passing_threshold: 60

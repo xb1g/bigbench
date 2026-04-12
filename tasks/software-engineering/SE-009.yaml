@@ -1,0 +1,25 @@
+id: SE-009
+category: software-engineering
+title: Debug database migration shell script
+description: Fix a bash script that runs PostgreSQL migrations for the PassionSeed platform, handling errors in variable expansion, conditional execution, and exit status propagation.
+difficulty: easy
+estimated_minutes: 10
+language: Shell
+project_ref: pseed
+prompt: "The PassionSeed project (pseed) has a shell script for running database migrations. It has several bugs that cause migrations to fail silently or incorrectly. Review and fix:\n\n```bash\n#!/bin/bash\nMIGRATION_DIR=./supabase/migrations\nDB_URL=$DATABASE_URL\n\nfor file in $MIGRATION_DIR/*.sql; do\n  echo Running $file\n  psql $DB_URL -f $file\n  if [ $? = 0 ]; then\n    echo Success: $file\n  else\n    echo Failed: $file\n  fi\ndone\n\necho All migrations complete\n```\n\nIdentify and fix ALL bugs including:\n- Missing error handling that lets failures propagate silently\n- Unquoted variable expansions that break on spaces/special chars\n- Missing set -euo pipefail for strict mode\n- Missing check for empty migration directory\n- No logging of which migrations succeeded/failed\n- Exit code doesn't reflect migration failures\n\nProvide the corrected script with comments explaining each fix."
+input_format: Buggy bash script for running database migrations
+output_format: Fixed bash script with proper error handling, quoting, and exit status propagation
+grading:
+  reference_answer:
+    method: structural_similarity
+    answer: "#!/bin/bash\nset -euo pipefail\n\nMIGRATION_DIR=\"./supabase/migrations\"\nDB_URL=\"${DATABASE_URL:?DATABASE_URL not set}\"\nFAILED=0\n\nshopt -s nullglob\nfiles=(\"$MIGRATION_DIR\"/*.sql)\nif [ ${#files[@]} -eq 0 ]; then\n  echo \"No migration files found in $MIGRATION_DIR\"\n  exit 0\nfi\nshopt -u nullglob\n\nfor file in \"${files[@]}\"; do\n  echo \"Running $file\"\n  if psql \"$DB_URL\" -f \"$file\"; then\n    echo \"Success: $file\"\n  else\n    echo \"Failed: $file\" >&2\n    FAILED=1\n  fi\ndone\n\nif [ \"$FAILED\" -eq 1 ]; then\n  echo \"Some migrations failed\" >&2\n  exit 1\nfi\necho \"All migrations complete\""
+    key_elements:
+    - set -euo pipefail
+    - DATABASE_URL:?DATABASE_URL not set
+    - nullglob
+    - ${#files[@]} -eq 0
+    - '"$DB_URL"'
+    - '"$file"'
+    - FAILED=1
+    - exit 1
+    - '>&2'

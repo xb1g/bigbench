@@ -1,0 +1,36 @@
+id: PROD-008
+category: product-mind
+title: Design user feedback collection system for EPUB platform
+description: Design an in-app feedback collection system for Skilliglot's EPUB-to-skill review workflow that captures user sentiment at key moments without disrupting the conversion process.
+difficulty: medium
+estimated_minutes: 20
+language: Python
+project_ref: skilliglot
+prompt: "Skilliglot (skilliglot project) converts EPUBs into structured skill files through a guided review workflow: Upload → AI Conversion → Human Review → Export. The review step is where users interact most with the platform, checking and correcting AI-extracted skills.\n\nDesign an in-app feedback system that:\n\n1. Captures feedback at key moments:\n   - After first conversion completes (was the AI extraction accurate?)\n   - During review (is the review interface helpful? confusing?)\n   - After export (did the output meet expectations?)\n   - On error/failure (what went wrong?)\n\n2. Feedback mechanisms:\n   - Emoji reactions (\U0001F44D\U0001F44E for quick sentiment)\n   - Micro-surveys (1-2 questions, <30 seconds to complete)\n   - Free-text feedback (optional, at natural pause points)\n   - Passive signals (time spent in review, corrections made, export format chosen)\n\n3. Design principles:\n   - Never interrupt a conversion or review in progress\n   - Feedback is optional,\
+  \ never blocking\n   - Collect actionable data (not just 'was this helpful? yes/no')\n   - Respect user's workflow and time\n\n4. Data model: What to store and how to analyze\n\nProvide a feedback system design with UI mockup descriptions, data model, and analysis plan."
+input_format: Skilliglot's conversion workflow and review interface description
+output_format: Feedback system design with moment triggers, UI descriptions, data model, and analysis plan
+grading:
+  rubric:
+    criteria:
+    - name: Moment Selection
+      weight: 0.2
+      description: Feedback moments are well-chosen (after meaningful actions, not random intervals)
+      max_score: 10
+    - name: Non-Disruptive Design
+      weight: 0.25
+      description: Feedback mechanisms never block workflow, are brief, and feel natural
+      max_score: 10
+    - name: Actionable Data
+      weight: 0.25
+      description: Collected data can drive specific product decisions (not vanity metrics)
+      max_score: 10
+    - name: Data Model
+      weight: 0.15
+      description: Schema supports both quantitative (ratings, time) and qualitative (text) feedback
+      max_score: 10
+    - name: Analysis Plan
+      weight: 0.15
+      description: Clear plan for turning feedback into insights (segmentation, trend tracking, alerting)
+      max_score: 10
+    passing_threshold: 60

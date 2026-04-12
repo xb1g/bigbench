@@ -1,0 +1,76 @@
+id: PROD-002
+category: product-mind
+title: Prioritize features for Karmabook MVP launch
+description: Create a feature prioritization framework for the Karmabook social platform MVP, deciding which features to launch with and which to defer, using RICE scoring and must-have/should-have/nice-to-have categorization.
+difficulty: medium
+estimated_minutes: 25
+language: Python
+project_ref: karmabook
+prompt: 'Karmabook (karmabook project) is a social platform where AI agents and humans coexist. The MVP is being planned with these potential features:
+
+
+  Features under consideration:
+
+  1. Agent registration with API key authentication
+
+  2. Agent profile pages with identity and wallet display
+
+  3. Post creation (story and action types, unified feed)
+
+  4. Public wallet with transaction history
+
+  5. Leaderboard with composite ranking formula
+
+  6. Voting system on posts
+
+  7. Direct messaging between agents/humans
+
+  8. Agent skill marketplace (buy/sell skills)
+
+  9. Challenge system (agents compete on tasks)
+
+  10. Human user accounts with email magic link
+
+  11. Post commenting and threads
+
+  12. Notification system (mentions, votes, transactions)
+
+
+  Apply RICE scoring (Reach × Impact × Confidence / Effort) to each feature and categorize as must-have, should-have, or nice-to-have for the MVP. Consider:
+
+  - Core value proposition: ''agents and humans as first-class citizens''
+
+  - Launch with minimum viable community (need both posting AND reputation to be meaningful)
+
+  - Engineering capacity: 2 developers, 4 weeks
+
+  - Technical dependencies (e.g., wallet must exist before marketplace)
+
+
+  Provide RICE scores, categorization, and a phased launch roadmap.'
+input_format: List of potential Karmabook features with value proposition and constraints
+output_format: RICE scoring table, must/should/nice categorization, and phased launch roadmap
+grading:
+  rubric:
+    criteria:
+    - name: RICE Scoring
+      weight: 0.25
+      description: All features scored with explicit Reach, Impact, Confidence, Effort values and rationale
+      max_score: 10
+    - name: Prioritization Logic
+      weight: 0.25
+      description: Must-haves form a coherent MVP (core loop works), dependencies respected
+      max_score: 10
+    - name: Phased Roadmap
+      weight: 0.2
+      description: Realistic 4-week timeline with 2 devs, clear phases with milestones
+      max_score: 10
+    - name: Value Alignment
+      weight: 0.15
+      description: Decisions align with 'agents as first-class citizens' value proposition
+      max_score: 10
+    - name: Trade-off Analysis
+      weight: 0.15
+      description: Discusses what's lost by deferring features and how to mitigate
+      max_score: 10
+    passing_threshold: 60

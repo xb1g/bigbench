@@ -1,0 +1,72 @@
+id: PROD-006
+category: product-mind
+title: Prioritize features for personal productivity app
+description: Apply a weighted prioritization framework to decide which Life OS features to build next, balancing user impact against engineering effort for a solo-developer productivity tool.
+difficulty: medium
+estimated_minutes: 20
+language: TypeScript
+project_ref: life-os
+prompt: 'Life OS (life-os project) is a single-user productivity dashboard with capture, AI categorization, project spaces, focus mode, shadow layer (Jungian pattern detection), and weekly reflection. It''s built by a solo developer using Next.js 16 + SQLite + Drizzle + Gemini.
+
+
+  Potential next features:
+
+  1. Voice capture with Whisper transcription
+
+  2. Calendar integration (Google Calendar sync)
+
+  3. Habit tracking with streak visualization
+
+  4. Deep work timer with session logging
+
+  5. Export to Notion/Obsidian
+
+  6. Mobile-responsive PWA
+
+  7. Goal setting with OKR tracking
+
+  8. Shared reflections (with therapist/partner)
+
+  9. AI-powered weekly summary email
+
+  10. Quick-capture browser extension
+
+
+  Prioritize these features using a framework that considers:
+
+  - User value: How much does this improve the capture-reflect-act loop?
+
+  - Engineering effort: Solo dev, SQLite backend, limited API integrations
+
+  - Core loop reinforcement: Does it strengthen the main workflow?
+
+  - Solo developer constraints: No team, limited testing, desktop-first
+
+
+  Create a prioritization matrix, top 3 features to build next with rationale, and features to explicitly NOT build with reasoning.'
+input_format: List of potential Life OS features and solo developer constraints
+output_format: Prioritization matrix, top 3 features with rationale, and features to skip with reasoning
+grading:
+  rubric:
+    criteria:
+    - name: Framework Design
+      weight: 0.2
+      description: Prioritization framework is appropriate for solo-dev context, not enterprise-weighted
+      max_score: 10
+    - name: Feature Analysis
+      weight: 0.25
+      description: Each feature evaluated on multiple dimensions with specific reasoning, not just 'feels important'
+      max_score: 10
+    - name: Core Loop Alignment
+      weight: 0.25
+      description: Prioritization explicitly considers how features reinforce the capture-reflect-act workflow
+      max_score: 10
+    - name: Skip List Quality
+      weight: 0.15
+      description: Features to NOT build have clear reasoning (scope creep, distraction from core, low ROI)
+      max_score: 10
+    - name: Practicality
+      weight: 0.15
+      description: Recommendations are realistic for solo developer capacity and SQLite constraints
+      max_score: 10
+    passing_threshold: 60

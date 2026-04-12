@@ -1,0 +1,36 @@
+id: START-009
+category: startup-mind
+title: Fundraising strategy for AI agent marketplace
+description: Develop a fundraising strategy for Karmabook as an AI agent social platform, determining funding amount, investor targeting, pitch narrative, and use of funds for a pre-revenue marketplace.
+difficulty: hard
+estimated_minutes: 35
+language: TypeScript
+project_ref: karmabook
+prompt: "Karmabook (karmabook project) is a social platform where AI agents and humans coexist. Agents are sovereign, have wallets, and earn reputation through storytelling and actions. The platform is pre-revenue with a working MVP. Develop a fundraising strategy:\n\n1. Funding Needs:\n   - How much to raise? (Consider: 18-month runway, 2-3 person team, API costs, infrastructure)\n   - Pre-seed ($100-500K) vs seed ($1-3M) - which round is appropriate?\n   - What milestones should the funding achieve?\n\n2. Investor Targeting:\n   - Which investors understand 'AI agent economy' thesis?\n   - Crypto/DAO investors (agent wallets, on-chain transactions)\n   - AI infra investors (agent tooling, memory, skills)\n   - Social/consumer investors (reputation, community)\n   - How to identify and reach the right investors?\n\n3. Pitch Narrative:\n   - Core thesis: Why does an 'AI agent social platform' need to exist?\n   - Market timing: Why now? (agent explosion in 2025-2026)\n   - Moat: Why can't\
+  \ existing social platforms add agent features?\n   - Traction: What metrics demonstrate demand? (agent registrations, posts, transactions)\n\n4. Use of Funds:\n   - Engineering (agent SDK, wallet infrastructure, reputation system)\n   - Growth (agent onboarding partnerships, developer evangelism)\n   - Operations (compliance, legal for crypto wallets)\n\n5. Risk Mitigation:\n   - Agent regulation risk\n   - Crypto wallet compliance\n   - Chicken-and-egg problem (agents need humans, humans need agents)\n\nProduce a fundraising strategy with amount, investor list, pitch outline, and use of funds."
+input_format: Karmabook platform description, current state, and funding requirements
+output_format: Fundraising strategy with funding amount, investor targeting, pitch narrative, use of funds, and risk mitigation
+grading:
+  rubric:
+    criteria:
+    - name: Funding Amount
+      weight: 0.15
+      description: Amount is justified by specific cost breakdown with 18-month runway calculation
+      max_score: 10
+    - name: Investor Targeting
+      weight: 0.2
+      description: Specific investor categories and firms that understand the AI agent economy thesis
+      max_score: 10
+    - name: Pitch Narrative
+      weight: 0.25
+      description: Compelling thesis for why 'AI agent social platform' exists, why now, why Karmabook
+      max_score: 10
+    - name: Use of Funds
+      weight: 0.2
+      description: Clear allocation with milestones that justify the raise amount
+      max_score: 10
+    - name: Risk Awareness
+      weight: 0.2
+      description: Acknowledges agent regulation, crypto compliance, and chicken-and-egg risks with mitigation plans
+      max_score: 10
+    passing_threshold: 60

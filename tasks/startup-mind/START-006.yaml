@@ -1,0 +1,36 @@
+id: START-006
+category: startup-mind
+title: Business model for voice AI SaaS mobile app
+description: Design a business model for Adwise as a voice AI coaching app, deciding between consumer subscription, enterprise licensing, and freemium approaches for a React Native mobile app.
+difficulty: easy
+estimated_minutes: 15
+language: TypeScript
+project_ref: adwise
+prompt: "Adwise (adwise project) is a React Native/Expo mobile app that provides AI voice coaching using ElevenLabs and LiveKit. It uses Supabase for backend. Design a business model:\n\n1. Revenue Options:\n   - Consumer subscription (like Calm/Headspace: $10/month)\n   - Enterprise licensing (companies buy for employees)\n   - Freemium with AI minute limits (free: 5 min/day, paid: unlimited)\n   - Pay-per-session (like therapy: $5-15 per coaching session)\n\n2. Cost Analysis:\n   - ElevenLabs: ~$0.30/minute for voice synthesis\n   - LiveKit: ~$0.004/minute for real-time voice\n   - Supabase: $25-75/month for database\n   - LLM API: ~$0.01-0.05 per coaching interaction\n   What's the unit economics per user session?\n\n3. Consumer vs Enterprise:\n   - Consumer: B2C marketing is expensive, retention is hard, but larger market\n   - Enterprise: Fewer customers, higher LTV, slower sales cycle, procurement challenges\n   - Which to start with and why?\n\n4. Growth Strategy:\n   - How to get\
+  \ first 1000 users without paid marketing?\n   - App Store optimization for voice/coaching category\n   - Viral mechanics (share coaching insights)\n\nProduce a business model recommendation with unit economics, pricing, and growth plan."
+input_format: Adwise app description, technology costs, and market options
+output_format: Business model recommendation with unit economics analysis, pricing tiers, and growth strategy
+grading:
+  rubric:
+    criteria:
+    - name: Unit Economics
+      weight: 0.25
+      description: Accurately calculates cost per session and margins, identifies breakeven point
+      max_score: 10
+    - name: Model Selection
+      weight: 0.25
+      description: Clear recommendation between consumer/enterprise/freemium with reasoning
+      max_score: 10
+    - name: Pricing Design
+      weight: 0.2
+      description: Pricing reflects voice AI costs, competitive benchmarks, and psychological pricing
+      max_score: 10
+    - name: Growth Plan
+      weight: 0.15
+      description: Realistic path to first 1000 users with specific tactics and channels
+      max_score: 10
+    - name: Risk Awareness
+      weight: 0.15
+      description: Identifies risks (high voice costs, retention challenges, App Store competition)
+      max_score: 10
+    passing_threshold: 60

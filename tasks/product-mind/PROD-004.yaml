@@ -1,0 +1,36 @@
+id: PROD-004
+category: product-mind
+title: Market fit analysis for AI stock monitoring platform
+description: Analyze product-market fit for 911Stock, an AI stock monitoring platform that calls users' phones when SEC filings warrant attention, identifying target segments and fit indicators.
+difficulty: medium
+estimated_minutes: 25
+language: Python
+project_ref: 911stock
+prompt: "911Stock (911stock project) monitors SEC filings and calls users' phones when something significant happens with their holdings. The unique value: no dashboards, no notifications to swipe away - your phone rings. It can even execute trades via voice authorization.\n\nAnalyze product-market fit considering:\n\n1. Target Segments: Who most needs this?\n   - Active traders monitoring 5-20 stocks\n   - Passive investors with large positions in few stocks\n   - Financial advisors managing multiple client portfolios\n   - Day traders who need instant alerts\n   Which segment has the strongest fit and why?\n\n2. Fit Indicators: What would indicate PMF for 911Stock?\n   - Retention metrics (what % come back after first call?)\n   - Engagement depth (do users add more stocks over time?)\n   - Word of mouth (would users tell other investors?)\n   - Revenue indicators (would users pay for this?)\n\n3. Risk Factors: What could break PMF?\n   - False positives (too many unimportant calls → spam)\n\
+  \   - Call fatigue (phone calls feel intrusive)\n   - Regulatory concerns (is financial advice over phone regulated?)\n   - Competition (existing alert services, Bloomberg terminal)\n\n4. Validation Plan: How to test PMF before building more features?\n\nProduce a PMF analysis with segment ranking, fit indicators, and validation experiments."
+input_format: 911Stock product description and value proposition
+output_format: PMF analysis with segment ranking, fit indicators, risk factors, and validation experiments
+grading:
+  rubric:
+    criteria:
+    - name: Segment Analysis
+      weight: 0.25
+      description: Evaluates all segments with clear ranking and justification based on need-frequency-alignment
+      max_score: 10
+    - name: Fit Indicators
+      weight: 0.25
+      description: Specific, measurable indicators with target thresholds, not vague metrics
+      max_score: 10
+    - name: Risk Assessment
+      weight: 0.2
+      description: Identifies real risks specific to phone-call-based financial alerts with mitigation
+      max_score: 10
+    - name: Validation Plan
+      weight: '0.15'
+      description: Concrete experiments to test PMF with minimal investment (concierge MVP, smoke tests)
+      max_score: 10
+    - name: Depth of Analysis
+      weight: 0.15
+      description: Goes beyond surface-level, considers behavioral economics and investor psychology
+      max_score: 10
+    passing_threshold: 60

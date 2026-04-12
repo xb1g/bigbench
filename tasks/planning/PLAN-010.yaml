@@ -1,0 +1,32 @@
+id: PLAN-010
+category: planning
+title: Design caching strategy for SQLite-backed productivity app
+description: Design a caching strategy for the Life OS productivity app that uses SQLite with Drizzle ORM, covering query caching, invalidation patterns, and memory management for desktop use.
+difficulty: easy
+estimated_minutes: 15
+language: Go
+project_ref: life-os
+prompt: "Life OS (life-os project) is a single-user desktop productivity app built with Next.js 16 and SQLite via better-sqlite3 + Drizzle ORM. It captures thoughts, organizes by life domain, and uses Gemini AI for categorization. Design a caching strategy considering:\n\n1. Read Patterns (high frequency):\n   - Loading inbox items (captured thoughts awaiting categorization)\n   - Loading domain views (items filtered by life domain)\n   - Project spaces with notes and links\n   - Weekly reflection questions (AI-generated, change weekly)\n\n2. Write Patterns (lower frequency):\n   - New thought capture (several per hour)\n   - AI categorization updates (after each capture)\n   - Domain/project reassignments\n   - Weekly reflection generation\n\n3. Constraints:\n   - Single user, single machine (no distributed caching needed)\n   - SQLite is local, so reads are already fast (~1ms for simple queries)\n   - Desktop app has limited memory (Electron/Next.js overhead)\n   - AI API calls are the\
+  \ real bottleneck (500ms-2s)\n\nDesign: What should be cached, invalidation strategy, and memory limits. Focus on caching AI results (categorization, reflections) since those are expensive."
+input_format: Life OS app read/write patterns and constraints
+output_format: Caching strategy document covering what to cache, invalidation patterns, TTLs, and memory management
+grading:
+  rubric:
+    criteria:
+    - name: Cache Design
+      weight: 0.3
+      description: Identifies what to cache (AI results, domain views) and what NOT to cache (simple SQLite reads)
+      max_score: 10
+    - name: Invalidation Strategy
+      weight: 0.25
+      description: 'Clear invalidation rules: write-through for captures, TTL for AI results, event-based for domains'
+      max_score: 10
+    - name: Memory Management
+      weight: 0.2
+      description: Considers desktop memory constraints, LRU eviction, max cache size limits
+      max_score: 10
+    - name: Practicality
+      weight: 0.25
+      description: Strategy is appropriate for single-user desktop app, doesn't over-engineer, focuses on real bottleneck (AI calls)
+      max_score: 10
+    passing_threshold: 60

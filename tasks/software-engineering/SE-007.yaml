@@ -1,0 +1,47 @@
+id: SE-007
+category: software-engineering
+title: Refactor React components with proper TypeScript types
+description: Refactor loosely-typed React components in the CareerAC transfer planning platform to use proper TypeScript interfaces, discriminated unions, and generic patterns.
+difficulty: medium
+estimated_minutes: 25
+language: TypeScript
+project_ref: careerac
+prompt: 'The CareerAC project (careerac) is a Next.js 15 transfer planning platform with 242 tests. Several components use ''any'' types and lack proper TypeScript definitions. Refactor the following components to use proper types:
+
+
+  1. ChatPlanGenerator component: Currently accepts `messages: any[]` and `onPlanCreated: any`. Define proper Message type (with role: ''user''|''assistant''|''system'', content: string, metadata?: {model: string, tokens: number}), Plan type (with semesters, courses, units), and callback type.
+
+
+  2. FailureRecovery component: Currently uses `recovery: any`. Define a discriminated union RecoveryResult = CourseRecovery | WaitlistRecovery | CancelledRecovery where each variant has a `type` discriminant field and variant-specific fields.
+
+
+  3. PlaybookCard component: Currently accepts `playbook: any`. Define Playbook interface with proper types for all fields (school, major, courses, gpa, transferYear, etc.).
+
+
+  For each component, provide the complete refactored TypeScript code with proper interfaces, no ''any'' types, and backward compatibility with existing usage.'
+input_format: Description of loosely-typed React components with 'any' types
+output_format: Refactored TypeScript components with proper interfaces, discriminated unions, and generics
+grading:
+  rubric:
+    criteria:
+    - name: Type Safety
+      weight: 0.3
+      description: No 'any' types remain, all props and state properly typed, generics used where appropriate
+      max_score: 10
+    - name: Discriminated Unions
+      weight: 0.2
+      description: RecoveryResult properly uses discriminated union with type field and variant-specific data
+      max_score: 10
+    - name: Interface Design
+      weight: 0.25
+      description: Interfaces are complete, well-named, properly exported, and follow TypeScript conventions
+      max_score: 10
+    - name: Backward Compatibility
+      weight: 0.15
+      description: Refactored types are compatible with existing component usage patterns
+      max_score: 10
+    - name: Code Quality
+      weight: 0.1
+      description: Clean code, proper JSDoc comments on exported types, follows existing codebase style
+      max_score: 10
+    passing_threshold: 60

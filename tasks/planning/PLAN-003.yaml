@@ -1,0 +1,72 @@
+id: PLAN-003
+category: planning
+title: Design database schema for education platform
+description: Design a normalized PostgreSQL schema for the PassionSeed education platform that supports assessments, student progress tracking, and classroom management with proper relationships.
+difficulty: medium
+estimated_minutes: 30
+language: SQL
+project_ref: pseed
+prompt: 'PassionSeed (pseed project) is an education platform built with Next.js and Supabase. Design a normalized database schema that supports:
+
+
+  Core entities:
+
+  1. Schools (name, type: ''community_college''|''university'', location, website)
+
+  2. Users (email, name, role: ''student''|''teacher''|''admin'', school_id)
+
+  3. Classrooms (teacher_id, school_id, name, subject, academic_term)
+
+  4. Students enrolled in classrooms (with enrollment status and progress)
+
+  5. Assessments (classroom_id, title, type: ''quiz''|''exam''|''project'', max_score)
+
+  6. Assessment submissions (student_id, assessment_id, score, submitted_at)
+
+  7. Learning maps (visual curriculum maps with nodes and connections)
+
+  8. Map nodes (map_id, title, type: ''concept''|''skill''|''assessment'', position_x, position_y)
+
+  9. Node connections (from_node_id, to_node_id, connection_type: ''prerequisite''|''related'')
+
+
+  Design requirements:
+
+  - Proper normalization (3NF)
+
+  - Foreign key constraints with appropriate ON DELETE policies
+
+  - Indexes for common query patterns (student''s classrooms, assessment scores, map traversal)
+
+  - RLS policies: students see their own data, teachers manage their classrooms
+
+  - Consider Supabase''s auth.users for user identity
+
+
+  Provide the complete SQL DDL with comments explaining design decisions.'
+input_format: Requirements for education platform database with entities and relationships
+output_format: Complete PostgreSQL DDL with tables, constraints, indexes, RLS policies, and design comments
+grading:
+  rubric:
+    criteria:
+    - name: Normalization
+      weight: 0.2
+      description: Schema is properly normalized (3NF), no redundant data, appropriate use of junction tables
+      max_score: 10
+    - name: Constraints & Keys
+      weight: 0.25
+      description: All foreign keys defined with correct ON DELETE policies, unique constraints where needed
+      max_score: 10
+    - name: Indexes
+      weight: 0.2
+      description: 'Indexes cover common query patterns: student classrooms, assessment scores, map traversal'
+      max_score: 10
+    - name: RLS Policies
+      weight: 0.2
+      description: Row-level security policies for student data isolation and teacher management access
+      max_score: 10
+    - name: Completeness
+      weight: 0.15
+      description: All 9 entity types covered with appropriate fields and relationships, design decisions documented
+      max_score: 10
+    passing_threshold: 60

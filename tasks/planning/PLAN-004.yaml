@@ -1,0 +1,36 @@
+id: PLAN-004
+category: planning
+title: Architecture for real-time voice AI pipeline
+description: Design the architecture for a real-time voice AI pipeline that processes SEC filing alerts through LLM analysis and delivers them as phone calls, based on the 911Stock project.
+difficulty: medium
+estimated_minutes: 30
+language: Python
+project_ref: 911stock
+prompt: "911Stock (911stock project) monitors SEC filings and calls users' phones when significant events occur. The pipeline is: SEC EDGAR → Signal Scoring → Gemini Analysis → Ghost DB → Bland AI Phone Call → Auth0 CIBA → Alpaca Trade. Design the architecture for this real-time voice AI pipeline considering:\n\n1. Data Flow: How filings flow from detection to phone call delivery\n   - SEC EDGAR polling: frequency, rate limits, error handling\n   - Signal scoring: what makes a filing 'significant' (insider sales volume, filing type, sentiment)\n   - LLM analysis: prompt engineering for plain-English explanations, latency requirements\n   - Voice delivery: Bland AI call initiation, mid-call tool use for trade authorization\n\n2. Reliability: What happens when each step fails?\n   - SEC API unavailable → retry with backoff, cache last known state\n   - LLM timeout → fallback to template-based analysis\n   - Call fails to connect → SMS fallback, retry in 5 minutes\n\n3. Latency Budget: Target\
+  \ <60 seconds from filing detection to phone call\n   - Break down latency per step and identify bottlenecks\n\n4. Scalability: From 10 users to 1000 users monitoring different stocks\n\nProduce an architecture document with: system diagram, data flow description, failure mode analysis, and latency budget breakdown."
+input_format: Description of 911Stock's voice AI pipeline from SEC filing to phone call delivery
+output_format: Architecture document with system diagram, data flow, failure analysis, and latency budget
+grading:
+  rubric:
+    criteria:
+    - name: System Diagram
+      weight: 0.2
+      description: Clear diagram showing all components and data flow from SEC EDGAR to phone call
+      max_score: 10
+    - name: Reliability Design
+      weight: 0.25
+      description: Failure modes for each step with fallback strategies and recovery procedures
+      max_score: 10
+    - name: Latency Analysis
+      weight: 0.25
+      description: Per-step latency breakdown with bottlenecks identified and mitigation strategies
+      max_score: 10
+    - name: Scalability Plan
+      weight: 0.15
+      description: How the pipeline scales from 10 to 1000 users with specific infrastructure changes
+      max_score: 10
+    - name: Document Quality
+      weight: 0.15
+      description: Well-structured architecture document with clear sections, readable diagrams, and actionable recommendations
+      max_score: 10
+    passing_threshold: 60

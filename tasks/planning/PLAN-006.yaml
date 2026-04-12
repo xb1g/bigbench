@@ -1,0 +1,36 @@
+id: PLAN-006
+category: planning
+title: Design authentication flow for voice AI mobile app
+description: Design the authentication and session management flow for the Adwise React Native mobile app that integrates voice AI with Supabase, handling biometric auth and voice session security.
+difficulty: medium
+estimated_minutes: 25
+language: TypeScript
+project_ref: adwise
+prompt: "Adwise (adwise project) is a React Native/Expo mobile app that uses voice AI (ElevenLabs, LiveKit) for real-time conversations. It uses Supabase for backend. Design the authentication flow considering:\n\n1. Auth Methods:\n   - Email/password signup and signin\n   - Biometric (Face ID / fingerprint) for returning users\n   - Social OAuth (Google, Apple) for quick onboarding\n   - How to securely store tokens on device (Keychain/Keystore, not AsyncStorage)\n\n2. Voice Session Security:\n   - How to authenticate WebSocket connections for LiveKit voice sessions\n   - Token refresh during an active voice session without interrupting the call\n   - Preventing token replay attacks on voice endpoints\n\n3. Supabase Integration:\n   - Use Supabase Auth with PKCE flow for mobile (not implicit flow)\n   - Session persistence across app restarts\n   - Handle expired sessions gracefully (redirect to login vs silent refresh)\n\n4. Edge Cases:\n   - Offline usage: what features work without auth?\n\
+  \   - Multi-device: same account on phone + tablet\n   - Account deletion: cleanup of voice data and LiveKit rooms\n\nProduce an auth flow document with sequence diagrams for each auth method."
+input_format: Description of Adwise mobile app with voice AI and Supabase integration requirements
+output_format: Authentication flow document with sequence diagrams for each auth method and edge case handling
+grading:
+  rubric:
+    criteria:
+    - name: Auth Methods
+      weight: 0.25
+      description: Complete auth flows for email, biometric, and OAuth with secure token storage
+      max_score: 10
+    - name: Voice Security
+      weight: 0.25
+      description: WebSocket auth, session continuity during token refresh, replay prevention
+      max_score: 10
+    - name: Supabase Integration
+      weight: 0.2
+      description: Correct PKCE flow for mobile, session persistence, graceful expired session handling
+      max_score: 10
+    - name: Edge Cases
+      weight: 0.15
+      description: Handles offline, multi-device, and account deletion scenarios
+      max_score: 10
+    - name: Documentation
+      weight: 0.15
+      description: Clear sequence diagrams, well-structured document, actionable for implementation
+      max_score: 10
+    passing_threshold: 60

@@ -1,0 +1,36 @@
+id: PLAN-005
+category: planning
+title: Plan microservice decomposition for EPUB platform
+description: Plan how to decompose the Skilliglot monorepo into independent microservices, defining service boundaries, communication patterns, and data ownership.
+difficulty: hard
+estimated_minutes: 45
+language: Python
+project_ref: skilliglot
+prompt: "Skilliglot (skilliglot project) is currently a monorepo with: apps/api (FastAPI), apps/worker (background processor), apps/web (React frontend), packages/shared-schemas. As the platform grows, plan a microservice decomposition that:\n\n1. Identify Service Boundaries: Based on current functionality:\n   - Upload service: file upload, GCS signing, format validation\n   - Conversion service: EPUB parsing, skill extraction, job orchestration\n   - Review service: guided review workflow, quality scoring\n   - Export service: GitHub export, format conversion\n   - User/Auth service: authentication, API key management\n\n2. Communication Patterns:\n   - Synchronous (REST/gRPC) vs asynchronous (message queue)\n   - Which pairs of services need real-time vs eventual consistency?\n   - How does the job lifecycle span multiple services?\n\n3. Data Ownership:\n   - Which service owns which data?\n   - How to handle cross-service queries (e.g., 'list all jobs for user')?\n   - Saga pattern for\
+  \ multi-service transactions (upload → convert → review → export)\n\n4. Migration Strategy:\n   - Phase 1: Extract which service first and why?\n   - Phase 2-4: Incremental decomposition plan\n   - How to maintain the existing API contract during migration?\n\nProduce a decomposition plan with service boundary diagram, communication map, data ownership matrix, and phased migration timeline."
+input_format: Description of Skilliglot's current monorepo architecture and decomposition goals
+output_format: Microservice decomposition plan with service boundaries, communication patterns, data ownership, and migration phases
+grading:
+  rubric:
+    criteria:
+    - name: Service Boundaries
+      weight: 0.25
+      description: Well-defined service boundaries with clear responsibilities and minimal coupling
+      max_score: 10
+    - name: Communication Design
+      weight: 0.2
+      description: Appropriate sync/async patterns for each service pair, event-driven where needed
+      max_score: 10
+    - name: Data Ownership
+      weight: 0.2
+      description: Clear data ownership with cross-service query strategies and saga pattern
+      max_score: 10
+    - name: Migration Plan
+      weight: 0.2
+      description: Practical phased approach that maintains API contract, starts with highest-value extraction
+      max_score: 10
+    - name: Completeness
+      weight: 0.15
+      description: All aspects covered with diagrams, matrices, and actionable timeline
+      max_score: 10
+    passing_threshold: 60

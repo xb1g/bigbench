@@ -1,0 +1,67 @@
+id: PROD-001
+category: product-mind
+title: Map user journey for community college transfer planning
+description: Map the complete user journey for a community college student using CareerAC to plan their transfer to a 4-year university, identifying pain points and moments of delight.
+difficulty: easy
+estimated_minutes: 15
+language: TypeScript
+project_ref: careerac
+prompt: 'CareerAC (careerac project) is an AI-powered transfer planning platform for California community college students. Map the user journey for a student named Maria:
+
+
+  Maria''s story: She''s a first-generation college student at a community college, wants to transfer to UCLA for Computer Science. She''s overwhelmed by articulation agreements, prerequisite chains, and the transfer timeline. She found CareerAC through a counselor.
+
+
+  Map the journey through these stages:
+
+  1. Discovery: How does Maria find CareerAC? What''s her first impression?
+
+  2. Onboarding: What does she see first? How does she input her current courses?
+
+  3. Planning: Using the AI chat to create a semester-by-semester plan
+
+  4. Failure Recovery: When she fails a prerequisite course mid-path
+
+  5. Community: Browsing playbooks from students who successfully transferred
+
+  6. Completion: Getting her transfer application ready
+
+
+  For each stage, identify:
+
+  - User actions and emotions
+
+  - Pain points (confusion, frustration, anxiety)
+
+  - Moments of delight (surprise, relief, empowerment)
+
+  - Feature opportunities (what could CareerAC do better?)
+
+
+  Format as a journey map with emotional arc.'
+input_format: Description of CareerAC's features and a fictional student persona
+output_format: User journey map with emotional arc, pain points, moments of delight, and feature opportunities per stage
+grading:
+  rubric:
+    criteria:
+    - name: Journey Completeness
+      weight: 0.25
+      description: Covers all 6 stages with specific actions and emotions for each
+      max_score: 10
+    - name: Empathy Depth
+      weight: 0.25
+      description: Shows genuine understanding of first-gen student challenges (language barriers, financial stress, info overload)
+      max_score: 10
+    - name: Pain Point Quality
+      weight: 0.2
+      description: Pain points are specific and actionable (not generic like 'confusing UI'), tied to transfer-specific challenges
+      max_score: 10
+    - name: Feature Opportunities
+      weight: 0.2
+      description: Opportunities are creative and realistic, addressing identified pain points directly
+      max_score: 10
+    - name: Emotional Arc
+      weight: 0.1
+      description: Journey shows realistic emotional highs and lows with clear progression
+      max_score: 10
+    passing_threshold: 60

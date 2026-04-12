@@ -1,0 +1,121 @@
+# Task Definition Schema
+# Used to validate all benchmark task YAML files
+
+$schema: "https://json-schema.org/draft/2020-12/schema"
+title: "LLM Benchmark Task Definition"
+description: "Schema for defining benchmark tasks that evaluate LLM software engineering capabilities"
+
+required_fields:
+  - id          # Unique task identifier in CATEGORY-NNN format (e.g., SE-001, PLAN-005)
+  - category    # One of: software-engineering, planning, product-mind, startup-mind
+  - title       # Short descriptive title (5-15 words)
+  - description # One-paragraph summary of what the task evaluates
+  - difficulty  # One of: easy, medium, hard
+  - estimated_minutes  # Integer, estimated time for a strong model to complete (5-120)
+  - language    # Primary programming language or technology
+  - project_ref # Directory name under ~/dev/ that this task references
+  - prompt      # Detailed scenario description given to the LLM (200+ words)
+  - input_format  # Description of what input the LLM receives
+  - output_format # Description of what the LLM must produce
+  - grading     # Either reference_answer or rubric (see grading section below)
+
+field_types:
+  id:
+    type: string
+    pattern: "^(SE|PLAN|PROD|START)-[0-9]{3}$"
+    description: "Unique identifier with category prefix and 3-digit number"
+  category:
+    type: string
+    enum:
+      - software-engineering
+      - planning
+      - product-mind
+      - startup-mind
+  title:
+    type: string
+    minLength: 5
+    maxLength: 100
+  description:
+    type: string
+    minLength: 30
+    maxLength: 500
+  difficulty:
+    type: string
+    enum:
+      - easy
+      - medium
+      - hard
+  estimated_minutes:
+    type: integer
+    minimum: 5
+    maximum: 120
+  language:
+    type: string
+    enum:
+      - Python
+      - TypeScript
+      - JavaScript
+      - Go
+      - Rust
+      - SQL
+      - Shell
+      - Swift
+      - Other
+  project_ref:
+    type: string
+    description: "Must be a directory that exists under ~/dev/"
+  prompt:
+    type: string
+    minLength: 200
+    description: "Detailed scenario that the LLM must respond to. Must be specific enough to produce gradable, comparable outputs."
+  input_format:
+    type: string
+    description: "What information/context the LLM receives as input"
+  output_format:
+    type: string
+    description: "What format the LLM's response must follow"
+  grading:
+    type: object
+    description: "Grading criteria - must have either reference_answer or rubric"
+
+grading_types:
+  reference_answer:
+    description: "For auto-grading tasks with a single correct answer"
+    required:
+      - method  # "exact_match", "structural_similarity", "code_equivalence"
+      - answer  # The reference answer string/code
+    optional:
+      - tolerance  # For numeric answers, acceptable deviation
+      - key_elements  # List of strings that must appear in the response
+
+  rubric:
+    description: "For open-ended tasks graded on multiple weighted criteria"
+    required:
+      - criteria  # List of criterion objects
+    criterion_fields:
+      - name        # Name of the criterion (e.g., "Correctness", "Completeness")
+      - weight      # Float 0.0-1.0, all weights must sum to 1.0
+      - description # What this criterion measures
+      - max_score   # Maximum score for this criterion (typically 10)
+    optional:
+      - passing_threshold  # Minimum total score (0-100) to be considered passing
+
+target_distributions:
+  difficulty:
+    easy: 0.30    # ~13 tasks
+    medium: 0.50  # ~21 tasks
+    hard: 0.20    # ~8 tasks
+  language:
+    Python: 0.35           # ~15 tasks
+    TypeScript: 0.25       # ~10 tasks
+    JavaScript: 0.05       # ~2 tasks
+    Go: 0.10               # ~4 tasks
+    Rust: 0.10             # ~4 tasks
+    SQL: 0.08              # ~3 tasks
+    Shell: 0.04            # ~2 tasks
+    Swift: 0.02            # ~1 task
+  category_counts:
+    software-engineering: 12
+    planning: 10
+    product-mind: 10
+    startup-mind: 10

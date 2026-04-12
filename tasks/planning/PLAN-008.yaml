@@ -1,0 +1,36 @@
+id: PLAN-008
+category: planning
+title: Design MCP tool integration architecture
+description: Design the architecture for integrating new AI model providers as MCP tools in the PAL MCP Server, defining the tool registration, request routing, and conversation threading patterns.
+difficulty: medium
+estimated_minutes: 30
+language: Python
+project_ref: pal-mcp-server
+prompt: "PAL MCP Server (pal-mcp-server) is a Python MCP server that connects multiple AI models. It already supports Gemini, OpenAI, Anthropic, Grok, Azure, and Ollama. Design the architecture for adding new providers as MCP tools in a systematic way:\n\n1. Provider Interface: Define a standard interface/protocol that all providers implement:\n   - Common methods: send_message, stream_response, get_model_info\n   - Provider-specific configuration (API key, base URL, model list)\n   - How to handle provider-specific features (vision, function calling, tool use)\n\n2. Tool Registration: How MCP tools are dynamically registered per provider:\n   - Tool naming convention (e.g., pal_gemini_chat, pal_openai_chat)\n   - Tool schema definition with input/output types\n   - Dynamic tool discovery when new providers are added\n\n3. Request Routing: How to route a user request to the right provider:\n   - Explicit selection (user names the model)\n   - Smart routing (based on task type, context window\
+  \ needs, cost)\n   - Fallback chain (primary model fails, try secondary)\n\n4. Conversation Threading: How to maintain conversation context across models:\n   - Thread ID management\n   - Context window management when switching models\n   - Cross-model message format normalization\n\nProduce an architecture document with interface definitions, tool registration flow, and routing decision tree."
+input_format: Description of PAL MCP Server's current multi-model support and new provider integration needs
+output_format: Architecture document with provider interface, tool registration flow, routing decision tree, and threading design
+grading:
+  rubric:
+    criteria:
+    - name: Provider Interface
+      weight: 0.25
+      description: Clean abstract interface with common methods, provider-specific extensions, and configuration
+      max_score: 10
+    - name: Tool Registration
+      weight: 0.2
+      description: Dynamic MCP tool registration with naming convention, schema definition, and discovery
+      max_score: 10
+    - name: Request Routing
+      weight: 0.25
+      description: Explicit selection, smart routing logic, and fallback chain with decision criteria
+      max_score: 10
+    - name: Conversation Threading
+      weight: 0.15
+      description: Thread management across models, context normalization, window handling
+      max_score: 10
+    - name: Architecture Quality
+      weight: 0.15
+      description: Clear diagrams, interface definitions in code, practical for implementation
+      max_score: 10
+    passing_threshold: 60

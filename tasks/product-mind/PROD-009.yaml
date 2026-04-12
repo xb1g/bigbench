@@ -1,0 +1,36 @@
+id: PROD-009
+category: product-mind
+title: Accessibility analysis for voice dictation macOS app
+description: Analyze accessibility requirements and design recommendations for FreeFlow, a macOS voice dictation app, ensuring it works well for users with speech differences, motor impairments, and hearing variations.
+difficulty: medium
+estimated_minutes: 25
+language: Swift
+project_ref: freeflow
+prompt: "FreeFlow (freeflow project) is a macOS voice dictation app that uses Groq for transcription and post-processing. Users hold Fn to talk or tap Cmd-Fn to toggle dictation. It's context-aware (adapts output to the active app). Analyze accessibility for:\n\n1. Users with speech differences:\n   - Accents, stutters, speech impediments affect transcription accuracy\n   - How to handle partial words, hesitations, and corrections\n   - Should the app learn from individual speech patterns over time?\n\n2. Users with motor impairments:\n   - Fn key hold requires sustained pressure - alternatives? (Switch Control, eye tracking)\n   - Toggle mode (Cmd-Fn) requires two-key combo - is this accessible?\n   - Custom key binding: how much customization is needed?\n\n3. Users with hearing variations:\n   - Visual feedback during dictation (live transcription display)\n   - Sound cues for start/stop recording - need visual alternatives\n\n4. General macOS accessibility:\n   - VoiceOver compatibility\
+  \ for dictation status\n   - High contrast mode support\n   - Keyboard-only navigation of app settings\n\nFor each area, identify barriers, severity (critical/major/minor), and specific design recommendations. Prioritize by impact and implementation difficulty."
+input_format: FreeFlow app description and accessibility requirements by user type
+output_format: Accessibility analysis with barriers, severity ratings, design recommendations, and priority ranking
+grading:
+  rubric:
+    criteria:
+    - name: Speech Accessibility
+      weight: 0.25
+      description: Addresses accent/stutter handling, partial word processing, and adaptation patterns
+      max_score: 10
+    - name: Motor Accessibility
+      weight: 0.25
+      description: Identifies key-hold as barrier, suggests alternatives (Switch Control, dwell, single-switch)
+      max_score: 10
+    - name: Visual/Hearing Access
+      weight: 0.15
+      description: Visual feedback during dictation, visual alternatives for sound cues, VoiceOver support
+      max_score: 10
+    - name: Recommendation Quality
+      weight: 0.2
+      description: Recommendations are specific, implementable in Swift/macOS, not generic accessibility platitudes
+      max_score: 10
+    - name: Prioritization
+      weight: 0.15
+      description: Barriers ranked by severity and impact with realistic implementation difficulty assessment
+      max_score: 10
+    passing_threshold: 60

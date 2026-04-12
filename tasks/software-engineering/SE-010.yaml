@@ -1,0 +1,36 @@
+id: SE-010
+category: software-engineering
+title: Implement Rust async HTTP client for multi-model API
+description: Build a Rust async HTTP client using tokio and reqwest that calls multiple LLM APIs concurrently and returns the first successful response, with proper timeout and cancellation support.
+difficulty: medium
+estimated_minutes: 35
+language: Rust
+project_ref: pal-mcp-server
+prompt: "The PAL MCP Server (pal-mcp-server project) is a Python MCP server that orchestrates multiple AI models. We need a Rust library for the concurrent model calling pattern. The pattern is:\nsend the same prompt to multiple models in parallel, return the first successful response, and cancel the remaining requests.\n\nImplement a Rust async module that:\n1. Defines a ModelClient struct with reqwest::Client, model URL, API key, and timeout\n2. Defines a MultiModelCaller that holds a Vec<ModelClient>\n3. Implements call_first_success(prompt, timeout) that:\n   - Spawns a tokio task for each model client\n   - Uses tokio::select! or a channel to return the first Ok result\n   - Cancels remaining tasks when one succeeds\n   - Returns Err only if ALL models fail, with all error messages aggregated\n4. Supports per-request timeout via tokio::time::timeout\n5. Handles common HTTP errors (429 rate limit, 503 overloaded) with retry hints\n\nUse reqwest for HTTP, tokio for async runtime, serde_json\
+  \ for request/response bodies. Provide the complete module with types, implementation, and example usage."
+input_format: Specification for concurrent multi-model API calling pattern
+output_format: Complete Rust async module with tokio tasks, cancellation, and error aggregation
+grading:
+  rubric:
+    criteria:
+    - name: Concurrent Execution
+      weight: 0.25
+      description: Spawns tasks for each model concurrently using tokio::spawn
+      max_score: 10
+    - name: First-Success Pattern
+      weight: 0.25
+      description: Returns first Ok result via select/channel, cancels remaining tasks properly
+      max_score: 10
+    - name: Error Aggregation
+      weight: 0.2
+      description: Collects all error messages when all models fail, returns meaningful aggregate error
+      max_score: 10
+    - name: Timeout Handling
+      weight: 0.15
+      description: Per-request timeout via tokio::time::timeout, cleanup on timeout
+      max_score: 10
+    - name: API Design
+      weight: 0.15
+      description: Clean public interface, proper use of async/await, Send bounds correct
+      max_score: 10
+    passing_threshold: 60

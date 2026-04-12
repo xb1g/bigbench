@@ -1,0 +1,36 @@
+id: START-001
+category: startup-mind
+title: Business model canvas for AI agent memory platform
+description: Create a business model canvas for Platon's agent memory platform, defining value proposition, revenue streams, and go-to-market for developer-facing AI infrastructure.
+difficulty: medium
+estimated_minutes: 25
+language: TypeScript
+project_ref: platon
+prompt: "Platon (platon project) is an agent memory platform: agents dump session results, the platform reflects on what happened, stores reusable memory in a graph, and exposes retrieval through API and MCP. It uses x402 paid access (Nevermined paywall) for both HTTP API and MCP server. Create a business model canvas covering:\n\n1. Customer Segments: Who pays for agent memory?\n   - AI agent developers (indie vs enterprise)\n   - Agent platform companies (need memory for their agents)\n   - AI consultancies building custom agents\n   Which segment to target first?\n\n2. Value Proposition: Why buy memory infrastructure vs build in-house?\n   - Cost of building (engineering time, infrastructure, maintenance)\n   - Value of cross-agent memory sharing\n   - MCP integration as a differentiator\n\n3. Revenue Model:\n   - Per-API-call pricing (like OpenAI)\n   - Subscription tiers (free/pro/enterprise)\n   - Usage-based with x402 micropayments\n   Which model works best for developer infrastructure?\n\
+  \n4. Cost Structure: What are the main costs?\n   - LLM API calls for reflection worker\n   - Database (PostgreSQL) for memory graph\n   - Cloud compute for API/worker/MCP\n\n5. Key Metrics: What to track?\n   - API calls/agent/month, memory retrieval accuracy, retention\n\nFill out all 9 BMC boxes with specific details for Platon."
+input_format: Platon platform description and current x402 payment integration
+output_format: Complete business model canvas with all 9 boxes filled with specific details for Platon
+grading:
+  rubric:
+    criteria:
+    - name: Customer Segments
+      weight: 0.2
+      description: Clear segmentation with primary target identified, justified by willingness-to-pay and reachability
+      max_score: 10
+    - name: Value Proposition
+      weight: 0.2
+      description: Compelling 'why buy vs build' argument with quantified cost savings where possible
+      max_score: 10
+    - name: Revenue Model
+      weight: 0.2
+      description: Specific pricing with tiers, realistic price points, and model that aligns with developer purchasing behavior
+      max_score: 10
+    - name: BMC Completeness
+      weight: 0.2
+      description: All 9 boxes filled with concrete details (not generic), logically consistent across boxes
+      max_score: 10
+    - name: Platon-Specific
+      weight: 0.2
+      description: Canvas reflects Platon's unique aspects (agent memory graph, MCP integration, x402) not generic AI infra
+      max_score: 10
+    passing_threshold: 60

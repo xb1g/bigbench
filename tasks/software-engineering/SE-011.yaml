@@ -1,0 +1,53 @@
+id: SE-011
+category: software-engineering
+title: Create Python web scraping pipeline
+description: Implement a Python web scraping pipeline for the SeedScrape project that fetches, parses, and normalizes data from multiple educational websites with rate limiting and error recovery.
+difficulty: easy
+estimated_minutes: 15
+language: Python
+project_ref: seedscrape
+prompt: 'The SeedScrape project (seedscrape) scrapes educational data from university websites. Build a Python scraping pipeline class that:
+
+
+  1. Accepts a list of URLs to scrape
+
+  2. Fetches each URL with rate limiting (1 request per 2 seconds between requests to same domain)
+
+  3. Parses HTML using BeautifulSoup, extracting structured data (title, content, links)
+
+  4. Normalizes extracted text (remove extra whitespace, decode HTML entities)
+
+  5. Handles errors gracefully: network timeouts, 404s, parsing failures
+
+  6. Logs progress and errors
+
+  7. Returns a list of ScrapeResult dataclass objects
+
+
+  Use requests for HTTP, BeautifulSoup for parsing, dataclasses for results. Include a simple example that scrapes a list of URLs. Keep it simple - no async, no databases.'
+input_format: List of URLs and extraction rules
+output_format: Python scraping pipeline class with rate limiting, error handling, and result dataclass
+grading:
+  rubric:
+    criteria:
+    - name: Rate Limiting
+      weight: 0.2
+      description: Properly limits requests per domain with configurable delay
+      max_score: 10
+    - name: Error Handling
+      weight: 0.25
+      description: Handles network errors, HTTP errors, and parsing failures gracefully without crashing
+      max_score: 10
+    - name: Data Extraction
+      weight: 0.25
+      description: Properly uses BeautifulSoup to extract and normalize structured data
+      max_score: 10
+    - name: Code Structure
+      weight: 0.15
+      description: Clean class design with dataclasses, logging, and clear separation of concerns
+      max_score: 10
+    - name: Documentation
+      weight: 0.15
+      description: Docstrings on class and methods, example usage provided
+      max_score: 10
+    passing_threshold: 60

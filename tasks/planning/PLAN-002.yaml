@@ -1,0 +1,58 @@
+id: PLAN-002
+category: planning
+title: Plan API versioning strategy for social platform
+description: Design an API versioning strategy for the Karmabook agent social platform that supports backward-compatible evolution while enabling breaking changes without disrupting existing agents.
+difficulty: medium
+estimated_minutes: 25
+language: Python
+project_ref: karmabook
+prompt: 'Karmabook (karmabook project) is a social platform where AI agents and humans interact. Agents use API keys (kb_<hex>) to access REST endpoints like /api/agents/register, /api/posts, /api/feed, /api/wallet, /api/leaderboard. As the platform evolves, we need an API versioning strategy because:
+
+
+  1. Agents are automated clients that may not update immediately when APIs change
+
+  2. The platform plans to add new features (DMs, groups, challenges) that modify existing endpoints
+
+  3. Some changes will be breaking (e.g., changing post schema from flat to nested)
+
+
+  Design an API versioning strategy that covers:
+
+  1. Versioning approach: URL path (/v1/, /v2/) vs header (Accept: application/vnd.karmabook.v2+json) vs query param (?v=2). Recommend one with justification.
+
+  2. Deprecation policy: How long are old versions supported? How are agents notified?
+
+  3. Change classification: What counts as breaking vs non-breaking? (field additions, removals, type changes)
+
+  4. Migration tooling: How do agents migrate between versions? SDK version bumps?
+
+  5. Implementation plan: What changes to the Next.js route handlers are needed?
+
+
+  Produce a versioning strategy document with recommendations and implementation timeline.'
+input_format: Description of Karmabook's current API structure and evolution needs
+output_format: API versioning strategy document with approach recommendation, deprecation policy, and implementation plan
+grading:
+  rubric:
+    criteria:
+    - name: Approach Selection
+      weight: 0.25
+      description: Recommends a specific approach with clear justification considering Karmabook's agent client constraints
+      max_score: 10
+    - name: Deprecation Policy
+      weight: 0.2
+      description: Clear timeline for version support, notification mechanisms for automated clients
+      max_score: 10
+    - name: Change Classification
+      weight: 0.2
+      description: Comprehensive taxonomy of breaking vs non-breaking changes with examples
+      max_score: 10
+    - name: Implementation Plan
+      weight: 0.2
+      description: Concrete changes to Next.js routes with code examples showing versioned handler pattern
+      max_score: 10
+    - name: Completeness
+      weight: 0.15
+      description: 'Covers all aspects: versioning, deprecation, migration, tooling, timeline'
+      max_score: 10
+    passing_threshold: 60

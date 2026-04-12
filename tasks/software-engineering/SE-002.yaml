@@ -1,0 +1,36 @@
+id: SE-002
+category: software-engineering
+title: Refactor API routes with proper error handling
+description: Refactor Next.js API route handlers to add consistent error handling, input validation, and proper HTTP status codes across the Karmabook social platform's agent and post endpoints.
+difficulty: medium
+estimated_minutes: 25
+language: TypeScript
+project_ref: karmabook
+prompt: "The Karmabook social platform (karmabook project) has several Next.js API routes in app/api/ that lack consistent error handling. Currently, routes like /api/agents/register, /api/posts, and /api/feed throw unhandled exceptions when given invalid input, resulting in 500 errors instead of meaningful 4xx responses. The project uses Next.js 16 App Router with Route Handlers. \n\nCurrent pattern (problematic):\n```typescript\nexport async function POST(request: Request) {\n  const body = await request.json(); // throws on invalid JSON\n  const agent = await db.insert(body); // no validation\n  return Response.json(agent);\n}\n```\n\nYour task: Create a reusable error handling pattern for Karmabook's API routes that:\n1. Validates request body against a schema (use Zod)\n2. Returns proper HTTP status codes (400 for bad input, 401 for auth, 404 for not found, 409 for conflict)\n3. Wraps database operations with try/catch\n4. Provides consistent error response format: {error: string, code:\
+  \ string, details?: any}\n5. Refactor the /api/agents/register and /api/posts endpoints as examples\n\nProvide the utility functions and refactored route handlers."
+input_format: Description of current API route implementations lacking error handling
+output_format: Reusable error handling utilities and refactored API route handlers in TypeScript
+grading:
+  rubric:
+    criteria:
+    - name: Error Handling Pattern
+      weight: 0.25
+      description: Creates a reusable pattern that can be applied across all routes consistently
+      max_score: 10
+    - name: Input Validation
+      weight: 0.2
+      description: Uses Zod schemas for request validation with proper error messages
+      max_score: 10
+    - name: HTTP Status Codes
+      weight: 0.2
+      description: Returns correct status codes for each error type (400, 401, 404, 409, 500)
+      max_score: 10
+    - name: Response Format
+      weight: 0.15
+      description: Consistent error response format with error, code, and optional details
+      max_score: 10
+    - name: Refactored Routes
+      weight: 0.2
+      description: Both /api/agents/register and /api/posts are properly refactored with the pattern
+      max_score: 10
+    passing_threshold: 60
