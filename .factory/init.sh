@@ -17,18 +17,22 @@ fi
 
 # Create .env if not exists
 if [ ! -f ".env" ]; then
-  cat > .env << 'EOF'
-# LLM API Keys (uncomment and add your keys)
+  cat > .env << 'ENVEOF'
+# Primary model: Kimi K2.5 Turbo on Fireworks AI (OpenAI-compatible)
+FIREWORKS_API_KEY=fw_4ajrh4wPMyYVJT9oZskV6j
+FIREWORKS_API_BASE=https://api.fireworks.ai/inference/v1
+DEFAULT_MODEL=openai/accounts/fireworks/routers/kimi-k2p5-turbo
+
+# Additional providers (uncomment if available)
 # OPENAI_API_KEY=sk-...
 # ANTHROPIC_API_KEY=sk-ant-...
-# GOOGLE_API_KEY=...
 
-# Grading model (defaults to gpt-4o)
-# GRADING_MODEL=gpt-4o
+# Grading model (uses same Fireworks model by default)
+# GRADING_MODEL=openai/accounts/fireworks/routers/kimi-k2p5-turbo
 
 # Default temperature (0 for deterministic grading)
-# DEFAULT_TEMPERATURE=0
-EOF
+DEFAULT_TEMPERATURE=0
+ENVEOF
   echo "Created .env template - add your API keys for real benchmark runs"
 fi
 
