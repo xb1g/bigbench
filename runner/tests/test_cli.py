@@ -64,11 +64,27 @@ class TestResultsCommand:
 
 
 class TestTaskCommand:
-    def test_task_lists_all(self, runner):
+    def test_task_default_lists_all(self, runner):
+        """Invoking 'task' without subcommand defaults to listing."""
         result = runner.invoke(main, ["task"])
         assert result.exit_code == 0
         assert "42 tasks" in result.output
 
+    def test_task_list(self, runner):
+        result = runner.invoke(main, ["task", "list"])
+        assert result.exit_code == 0
+        assert "42 tasks" in result.output
+
     def test_task_create_invalid_category(self, runner):
-        result = runner.invoke(main, ["task", "--category", "invalid", "--id", "TEST-001"])
+        result = runner.invoke(main, ["task", "create", "--category", "invalid", "--id", "TEST-001"])
         assert result.exit_code != 0
+
+    def test_task_validate_passes(self, runner):
+        result = runner.invoke(main, ["task", "validate"])
+        assert result.exit_code == 0
+        assert "tasks passed validation" in result.output
+
+    def test_task_validate_help(self, runner):
+        result = runner.invoke(main, ["task", "validate", "--help"])
+        assert result.exit_code == 0
+        assert "Validate" in result.output

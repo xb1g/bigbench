@@ -10,7 +10,7 @@ from rich.console import Console
 from rich.panel import Panel
 from rich.table import Table
 
-from .loader import load_all_tasks
+from .loader import load_all_tasks, validate_all_tasks
 from .results import list_runs, load_results
 from .runner import run_all_tasks, run_single_task
 
@@ -258,22 +258,73 @@ def results(run_id: Optional[str], list_runs_flag: bool) -> None:
     console.print(table)
 
 
-@main.command()
+@main.group(invoke_without_command=True)
+@click.pass_context
+def task(ctx: click.Context) -> None:
+    """Manage benchmark tasks (list, create, validate)."""
+    if ctx.invoked_subcommand is None:
+        # Default to 'list' when no subcommand given
+        _list_tasks()
+
+
+@task.command("list")
+def task_list() -> None:
+    """List all available benchmark tasks."""
+    _list_tasks()
+
+
+@task.command("create")
 @click.option(
     "--category", "-c",
+    required=True,
     help="Category: software-engineering, planning, product-mind, startup-mind",
 )
-@click.option("--id", "task_id", help="Task ID to create (e.g., SE-NEW)")
-def task(category: Optional[str], task_id: Optional[str]) -> None:
-    """Manage benchmark tasks. Use --category and --id to scaffold a new task."""
-    if category and task_id:
-        _create_task(category, task_id)
-    elif category or task_id:
-        console.print("[red]Both --category and --id are required to create a task.[/red]")
+@click.option("--id", "task_id", required=True, help="Task ID to create (e.g., SE-NEW)")
+def task_create(category: str, task_id: str) -> None:
+    """Scaffold a new task YAML file with template values."""
+    _create_task(category, task_id)
+
+
+@task.command("validate")
+def task_validate() -> None:
+    """Validate ALL task YAML files against the schema."""
+    try:
+        results = validate_all_tasks()
+    except FileNotFoundError as e:
+        console.print(f"[red]Error: {e}[/red]")
         raise SystemExit(1)
+
+    total = len(results)
+    passed = sum(1 for r in results if r.passed)
+    failed = total - passed
+
+    # Print per-task results
+    table = Table(
+        title="Task Validation Results",
+        show_header=True,
+        header_style="bold",
+    )
+    table.add_column("Task ID", style="cyan")
+    table.add_column("Status", justify="center")
+    table.add_column("Errors", style="red")
+
+    for r in results:
+        if r.passed:
+            table.add_row(r.task_id, "[green]✓ PASS[/green]", "")
+        else:
+            error_text = "\n".join(r.errors)
+            table.add_row(r.task_id, "[red]✗ FAIL[/red]", error_text)
+
+    console.print(table)
+
+    # Summary
+    if failed == 0:
+        console.print(f"\n[green]✓ All {total} tasks passed validation.[/green]")
     else:
-        # List all tasks
-        _list_tasks()
+        console.print(
+            f"\n[red]✗ {failed}/{total} tasks failed validation.[/red]"
+        )
+        raise SystemExit(1)
 
 
 def _list_tasks() -> None:

@@ -3,8 +3,15 @@
 from pathlib import Path
 
 import pytest
+import yaml
 
-from benchmark.loader import get_tasks_by_category, load_all_tasks, load_task_by_id
+from benchmark.loader import (
+    get_tasks_by_category,
+    load_all_tasks,
+    load_task_by_id,
+    validate_all_tasks,
+    TaskValidationResult,
+)
 
 # Path: runner/tests/test_loader.py -> project root is 2 levels up from runner/
 # runner/tests/ -> runner/ -> llm-benchmark/
@@ -80,3 +87,136 @@ class TestGetTasksByCategory:
         assert len(grouped["planning"]) == 10
         assert len(grouped["product-mind"]) == 10
         assert len(grouped["startup-mind"]) == 10
+
+
+class TestValidateAllTasks:
+    def test_all_42_tasks_pass(self):
+        results = validate_all_tasks(TASKS_DIR)
+        assert len(results) == 42
+        failed = [r for r in results if not r.passed]
+        if failed:
+            msgs = [f"{r.task_id}: {r.errors}" for r in failed]
+            pytest.fail(f"Validation failures: {msgs}")
+        assert all(r.passed for r in results)
+
+    def test_missing_required_field(self, tmp_path):
+        # Create a task YAML missing 'title'
+        task_yaml = {
+            "id": "SE-BAD",
+            "category": "software-engineering",
+            "description": "test",
+            "difficulty": "easy",
+            "estimated_minutes": 10,
+            "language": "Python",
+            "project_ref": "someproject",
+            "prompt": "Do something",
+            "output_format": "text",
+            "grading": {"rubric": {"criteria": [{"name": "A", "weight": 1.0, "description": "test", "max_score": 10}]}},
+        }
+        cat_dir = tmp_path / "software-engineering"
+        cat_dir.mkdir()
+        (cat_dir / "SE-BAD.yaml").write_text(yaml.dump(task_yaml, default_flow_style=False))
+        results = validate_all_tasks(tmp_path)
+        assert len(results) == 1
+        assert not results[0].passed
+        assert any("title" in e for e in results[0].errors)
+
+    def test_invalid_category(self, tmp_path):
+        task_yaml = {
+            "id": "SE-BAD",
+            "category": "invalid-category",
+            "title": "Bad category",
+            "description": "test task",
+            "difficulty": "easy",
+            "estimated_minutes": 10,
+            "language": "Python",
+            "project_ref": "someproject",
+            "prompt": "Do something",
+            "output_format": "text",
+            "grading": {"rubric": {"criteria": [{"name": "A", "weight": 1.0, "description": "test", "max_score": 10}]}},
+        }
+        cat_dir = tmp_path / "invalid-category"
+        cat_dir.mkdir()
+        (cat_dir / "SE-BAD.yaml").write_text(yaml.dump(task_yaml, default_flow_style=False))
+        results = validate_all_tasks(tmp_path)
+        assert len(results) == 1
+        assert not results[0].passed
+        assert any("Invalid category" in e for e in results[0].errors)
+
+    def test_invalid_difficulty(self, tmp_path):
+        task_yaml = {
+            "id": "SE-BAD",
+            "category": "software-engineering",
+            "title": "Bad difficulty",
+            "description": "test task",
+            "difficulty": "extreme",
+            "estimated_minutes": 10,
+            "language": "Python",
+            "project_ref": "someproject",
+            "prompt": "Do something",
+            "output_format": "text",
+            "grading": {"rubric": {"criteria": [{"name": "A", "weight": 1.0, "description": "test", "max_score": 10}]}},
+        }
+        cat_dir = tmp_path / "software-engineering"
+        cat_dir.mkdir()
+        (cat_dir / "SE-BAD.yaml").write_text(yaml.dump(task_yaml, default_flow_style=False))
+        results = validate_all_tasks(tmp_path)
+        assert len(results) == 1
+        assert not results[0].passed
+        assert any("Invalid difficulty" in e for e in results[0].errors)
+
+    def test_rubric_weights_not_summing_to_one(self, tmp_path):
+        task_yaml = {
+            "id": "SE-BAD",
+            "category": "software-engineering",
+            "title": "Bad weights",
+            "description": "test task",
+            "difficulty": "easy",
+            "estimated_minutes": 10,
+            "language": "Python",
+            "project_ref": "someproject",
+            "prompt": "Do something",
+            "output_format": "text",
+            "grading": {"rubric": {"criteria": [
+                {"name": "A", "weight": 0.5, "description": "test", "max_score": 10},
+                {"name": "B", "weight": 0.3, "description": "test", "max_score": 10},
+            ]}},
+        }
+        cat_dir = tmp_path / "software-engineering"
+        cat_dir.mkdir()
+        (cat_dir / "SE-BAD.yaml").write_text(yaml.dump(task_yaml, default_flow_style=False))
+        results = validate_all_tasks(tmp_path)
+        assert len(results) == 1
+        assert not results[0].passed
+        assert any("weights sum" in e for e in results[0].errors)
+
+    def test_empty_task_file(self, tmp_path):
+        cat_dir = tmp_path / "software-engineering"
+        cat_dir.mkdir()
+        (cat_dir / "EMPTY.yaml").write_text("")
+        results = validate_all_tasks(tmp_path)
+        assert len(results) == 1
+        assert not results[0].passed
+        assert any("Empty" in e for e in results[0].errors)
+
+    def test_grading_missing_both_types(self, tmp_path):
+        task_yaml = {
+            "id": "SE-BAD",
+            "category": "software-engineering",
+            "title": "No grading type",
+            "description": "test task",
+            "difficulty": "easy",
+            "estimated_minutes": 10,
+            "language": "Python",
+            "project_ref": "someproject",
+            "prompt": "Do something",
+            "output_format": "text",
+            "grading": {"something_else": True},
+        }
+        cat_dir = tmp_path / "software-engineering"
+        cat_dir.mkdir()
+        (cat_dir / "SE-BAD.yaml").write_text(yaml.dump(task_yaml, default_flow_style=False))
+        results = validate_all_tasks(tmp_path)
+        assert len(results) == 1
+        assert not results[0].passed
+        assert any("rubric" in e and "reference_answer" in e for e in results[0].errors)
