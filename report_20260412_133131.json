@@ -1,0 +1,2021 @@
+{
+  "run_id": "20260412_133131",
+  "model_name": "gpt-4o",
+  "timestamp": "2026-04-12T13:31:36.441057",
+  "overall_score": 59.0,
+  "category_scores": {
+    "software_engineering": 53.6,
+    "planning": 65.1,
+    "product_mind": 63.4,
+    "startup_mind": 57.4
+  },
+  "per_task_results": [
+    {
+      "task_id": "PLAN-001",
+      "category": "planning",
+      "score": 68.5,
+      "raw_output": "# Mock Response (Dry-Run Mode)\n\nThis is a simulated LLM response for testing purposes.\nNo actual API calls were made.\n\n## Architecture Decision\nBased on the requirements, I recommend a layered architecture.\n1. **API Layer**: REST endpoints with authentication middleware\n2. **Service Layer**: Business logic with tenant isolation\n3. **Data Layer**: PostgreSQL with schema-per-tenant for isolation\n## Scaling Plan\n- Phase 1: Single server, schema-per-tenant\n- Phase 2: Read replicas, connection pooling\n- Phase 3: Horizontal sharding for 10K+ tenants",
+      "grading_details": {
+        "grading_method": "rubric",
+        "total_score": 68.5,
+        "criterion_scores": [
+          {
+            "name": "Isolation Strategy",
+            "score": 6.7,
+            "max_score": 10.0,
+            "weight": 0.3,
+            "rationale": "[Dry-run mock] Score based on output length (549 chars) and keyword overlap."
+          },
+          {
+            "name": "API & Auth Design",
+            "score": 7.1,
+            "max_score": 10.0,
+            "weight": 0.2,
+            "rationale": "[Dry-run mock] Score based on output length (549 chars) and keyword overlap."
+          },
+          {
+            "name": "Scaling Plan",
+            "score": 7.1,
+            "max_score": 10.0,
+            "weight": 0.2,
+            "rationale": "[Dry-run mock] Score based on output length (549 chars) and keyword overlap."
+          },
+          {
+            "name": "Worker/MCP Tenancy",
+            "score": 7.3,
+            "max_score": 10.0,
+            "weight": 0.15,
+            "rationale": "[Dry-run mock] Score based on output length (549 chars) and keyword overlap."
+          },
+          {
+            "name": "ADR Quality",
+            "score": 6.0,
+            "max_score": 10.0,
+            "weight": 0.15,
+            "rationale": "[Dry-run mock] Score based on output length (549 chars) and keyword overlap."
+          }
+        ],
+        "reference_match_type": null,
+        "rationale": "[Dry-run mock] Grading based on heuristics, not LLM evaluation."
+      },
+      "error": null,
+      "dry_run": true
+    },
+    {
+      "task_id": "PLAN-002",
+      "category": "planning",
+      "score": 63.7,
+      "raw_output": "# Mock Response (Dry-Run Mode)\n\nThis is a simulated LLM response for testing purposes.\nNo actual API calls were made.\n\n## Architecture Decision\nBased on the requirements, I recommend a layered architecture.\n1. **API Layer**: REST endpoints with authentication middleware\n2. **Service Layer**: Business logic with tenant isolation\n3. **Data Layer**: PostgreSQL with schema-per-tenant for isolation\n## Scaling Plan\n- Phase 1: Single server, schema-per-tenant\n- Phase 2: Read replicas, connection pooling\n- Phase 3: Horizontal sharding for 10K+ tenants",
+      "grading_details": {
+        "grading_method": "rubric",
+        "total_score": 63.7,
+        "criterion_scores": [
+          {
+            "name": "Approach Selection",
+            "score": 6.6,
+            "max_score": 10.0,
+            "weight": 0.25,
+            "rationale": "[Dry-run mock] Score based on output length (549 chars) and keyword overlap."
+          },
+          {
+            "name": "Deprecation Policy",
+            "score": 6.4,
+            "max_score": 10.0,
+            "weight": 0.2,
+            "rationale": "[Dry-run mock] Score based on output length (549 chars) and keyword overlap."
+          },
+          {
+            "name": "Change Classification",
+            "score": 6.4,
+            "max_score": 10.0,
+            "weight": 0.2,
+            "rationale": "[Dry-run mock] Score based on output length (549 chars) and keyword overlap."
+          },
+          {
+            "name": "Implementation Plan",
+            "score": 6.3,
+            "max_score": 10.0,
+            "weight": 0.2,
+            "rationale": "[Dry-run mock] Score based on output length (549 chars) and keyword overlap."
+          },
+          {
+            "name": "Completeness",
+            "score": 6.0,
+            "max_score": 10.0,
+            "weight": 0.15,
+            "rationale": "[Dry-run mock] Score based on output length (549 chars) and keyword overlap."
+          }
+        ],
+        "reference_match_type": null,
+        "rationale": "[Dry-run mock] Grading based on heuristics, not LLM evaluation."
+      },
+      "error": null,
+      "dry_run": true
+    },
+    {
+      "task_id": "PLAN-003",
+      "category": "planning",
+      "score": 66.3,
+      "raw_output": "# Mock Response (Dry-Run Mode)\n\nThis is a simulated LLM response for testing purposes.\nNo actual API calls were made.\n\n## Architecture Decision\nBased on the requirements, I recommend a layered architecture.\n1. **API Layer**: REST endpoints with authentication middleware\n2. **Service Layer**: Business logic with tenant isolation\n3. **Data Layer**: PostgreSQL with schema-per-tenant for isolation\n## Scaling Plan\n- Phase 1: Single server, schema-per-tenant\n- Phase 2: Read replicas, connection pooling\n- Phase 3: Horizontal sharding for 10K+ tenants",
+      "grading_details": {
+        "grading_method": "rubric",
+        "total_score": 66.3,
+        "criterion_scores": [
+          {
+            "name": "Normalization",
+            "score": 7.2,
+            "max_score": 10.0,
+            "weight": 0.2,
+            "rationale": "[Dry-run mock] Score based on output length (549 chars) and keyword overlap."
+          },
+          {
+            "name": "Constraints & Keys",
+            "score": 6.6,
+            "max_score": 10.0,
+            "weight": 0.25,
+            "rationale": "[Dry-run mock] Score based on output length (549 chars) and keyword overlap."
+          },
+          {
+            "name": "Indexes",
+            "score": 6.0,
+            "max_score": 10.0,
+            "weight": 0.2,
+            "rationale": "[Dry-run mock] Score based on output length (549 chars) and keyword overlap."
+          },
+          {
+            "name": "RLS Policies",
+            "score": 7.0,
+            "max_score": 10.0,
+            "weight": 0.2,
+            "rationale": "[Dry-run mock] Score based on output length (549 chars) and keyword overlap."
+          },
+          {
+            "name": "Completeness",
+            "score": 6.3,
+            "max_score": 10.0,
+            "weight": 0.15,
+            "rationale": "[Dry-run mock] Score based on output length (549 chars) and keyword overlap."
+          }
+        ],
+        "reference_match_type": null,
+        "rationale": "[Dry-run mock] Grading based on heuristics, not LLM evaluation."
+      },
+      "error": null,
+      "dry_run": true
+    },
+    {
+      "task_id": "PLAN-004",
+      "category": "planning",
+      "score": 66.3,
+      "raw_output": "# Mock Response (Dry-Run Mode)\n\nThis is a simulated LLM response for testing purposes.\nNo actual API calls were made.\n\n## Architecture Decision\nBased on the requirements, I recommend a layered architecture.\n1. **API Layer**: REST endpoints with authentication middleware\n2. **Service Layer**: Business logic with tenant isolation\n3. **Data Layer**: PostgreSQL with schema-per-tenant for isolation\n## Scaling Plan\n- Phase 1: Single server, schema-per-tenant\n- Phase 2: Read replicas, connection pooling\n- Phase 3: Horizontal sharding for 10K+ tenants",
+      "grading_details": {
+        "grading_method": "rubric",
+        "total_score": 66.3,
+        "criterion_scores": [
+          {
+            "name": "System Diagram",
+            "score": 6.3,
+            "max_score": 10.0,
+            "weight": 0.2,
+            "rationale": "[Dry-run mock] Score based on output length (549 chars) and keyword overlap."
+          },
+          {
+            "name": "Reliability Design",
+            "score": 6.7,
+            "max_score": 10.0,
+            "weight": 0.25,
+            "rationale": "[Dry-run mock] Score based on output length (549 chars) and keyword overlap."
+          },
+          {
+            "name": "Latency Analysis",
+            "score": 6.8,
+            "max_score": 10.0,
+            "weight": 0.25,
+            "rationale": "[Dry-run mock] Score based on output length (549 chars) and keyword overlap."
+          },
+          {
+            "name": "Scalability Plan",
+            "score": 6.6,
+            "max_score": 10.0,
+            "weight": 0.15,
+            "rationale": "[Dry-run mock] Score based on output length (549 chars) and keyword overlap."
+          },
+          {
+            "name": "Document Quality",
+            "score": 6.7,
+            "max_score": 10.0,
+            "weight": 0.15,
+            "rationale": "[Dry-run mock] Score based on output length (549 chars) and keyword overlap."
+          }
+        ],
+        "reference_match_type": null,
+        "rationale": "[Dry-run mock] Grading based on heuristics, not LLM evaluation."
+      },
+      "error": null,
+      "dry_run": true
+    },
+    {
+      "task_id": "PLAN-005",
+      "category": "planning",
+      "score": 65.2,
+      "raw_output": "# Mock Response (Dry-Run Mode)\n\nThis is a simulated LLM response for testing purposes.\nNo actual API calls were made.\n\n## Analysis\nThe race condition occurs because multiple async tasks access shared state concurrently.\n## Solution\nUse asyncio.Lock() to serialize access to the shared resource.\n```python\nimport asyncio\n\nlock = asyncio.Lock()\n\nasync def safe_operation():\n    async with lock:\n        # perform git operation\n        pass\n```",
+      "grading_details": {
+        "grading_method": "rubric",
+        "total_score": 65.2,
+        "criterion_scores": [
+          {
+            "name": "Service Boundaries",
+            "score": 6.4,
+            "max_score": 10.0,
+            "weight": 0.25,
+            "rationale": "[Dry-run mock] Score based on output length (441 chars) and keyword overlap."
+          },
+          {
+            "name": "Communication Design",
+            "score": 6.7,
+            "max_score": 10.0,
+            "weight": 0.2,
+            "rationale": "[Dry-run mock] Score based on output length (441 chars) and keyword overlap."
+          },
+          {
+            "name": "Data Ownership",
+            "score": 6.4,
+            "max_score": 10.0,
+            "weight": 0.2,
+            "rationale": "[Dry-run mock] Score based on output length (441 chars) and keyword overlap."
+          },
+          {
+            "name": "Migration Plan",
+            "score": 6.7,
+            "max_score": 10.0,
+            "weight": 0.2,
+            "rationale": "[Dry-run mock] Score based on output length (441 chars) and keyword overlap."
+          },
+          {
+            "name": "Completeness",
+            "score": 6.4,
+            "max_score": 10.0,
+            "weight": 0.15,
+            "rationale": "[Dry-run mock] Score based on output length (441 chars) and keyword overlap."
+          }
+        ],
+        "reference_match_type": null,
+        "rationale": "[Dry-run mock] Grading based on heuristics, not LLM evaluation."
+      },
+      "error": null,
+      "dry_run": true
+    },
+    {
+      "task_id": "PLAN-006",
+      "category": "planning",
+      "score": 63.1,
+      "raw_output": "# Mock Response (Dry-Run Mode)\n\nThis is a simulated LLM response for testing purposes.\nNo actual API calls were made.\n\n## Analysis\nThe race condition occurs because multiple async tasks access shared state concurrently.\n## Solution\nUse asyncio.Lock() to serialize access to the shared resource.\n```python\nimport asyncio\n\nlock = asyncio.Lock()\n\nasync def safe_operation():\n    async with lock:\n        # perform git operation\n        pass\n```",
+      "grading_details": {
+        "grading_method": "rubric",
+        "total_score": 63.1,
+        "criterion_scores": [
+          {
+            "name": "Auth Methods",
+            "score": 6.7,
+            "max_score": 10.0,
+            "weight": 0.25,
+            "rationale": "[Dry-run mock] Score based on output length (441 chars) and keyword overlap."
+          },
+          {
+            "name": "Voice Security",
+            "score": 6.0,
+            "max_score": 10.0,
+            "weight": 0.25,
+            "rationale": "[Dry-run mock] Score based on output length (441 chars) and keyword overlap."
+          },
+          {
+            "name": "Supabase Integration",
+            "score": 6.4,
+            "max_score": 10.0,
+            "weight": 0.2,
+            "rationale": "[Dry-run mock] Score based on output length (441 chars) and keyword overlap."
+          },
+          {
+            "name": "Edge Cases",
+            "score": 6.0,
+            "max_score": 10.0,
+            "weight": 0.15,
+            "rationale": "[Dry-run mock] Score based on output length (441 chars) and keyword overlap."
+          },
+          {
+            "name": "Documentation",
+            "score": 6.4,
+            "max_score": 10.0,
+            "weight": 0.15,
+            "rationale": "[Dry-run mock] Score based on output length (441 chars) and keyword overlap."
+          }
+        ],
+        "reference_match_type": null,
+        "rationale": "[Dry-run mock] Grading based on heuristics, not LLM evaluation."
+      },
+      "error": null,
+      "dry_run": true
+    },
+    {
+      "task_id": "PLAN-007",
+      "category": "planning",
+      "score": 64.4,
+      "raw_output": "# Mock Response (Dry-Run Mode)\n\nThis is a simulated LLM response for testing purposes.\nNo actual API calls were made.\n\n## Architecture Decision\nBased on the requirements, I recommend a layered architecture.\n1. **API Layer**: REST endpoints with authentication middleware\n2. **Service Layer**: Business logic with tenant isolation\n3. **Data Layer**: PostgreSQL with schema-per-tenant for isolation\n## Scaling Plan\n- Phase 1: Single server, schema-per-tenant\n- Phase 2: Read replicas, connection pooling\n- Phase 3: Horizontal sharding for 10K+ tenants",
+      "grading_details": {
+        "grading_method": "rubric",
+        "total_score": 64.4,
+        "criterion_scores": [
+          {
+            "name": "Change Detection",
+            "score": 6.0,
+            "max_score": 10.0,
+            "weight": 0.25,
+            "rationale": "[Dry-run mock] Score based on output length (549 chars) and keyword overlap."
+          },
+          {
+            "name": "Pipeline Stages",
+            "score": 6.4,
+            "max_score": 10.0,
+            "weight": 0.25,
+            "rationale": "[Dry-run mock] Score based on output length (549 chars) and keyword overlap."
+          },
+          {
+            "name": "Caching Strategy",
+            "score": 6.8,
+            "max_score": 10.0,
+            "weight": 0.2,
+            "rationale": "[Dry-run mock] Score based on output length (549 chars) and keyword overlap."
+          },
+          {
+            "name": "Deployment Logic",
+            "score": 6.9,
+            "max_score": 10.0,
+            "weight": 0.15,
+            "rationale": "[Dry-run mock] Score based on output length (549 chars) and keyword overlap."
+          },
+          {
+            "name": "Practicality",
+            "score": 6.3,
+            "max_score": 10.0,
+            "weight": 0.15,
+            "rationale": "[Dry-run mock] Score based on output length (549 chars) and keyword overlap."
+          }
+        ],
+        "reference_match_type": null,
+        "rationale": "[Dry-run mock] Grading based on heuristics, not LLM evaluation."
+      },
+      "error": null,
+      "dry_run": true
+    },
+    {
+      "task_id": "PLAN-008",
+      "category": "planning",
+      "score": 65.8,
+      "raw_output": "# Mock Response (Dry-Run Mode)\n\nThis is a simulated LLM response for testing purposes.\nNo actual API calls were made.\n\n## Architecture Decision\nBased on the requirements, I recommend a layered architecture.\n1. **API Layer**: REST endpoints with authentication middleware\n2. **Service Layer**: Business logic with tenant isolation\n3. **Data Layer**: PostgreSQL with schema-per-tenant for isolation\n## Scaling Plan\n- Phase 1: Single server, schema-per-tenant\n- Phase 2: Read replicas, connection pooling\n- Phase 3: Horizontal sharding for 10K+ tenants",
+      "grading_details": {
+        "grading_method": "rubric",
+        "total_score": 65.8,
+        "criterion_scores": [
+          {
+            "name": "Provider Interface",
+            "score": 6.4,
+            "max_score": 10.0,
+            "weight": 0.25,
+            "rationale": "[Dry-run mock] Score based on output length (549 chars) and keyword overlap."
+          },
+          {
+            "name": "Tool Registration",
+            "score": 6.7,
+            "max_score": 10.0,
+            "weight": 0.2,
+            "rationale": "[Dry-run mock] Score based on output length (549 chars) and keyword overlap."
+          },
+          {
+            "name": "Request Routing",
+            "score": 7.1,
+            "max_score": 10.0,
+            "weight": 0.25,
+            "rationale": "[Dry-run mock] Score based on output length (549 chars) and keyword overlap."
+          },
+          {
+            "name": "Conversation Threading",
+            "score": 6.0,
+            "max_score": 10.0,
+            "weight": 0.15,
+            "rationale": "[Dry-run mock] Score based on output length (549 chars) and keyword overlap."
+          },
+          {
+            "name": "Architecture Quality",
+            "score": 6.4,
+            "max_score": 10.0,
+            "weight": 0.15,
+            "rationale": "[Dry-run mock] Score based on output length (549 chars) and keyword overlap."
+          }
+        ],
+        "reference_match_type": null,
+        "rationale": "[Dry-run mock] Grading based on heuristics, not LLM evaluation."
+      },
+      "error": null,
+      "dry_run": true
+    },
+    {
+      "task_id": "PLAN-009",
+      "category": "planning",
+      "score": 63.1,
+      "raw_output": "# Mock Response (Dry-Run Mode)\n\nThis is a simulated LLM response for testing purposes.\nNo actual API calls were made.\n\n## User Journey Map\n### Stage 1: Discovery\n- **Action**: User searches for solution\n- **Emotion**: Curious but skeptical\n- **Pain Point**: Too many options, unclear differentiation\n- **Moment of Delight**: Clear value proposition in first 10 seconds\n### Stage 2: Onboarding\n- **Action**: Signs up, completes profile\n- **Emotion**: Hopeful but anxious about complexity\n- **Pain Point**: Long setup process\n- **Moment of Delight**: Quick wins within first 5 minutes",
+      "grading_details": {
+        "grading_method": "rubric",
+        "total_score": 63.1,
+        "criterion_scores": [
+          {
+            "name": "ETL Strategy",
+            "score": 6.6,
+            "max_score": 10.0,
+            "weight": 0.25,
+            "rationale": "[Dry-run mock] Score based on output length (582 chars) and keyword overlap."
+          },
+          {
+            "name": "Transformation Logic",
+            "score": 6.0,
+            "max_score": 10.0,
+            "weight": 0.25,
+            "rationale": "[Dry-run mock] Score based on output length (582 chars) and keyword overlap."
+          },
+          {
+            "name": "Validation",
+            "score": 6.0,
+            "max_score": 10.0,
+            "weight": 0.2,
+            "rationale": "[Dry-run mock] Score based on output length (582 chars) and keyword overlap."
+          },
+          {
+            "name": "Rollback Plan",
+            "score": 6.4,
+            "max_score": 10.0,
+            "weight": 0.15,
+            "rationale": "[Dry-run mock] Score based on output length (582 chars) and keyword overlap."
+          },
+          {
+            "name": "Practicality",
+            "score": 6.7,
+            "max_score": 10.0,
+            "weight": 0.15,
+            "rationale": "[Dry-run mock] Score based on output length (582 chars) and keyword overlap."
+          }
+        ],
+        "reference_match_type": null,
+        "rationale": "[Dry-run mock] Grading based on heuristics, not LLM evaluation."
+      },
+      "error": null,
+      "dry_run": true
+    },
+    {
+      "task_id": "PLAN-010",
+      "category": "planning",
+      "score": 64.2,
+      "raw_output": "# Mock Response (Dry-Run Mode)\n\nThis is a simulated LLM response for testing purposes.\nNo actual API calls were made.\n\n## Architecture Decision\nBased on the requirements, I recommend a layered architecture.\n1. **API Layer**: REST endpoints with authentication middleware\n2. **Service Layer**: Business logic with tenant isolation\n3. **Data Layer**: PostgreSQL with schema-per-tenant for isolation\n## Scaling Plan\n- Phase 1: Single server, schema-per-tenant\n- Phase 2: Read replicas, connection pooling\n- Phase 3: Horizontal sharding for 10K+ tenants",
+      "grading_details": {
+        "grading_method": "rubric",
+        "total_score": 64.2,
+        "criterion_scores": [
+          {
+            "name": "Cache Design",
+            "score": 6.0,
+            "max_score": 10.0,
+            "weight": 0.3,
+            "rationale": "[Dry-run mock] Score based on output length (549 chars) and keyword overlap."
+          },
+          {
+            "name": "Invalidation Strategy",
+            "score": 6.6,
+            "max_score": 10.0,
+            "weight": 0.25,
+            "rationale": "[Dry-run mock] Score based on output length (549 chars) and keyword overlap."
+          },
+          {
+            "name": "Memory Management",
+            "score": 6.0,
+            "max_score": 10.0,
+            "weight": 0.2,
+            "rationale": "[Dry-run mock] Score based on output length (549 chars) and keyword overlap."
+          },
+          {
+            "name": "Practicality",
+            "score": 7.1,
+            "max_score": 10.0,
+            "weight": 0.25,
+            "rationale": "[Dry-run mock] Score based on output length (549 chars) and keyword overlap."
+          }
+        ],
+        "reference_match_type": null,
+        "rationale": "[Dry-run mock] Grading based on heuristics, not LLM evaluation."
+      },
+      "error": null,
+      "dry_run": true
+    },
+    {
+      "task_id": "PROD-001",
+      "category": "product-mind",
+      "score": 64.7,
+      "raw_output": "# Mock Response (Dry-Run Mode)\n\nThis is a simulated LLM response for testing purposes.\nNo actual API calls were made.\n\n## User Journey Map\n### Stage 1: Discovery\n- **Action**: User searches for solution\n- **Emotion**: Curious but skeptical\n- **Pain Point**: Too many options, unclear differentiation\n- **Moment of Delight**: Clear value proposition in first 10 seconds\n### Stage 2: Onboarding\n- **Action**: Signs up, completes profile\n- **Emotion**: Hopeful but anxious about complexity\n- **Pain Point**: Long setup process\n- **Moment of Delight**: Quick wins within first 5 minutes",
+      "grading_details": {
+        "grading_method": "rubric",
+        "total_score": 64.7,
+        "criterion_scores": [
+          {
+            "name": "Journey Completeness",
+            "score": 6.4,
+            "max_score": 10.0,
+            "weight": 0.25,
+            "rationale": "[Dry-run mock] Score based on output length (582 chars) and keyword overlap."
+          },
+          {
+            "name": "Empathy Depth",
+            "score": 6.6,
+            "max_score": 10.0,
+            "weight": 0.25,
+            "rationale": "[Dry-run mock] Score based on output length (582 chars) and keyword overlap."
+          },
+          {
+            "name": "Pain Point Quality",
+            "score": 6.3,
+            "max_score": 10.0,
+            "weight": 0.2,
+            "rationale": "[Dry-run mock] Score based on output length (582 chars) and keyword overlap."
+          },
+          {
+            "name": "Feature Opportunities",
+            "score": 6.4,
+            "max_score": 10.0,
+            "weight": 0.2,
+            "rationale": "[Dry-run mock] Score based on output length (582 chars) and keyword overlap."
+          },
+          {
+            "name": "Emotional Arc",
+            "score": 6.8,
+            "max_score": 10.0,
+            "weight": 0.1,
+            "rationale": "[Dry-run mock] Score based on output length (582 chars) and keyword overlap."
+          }
+        ],
+        "reference_match_type": null,
+        "rationale": "[Dry-run mock] Grading based on heuristics, not LLM evaluation."
+      },
+      "error": null,
+      "dry_run": true
+    },
+    {
+      "task_id": "PROD-002",
+      "category": "product-mind",
+      "score": 64.4,
+      "raw_output": "# Mock Response (Dry-Run Mode)\n\nThis is a simulated LLM response for testing purposes.\nNo actual API calls were made.\n\n## User Journey Map\n### Stage 1: Discovery\n- **Action**: User searches for solution\n- **Emotion**: Curious but skeptical\n- **Pain Point**: Too many options, unclear differentiation\n- **Moment of Delight**: Clear value proposition in first 10 seconds\n### Stage 2: Onboarding\n- **Action**: Signs up, completes profile\n- **Emotion**: Hopeful but anxious about complexity\n- **Pain Point**: Long setup process\n- **Moment of Delight**: Quick wins within first 5 minutes",
+      "grading_details": {
+        "grading_method": "rubric",
+        "total_score": 64.4,
+        "criterion_scores": [
+          {
+            "name": "RICE Scoring",
+            "score": 6.0,
+            "max_score": 10.0,
+            "weight": 0.25,
+            "rationale": "[Dry-run mock] Score based on output length (582 chars) and keyword overlap."
+          },
+          {
+            "name": "Prioritization Logic",
+            "score": 6.4,
+            "max_score": 10.0,
+            "weight": 0.25,
+            "rationale": "[Dry-run mock] Score based on output length (582 chars) and keyword overlap."
+          },
+          {
+            "name": "Phased Roadmap",
+            "score": 6.8,
+            "max_score": 10.0,
+            "weight": 0.2,
+            "rationale": "[Dry-run mock] Score based on output length (582 chars) and keyword overlap."
+          },
+          {
+            "name": "Value Alignment",
+            "score": 7.2,
+            "max_score": 10.0,
+            "weight": 0.15,
+            "rationale": "[Dry-run mock] Score based on output length (582 chars) and keyword overlap."
+          },
+          {
+            "name": "Trade-off Analysis",
+            "score": 6.0,
+            "max_score": 10.0,
+            "weight": 0.15,
+            "rationale": "[Dry-run mock] Score based on output length (582 chars) and keyword overlap."
+          }
+        ],
+        "reference_match_type": null,
+        "rationale": "[Dry-run mock] Grading based on heuristics, not LLM evaluation."
+      },
+      "error": null,
+      "dry_run": true
+    },
+    {
+      "task_id": "PROD-003",
+      "category": "product-mind",
+      "score": 64.9,
+      "raw_output": "# Mock Response (Dry-Run Mode)\n\nThis is a simulated LLM response for testing purposes.\nNo actual API calls were made.\n\n## Architecture Decision\nBased on the requirements, I recommend a layered architecture.\n1. **API Layer**: REST endpoints with authentication middleware\n2. **Service Layer**: Business logic with tenant isolation\n3. **Data Layer**: PostgreSQL with schema-per-tenant for isolation\n## Scaling Plan\n- Phase 1: Single server, schema-per-tenant\n- Phase 2: Read replicas, connection pooling\n- Phase 3: Horizontal sharding for 10K+ tenants",
+      "grading_details": {
+        "grading_method": "rubric",
+        "total_score": 64.9,
+        "criterion_scores": [
+          {
+            "name": "Critique Depth",
+            "score": 6.8,
+            "max_score": 10.0,
+            "weight": 0.25,
+            "rationale": "[Dry-run mock] Score based on output length (549 chars) and keyword overlap."
+          },
+          {
+            "name": "Improvement Quality",
+            "score": 6.0,
+            "max_score": 10.0,
+            "weight": 0.25,
+            "rationale": "[Dry-run mock] Score based on output length (549 chars) and keyword overlap."
+          },
+          {
+            "name": "User-Centered Thinking",
+            "score": 6.4,
+            "max_score": 10.0,
+            "weight": 0.2,
+            "rationale": "[Dry-run mock] Score based on output length (549 chars) and keyword overlap."
+          },
+          {
+            "name": "Accessibility Awareness",
+            "score": 6.4,
+            "max_score": 10.0,
+            "weight": 0.15,
+            "rationale": "[Dry-run mock] Score based on output length (549 chars) and keyword overlap."
+          },
+          {
+            "name": "Rating Consistency",
+            "score": 7.0,
+            "max_score": 10.0,
+            "weight": 0.15,
+            "rationale": "[Dry-run mock] Score based on output length (549 chars) and keyword overlap."
+          }
+        ],
+        "reference_match_type": null,
+        "rationale": "[Dry-run mock] Grading based on heuristics, not LLM evaluation."
+      },
+      "error": null,
+      "dry_run": true
+    },
+    {
+      "task_id": "PROD-004",
+      "category": "product-mind",
+      "score": 60.7,
+      "raw_output": "# Mock Response (Dry-Run Mode)\n\nThis is a simulated LLM response for testing purposes.\nNo actual API calls were made.\n\n## User Journey Map\n### Stage 1: Discovery\n- **Action**: User searches for solution\n- **Emotion**: Curious but skeptical\n- **Pain Point**: Too many options, unclear differentiation\n- **Moment of Delight**: Clear value proposition in first 10 seconds\n### Stage 2: Onboarding\n- **Action**: Signs up, completes profile\n- **Emotion**: Hopeful but anxious about complexity\n- **Pain Point**: Long setup process\n- **Moment of Delight**: Quick wins within first 5 minutes",
+      "grading_details": {
+        "grading_method": "rubric",
+        "total_score": 60.7,
+        "criterion_scores": [
+          {
+            "name": "Segment Analysis",
+            "score": 6.3,
+            "max_score": 10.0,
+            "weight": 0.25,
+            "rationale": "[Dry-run mock] Score based on output length (582 chars) and keyword overlap."
+          },
+          {
+            "name": "Fit Indicators",
+            "score": 6.0,
+            "max_score": 10.0,
+            "weight": 0.25,
+            "rationale": "[Dry-run mock] Score based on output length (582 chars) and keyword overlap."
+          },
+          {
+            "name": "Risk Assessment",
+            "score": 6.0,
+            "max_score": 10.0,
+            "weight": 0.2,
+            "rationale": "[Dry-run mock] Score based on output length (582 chars) and keyword overlap."
+          },
+          {
+            "name": "Validation Plan",
+            "score": 6.0,
+            "max_score": 10.0,
+            "weight": 0.15,
+            "rationale": "[Dry-run mock] Score based on output length (582 chars) and keyword overlap."
+          },
+          {
+            "name": "Depth of Analysis",
+            "score": 6.0,
+            "max_score": 10.0,
+            "weight": 0.15,
+            "rationale": "[Dry-run mock] Score based on output length (582 chars) and keyword overlap."
+          }
+        ],
+        "reference_match_type": null,
+        "rationale": "[Dry-run mock] Grading based on heuristics, not LLM evaluation."
+      },
+      "error": null,
+      "dry_run": true
+    },
+    {
+      "task_id": "PROD-005",
+      "category": "product-mind",
+      "score": 61.8,
+      "raw_output": "# Mock Response (Dry-Run Mode)\n\nThis is a simulated LLM response for testing purposes.\nNo actual API calls were made.\n\n## Architecture Decision\nBased on the requirements, I recommend a layered architecture.\n1. **API Layer**: REST endpoints with authentication middleware\n2. **Service Layer**: Business logic with tenant isolation\n3. **Data Layer**: PostgreSQL with schema-per-tenant for isolation\n## Scaling Plan\n- Phase 1: Single server, schema-per-tenant\n- Phase 2: Read replicas, connection pooling\n- Phase 3: Horizontal sharding for 10K+ tenants",
+      "grading_details": {
+        "grading_method": "rubric",
+        "total_score": 61.8,
+        "criterion_scores": [
+          {
+            "name": "Empathy Depth",
+            "score": 6.0,
+            "max_score": 10.0,
+            "weight": 0.3,
+            "rationale": "[Dry-run mock] Score based on output length (549 chars) and keyword overlap."
+          },
+          {
+            "name": "Map Completeness",
+            "score": 6.3,
+            "max_score": 10.0,
+            "weight": 0.2,
+            "rationale": "[Dry-run mock] Score based on output length (549 chars) and keyword overlap."
+          },
+          {
+            "name": "Design Recommendations",
+            "score": 6.4,
+            "max_score": 10.0,
+            "weight": 0.3,
+            "rationale": "[Dry-run mock] Score based on output length (549 chars) and keyword overlap."
+          },
+          {
+            "name": "Persona Authenticity",
+            "score": 6.0,
+            "max_score": 10.0,
+            "weight": 0.2,
+            "rationale": "[Dry-run mock] Score based on output length (549 chars) and keyword overlap."
+          }
+        ],
+        "reference_match_type": null,
+        "rationale": "[Dry-run mock] Grading based on heuristics, not LLM evaluation."
+      },
+      "error": null,
+      "dry_run": true
+    },
+    {
+      "task_id": "PROD-006",
+      "category": "product-mind",
+      "score": 62.5,
+      "raw_output": "# Mock Response (Dry-Run Mode)\n\nThis is a simulated LLM response for testing purposes.\nNo actual API calls were made.\n\n## User Journey Map\n### Stage 1: Discovery\n- **Action**: User searches for solution\n- **Emotion**: Curious but skeptical\n- **Pain Point**: Too many options, unclear differentiation\n- **Moment of Delight**: Clear value proposition in first 10 seconds\n### Stage 2: Onboarding\n- **Action**: Signs up, completes profile\n- **Emotion**: Hopeful but anxious about complexity\n- **Pain Point**: Long setup process\n- **Moment of Delight**: Quick wins within first 5 minutes",
+      "grading_details": {
+        "grading_method": "rubric",
+        "total_score": 62.5,
+        "criterion_scores": [
+          {
+            "name": "Framework Design",
+            "score": 6.7,
+            "max_score": 10.0,
+            "weight": 0.2,
+            "rationale": "[Dry-run mock] Score based on output length (582 chars) and keyword overlap."
+          },
+          {
+            "name": "Feature Analysis",
+            "score": 6.0,
+            "max_score": 10.0,
+            "weight": 0.25,
+            "rationale": "[Dry-run mock] Score based on output length (582 chars) and keyword overlap."
+          },
+          {
+            "name": "Core Loop Alignment",
+            "score": 6.0,
+            "max_score": 10.0,
+            "weight": 0.25,
+            "rationale": "[Dry-run mock] Score based on output length (582 chars) and keyword overlap."
+          },
+          {
+            "name": "Skip List Quality",
+            "score": 6.3,
+            "max_score": 10.0,
+            "weight": 0.15,
+            "rationale": "[Dry-run mock] Score based on output length (582 chars) and keyword overlap."
+          },
+          {
+            "name": "Practicality",
+            "score": 6.4,
+            "max_score": 10.0,
+            "weight": 0.15,
+            "rationale": "[Dry-run mock] Score based on output length (582 chars) and keyword overlap."
+          }
+        ],
+        "reference_match_type": null,
+        "rationale": "[Dry-run mock] Grading based on heuristics, not LLM evaluation."
+      },
+      "error": null,
+      "dry_run": true
+    },
+    {
+      "task_id": "PROD-007",
+      "category": "product-mind",
+      "score": 66.6,
+      "raw_output": "# Mock Response (Dry-Run Mode)\n\nThis is a simulated LLM response for testing purposes.\nNo actual API calls were made.\n\n## User Journey Map\n### Stage 1: Discovery\n- **Action**: User searches for solution\n- **Emotion**: Curious but skeptical\n- **Pain Point**: Too many options, unclear differentiation\n- **Moment of Delight**: Clear value proposition in first 10 seconds\n### Stage 2: Onboarding\n- **Action**: Signs up, completes profile\n- **Emotion**: Hopeful but anxious about complexity\n- **Pain Point**: Long setup process\n- **Moment of Delight**: Quick wins within first 5 minutes",
+      "grading_details": {
+        "grading_method": "rubric",
+        "total_score": 66.6,
+        "criterion_scores": [
+          {
+            "name": "Audit Thoroughness",
+            "score": 6.3,
+            "max_score": 10.0,
+            "weight": 0.25,
+            "rationale": "[Dry-run mock] Score based on output length (582 chars) and keyword overlap."
+          },
+          {
+            "name": "Improvement Quality",
+            "score": 6.6,
+            "max_score": 10.0,
+            "weight": 0.25,
+            "rationale": "[Dry-run mock] Score based on output length (582 chars) and keyword overlap."
+          },
+          {
+            "name": "Ideal Flow Design",
+            "score": 7.2,
+            "max_score": 10.0,
+            "weight": 0.25,
+            "rationale": "[Dry-run mock] Score based on output length (582 chars) and keyword overlap."
+          },
+          {
+            "name": "Drop-off Analysis",
+            "score": 6.3,
+            "max_score": 10.0,
+            "weight": 0.15,
+            "rationale": "[Dry-run mock] Score based on output length (582 chars) and keyword overlap."
+          },
+          {
+            "name": "User Perspective",
+            "score": 6.9,
+            "max_score": 10.0,
+            "weight": 0.1,
+            "rationale": "[Dry-run mock] Score based on output length (582 chars) and keyword overlap."
+          }
+        ],
+        "reference_match_type": null,
+        "rationale": "[Dry-run mock] Grading based on heuristics, not LLM evaluation."
+      },
+      "error": null,
+      "dry_run": true
+    },
+    {
+      "task_id": "PROD-008",
+      "category": "product-mind",
+      "score": 62.7,
+      "raw_output": "# Mock Response (Dry-Run Mode)\n\nThis is a simulated LLM response for testing purposes.\nNo actual API calls were made.\n\n## Architecture Decision\nBased on the requirements, I recommend a layered architecture.\n1. **API Layer**: REST endpoints with authentication middleware\n2. **Service Layer**: Business logic with tenant isolation\n3. **Data Layer**: PostgreSQL with schema-per-tenant for isolation\n## Scaling Plan\n- Phase 1: Single server, schema-per-tenant\n- Phase 2: Read replicas, connection pooling\n- Phase 3: Horizontal sharding for 10K+ tenants",
+      "grading_details": {
+        "grading_method": "rubric",
+        "total_score": 62.7,
+        "criterion_scores": [
+          {
+            "name": "Moment Selection",
+            "score": 6.0,
+            "max_score": 10.0,
+            "weight": 0.2,
+            "rationale": "[Dry-run mock] Score based on output length (549 chars) and keyword overlap."
+          },
+          {
+            "name": "Non-Disruptive Design",
+            "score": 6.0,
+            "max_score": 10.0,
+            "weight": 0.25,
+            "rationale": "[Dry-run mock] Score based on output length (549 chars) and keyword overlap."
+          },
+          {
+            "name": "Actionable Data",
+            "score": 6.4,
+            "max_score": 10.0,
+            "weight": 0.25,
+            "rationale": "[Dry-run mock] Score based on output length (549 chars) and keyword overlap."
+          },
+          {
+            "name": "Data Model",
+            "score": 6.4,
+            "max_score": 10.0,
+            "weight": 0.15,
+            "rationale": "[Dry-run mock] Score based on output length (549 chars) and keyword overlap."
+          },
+          {
+            "name": "Analysis Plan",
+            "score": 6.7,
+            "max_score": 10.0,
+            "weight": 0.15,
+            "rationale": "[Dry-run mock] Score based on output length (549 chars) and keyword overlap."
+          }
+        ],
+        "reference_match_type": null,
+        "rationale": "[Dry-run mock] Grading based on heuristics, not LLM evaluation."
+      },
+      "error": null,
+      "dry_run": true
+    },
+    {
+      "task_id": "PROD-009",
+      "category": "product-mind",
+      "score": 62.2,
+      "raw_output": "# Mock Response (Dry-Run Mode)\n\nThis is a simulated LLM response for testing purposes.\nNo actual API calls were made.\n\n## Architecture Decision\nBased on the requirements, I recommend a layered architecture.\n1. **API Layer**: REST endpoints with authentication middleware\n2. **Service Layer**: Business logic with tenant isolation\n3. **Data Layer**: PostgreSQL with schema-per-tenant for isolation\n## Scaling Plan\n- Phase 1: Single server, schema-per-tenant\n- Phase 2: Read replicas, connection pooling\n- Phase 3: Horizontal sharding for 10K+ tenants",
+      "grading_details": {
+        "grading_method": "rubric",
+        "total_score": 62.2,
+        "criterion_scores": [
+          {
+            "name": "Speech Accessibility",
+            "score": 6.0,
+            "max_score": 10.0,
+            "weight": 0.25,
+            "rationale": "[Dry-run mock] Score based on output length (549 chars) and keyword overlap."
+          },
+          {
+            "name": "Motor Accessibility",
+            "score": 6.4,
+            "max_score": 10.0,
+            "weight": 0.25,
+            "rationale": "[Dry-run mock] Score based on output length (549 chars) and keyword overlap."
+          },
+          {
+            "name": "Visual/Hearing Access",
+            "score": 6.4,
+            "max_score": 10.0,
+            "weight": 0.15,
+            "rationale": "[Dry-run mock] Score based on output length (549 chars) and keyword overlap."
+          },
+          {
+            "name": "Recommendation Quality",
+            "score": 6.0,
+            "max_score": 10.0,
+            "weight": 0.2,
+            "rationale": "[Dry-run mock] Score based on output length (549 chars) and keyword overlap."
+          },
+          {
+            "name": "Prioritization",
+            "score": 6.4,
+            "max_score": 10.0,
+            "weight": 0.15,
+            "rationale": "[Dry-run mock] Score based on output length (549 chars) and keyword overlap."
+          }
+        ],
+        "reference_match_type": null,
+        "rationale": "[Dry-run mock] Grading based on heuristics, not LLM evaluation."
+      },
+      "error": null,
+      "dry_run": true
+    },
+    {
+      "task_id": "PROD-010",
+      "category": "product-mind",
+      "score": 63.1,
+      "raw_output": "# Mock Response (Dry-Run Mode)\n\nThis is a simulated LLM response for testing purposes.\nNo actual API calls were made.\n\n## Architecture Decision\nBased on the requirements, I recommend a layered architecture.\n1. **API Layer**: REST endpoints with authentication middleware\n2. **Service Layer**: Business logic with tenant isolation\n3. **Data Layer**: PostgreSQL with schema-per-tenant for isolation\n## Scaling Plan\n- Phase 1: Single server, schema-per-tenant\n- Phase 2: Read replicas, connection pooling\n- Phase 3: Horizontal sharding for 10K+ tenants",
+      "grading_details": {
+        "grading_method": "rubric",
+        "total_score": 63.1,
+        "criterion_scores": [
+          {
+            "name": "Agent Retention",
+            "score": 6.0,
+            "max_score": 10.0,
+            "weight": 0.2,
+            "rationale": "[Dry-run mock] Score based on output length (549 chars) and keyword overlap."
+          },
+          {
+            "name": "Human Retention",
+            "score": 6.4,
+            "max_score": 10.0,
+            "weight": 0.2,
+            "rationale": "[Dry-run mock] Score based on output length (549 chars) and keyword overlap."
+          },
+          {
+            "name": "Progression System",
+            "score": 6.7,
+            "max_score": 10.0,
+            "weight": 0.25,
+            "rationale": "[Dry-run mock] Score based on output length (549 chars) and keyword overlap."
+          },
+          {
+            "name": "Network Effects",
+            "score": 6.4,
+            "max_score": 10.0,
+            "weight": 0.15,
+            "rationale": "[Dry-run mock] Score based on output length (549 chars) and keyword overlap."
+          },
+          {
+            "name": "Metrics Framework",
+            "score": 6.0,
+            "max_score": 10.0,
+            "weight": 0.2,
+            "rationale": "[Dry-run mock] Score based on output length (549 chars) and keyword overlap."
+          }
+        ],
+        "reference_match_type": null,
+        "rationale": "[Dry-run mock] Grading based on heuristics, not LLM evaluation."
+      },
+      "error": null,
+      "dry_run": true
+    },
+    {
+      "task_id": "SE-001",
+      "category": "software-engineering",
+      "score": 69.6,
+      "raw_output": "# Mock Response (Dry-Run Mode)\n\nThis is a simulated LLM response for testing purposes.\nNo actual API calls were made.\n\n## Analysis\nThe race condition occurs because multiple async tasks access shared state concurrently.\n## Solution\nUse asyncio.Lock() to serialize access to the shared resource.\n```python\nimport asyncio\n\nlock = asyncio.Lock()\n\nasync def safe_operation():\n    async with lock:\n        # perform git operation\n        pass\n```",
+      "grading_details": {
+        "grading_method": "rubric",
+        "total_score": 69.6,
+        "criterion_scores": [
+          {
+            "name": "Root Cause Analysis",
+            "score": 7.8,
+            "max_score": 10.0,
+            "weight": 0.25,
+            "rationale": "[Dry-run mock] Score based on output length (441 chars) and keyword overlap."
+          },
+          {
+            "name": "Solution Correctness",
+            "score": 7.1,
+            "max_score": 10.0,
+            "weight": 0.3,
+            "rationale": "[Dry-run mock] Score based on output length (441 chars) and keyword overlap."
+          },
+          {
+            "name": "Error Handling",
+            "score": 6.0,
+            "max_score": 10.0,
+            "weight": 0.2,
+            "rationale": "[Dry-run mock] Score based on output length (441 chars) and keyword overlap."
+          },
+          {
+            "name": "Code Quality",
+            "score": 7.2,
+            "max_score": 10.0,
+            "weight": 0.15,
+            "rationale": "[Dry-run mock] Score based on output length (441 chars) and keyword overlap."
+          },
+          {
+            "name": "Interface Preservation",
+            "score": 6.0,
+            "max_score": 10.0,
+            "weight": 0.1,
+            "rationale": "[Dry-run mock] Score based on output length (441 chars) and keyword overlap."
+          }
+        ],
+        "reference_match_type": null,
+        "rationale": "[Dry-run mock] Grading based on heuristics, not LLM evaluation."
+      },
+      "error": null,
+      "dry_run": true
+    },
+    {
+      "task_id": "SE-002",
+      "category": "software-engineering",
+      "score": 66.3,
+      "raw_output": "# Mock Response (Dry-Run Mode)\n\nThis is a simulated LLM response for testing purposes.\nNo actual API calls were made.\n\n## Analysis\nThe race condition occurs because multiple async tasks access shared state concurrently.\n## Solution\nUse asyncio.Lock() to serialize access to the shared resource.\n```python\nimport asyncio\n\nlock = asyncio.Lock()\n\nasync def safe_operation():\n    async with lock:\n        # perform git operation\n        pass\n```",
+      "grading_details": {
+        "grading_method": "rubric",
+        "total_score": 66.3,
+        "criterion_scores": [
+          {
+            "name": "Error Handling Pattern",
+            "score": 6.3,
+            "max_score": 10.0,
+            "weight": 0.25,
+            "rationale": "[Dry-run mock] Score based on output length (441 chars) and keyword overlap."
+          },
+          {
+            "name": "Input Validation",
+            "score": 6.8,
+            "max_score": 10.0,
+            "weight": 0.2,
+            "rationale": "[Dry-run mock] Score based on output length (441 chars) and keyword overlap."
+          },
+          {
+            "name": "HTTP Status Codes",
+            "score": 6.3,
+            "max_score": 10.0,
+            "weight": 0.2,
+            "rationale": "[Dry-run mock] Score based on output length (441 chars) and keyword overlap."
+          },
+          {
+            "name": "Response Format",
+            "score": 6.9,
+            "max_score": 10.0,
+            "weight": 0.15,
+            "rationale": "[Dry-run mock] Score based on output length (441 chars) and keyword overlap."
+          },
+          {
+            "name": "Refactored Routes",
+            "score": 7.0,
+            "max_score": 10.0,
+            "weight": 0.2,
+            "rationale": "[Dry-run mock] Score based on output length (441 chars) and keyword overlap."
+          }
+        ],
+        "reference_match_type": null,
+        "rationale": "[Dry-run mock] Grading based on heuristics, not LLM evaluation."
+      },
+      "error": null,
+      "dry_run": true
+    },
+    {
+      "task_id": "SE-003",
+      "category": "software-engineering",
+      "score": 0.0,
+      "raw_output": "# Mock Response (Dry-Run Mode)\n\nThis is a simulated LLM response for testing purposes.\nNo actual API calls were made.\n\n## User Journey Map\n### Stage 1: Discovery\n- **Action**: User searches for solution\n- **Emotion**: Curious but skeptical\n- **Pain Point**: Too many options, unclear differentiation\n- **Moment of Delight**: Clear value proposition in first 10 seconds\n### Stage 2: Onboarding\n- **Action**: Signs up, completes profile\n- **Emotion**: Hopeful but anxious about complexity\n- **Pain Point**: Long setup process\n- **Moment of Delight**: Quick wins within first 5 minutes",
+      "grading_details": {
+        "grading_method": "auto",
+        "total_score": 0.0,
+        "criterion_scores": [],
+        "reference_match_type": "none",
+        "rationale": "Match type: none. Found 0% of key elements."
+      },
+      "error": null,
+      "dry_run": true
+    },
+    {
+      "task_id": "SE-004",
+      "category": "software-engineering",
+      "score": 62.2,
+      "raw_output": "# Mock Response (Dry-Run Mode)\n\nThis is a simulated LLM response for testing purposes.\nNo actual API calls were made.\n\n## User Journey Map\n### Stage 1: Discovery\n- **Action**: User searches for solution\n- **Emotion**: Curious but skeptical\n- **Pain Point**: Too many options, unclear differentiation\n- **Moment of Delight**: Clear value proposition in first 10 seconds\n### Stage 2: Onboarding\n- **Action**: Signs up, completes profile\n- **Emotion**: Hopeful but anxious about complexity\n- **Pain Point**: Long setup process\n- **Moment of Delight**: Quick wins within first 5 minutes",
+      "grading_details": {
+        "grading_method": "rubric",
+        "total_score": 62.2,
+        "criterion_scores": [
+          {
+            "name": "Rate Limiting",
+            "score": 6.6,
+            "max_score": 10.0,
+            "weight": 0.2,
+            "rationale": "[Dry-run mock] Score based on output length (582 chars) and keyword overlap."
+          },
+          {
+            "name": "XML Parsing",
+            "score": 6.0,
+            "max_score": 10.0,
+            "weight": 0.25,
+            "rationale": "[Dry-run mock] Score based on output length (582 chars) and keyword overlap."
+          },
+          {
+            "name": "Error Handling & Retry",
+            "score": 6.0,
+            "max_score": 10.0,
+            "weight": 0.2,
+            "rationale": "[Dry-run mock] Score based on output length (582 chars) and keyword overlap."
+          },
+          {
+            "name": "API Design",
+            "score": 6.0,
+            "max_score": 10.0,
+            "weight": 0.2,
+            "rationale": "[Dry-run mock] Score based on output length (582 chars) and keyword overlap."
+          },
+          {
+            "name": "Code Quality",
+            "score": 6.7,
+            "max_score": 10.0,
+            "weight": 0.15,
+            "rationale": "[Dry-run mock] Score based on output length (582 chars) and keyword overlap."
+          }
+        ],
+        "reference_match_type": null,
+        "rationale": "[Dry-run mock] Grading based on heuristics, not LLM evaluation."
+      },
+      "error": null,
+      "dry_run": true
+    },
+    {
+      "task_id": "SE-005",
+      "category": "software-engineering",
+      "score": 62.6,
+      "raw_output": "# Mock Response (Dry-Run Mode)\n\nThis is a simulated LLM response for testing purposes.\nNo actual API calls were made.\n\n## Analysis\nThe race condition occurs because multiple async tasks access shared state concurrently.\n## Solution\nUse asyncio.Lock() to serialize access to the shared resource.\n```python\nimport asyncio\n\nlock = asyncio.Lock()\n\nasync def safe_operation():\n    async with lock:\n        # perform git operation\n        pass\n```",
+      "grading_details": {
+        "grading_method": "rubric",
+        "total_score": 62.6,
+        "criterion_scores": [
+          {
+            "name": "Security Issues Found",
+            "score": 6.3,
+            "max_score": 10.0,
+            "weight": 0.35,
+            "rationale": "[Dry-run mock] Score based on output length (441 chars) and keyword overlap."
+          },
+          {
+            "name": "Bug Identification",
+            "score": 6.2,
+            "max_score": 10.0,
+            "weight": 0.25,
+            "rationale": "[Dry-run mock] Score based on output length (441 chars) and keyword overlap."
+          },
+          {
+            "name": "Fix Quality",
+            "score": 6.0,
+            "max_score": 10.0,
+            "weight": 0.25,
+            "rationale": "[Dry-run mock] Score based on output length (441 chars) and keyword overlap."
+          },
+          {
+            "name": "Review Structure",
+            "score": 6.7,
+            "max_score": 10.0,
+            "weight": 0.15,
+            "rationale": "[Dry-run mock] Score based on output length (441 chars) and keyword overlap."
+          }
+        ],
+        "reference_match_type": null,
+        "rationale": "[Dry-run mock] Grading based on heuristics, not LLM evaluation."
+      },
+      "error": null,
+      "dry_run": true
+    },
+    {
+      "task_id": "SE-006",
+      "category": "software-engineering",
+      "score": 65.1,
+      "raw_output": "# Mock Response (Dry-Run Mode)\n\nThis is a simulated LLM response for testing purposes.\nNo actual API calls were made.\n\n## Response\nBased on the requirements provided, here is my analysis and recommendation.\n\n1. The core issue is balancing complexity with maintainability\n2. I recommend following established patterns from the referenced project\n3. Implementation should proceed in phases with clear milestones\n\nThis approach provides a solid foundation while allowing iteration.",
+      "grading_details": {
+        "grading_method": "rubric",
+        "total_score": 65.1,
+        "criterion_scores": [
+          {
+            "name": "Struct Design",
+            "score": 6.4,
+            "max_score": 10.0,
+            "weight": 0.25,
+            "rationale": "[Dry-run mock] Score based on output length (478 chars) and keyword overlap."
+          },
+          {
+            "name": "Validation Logic",
+            "score": 6.6,
+            "max_score": 10.0,
+            "weight": 0.3,
+            "rationale": "[Dry-run mock] Score based on output length (478 chars) and keyword overlap."
+          },
+          {
+            "name": "Error Handling",
+            "score": 6.7,
+            "max_score": 10.0,
+            "weight": 0.25,
+            "rationale": "[Dry-run mock] Score based on output length (478 chars) and keyword overlap."
+          },
+          {
+            "name": "Testing",
+            "score": 6.3,
+            "max_score": 10.0,
+            "weight": 0.2,
+            "rationale": "[Dry-run mock] Score based on output length (478 chars) and keyword overlap."
+          }
+        ],
+        "reference_match_type": null,
+        "rationale": "[Dry-run mock] Grading based on heuristics, not LLM evaluation."
+      },
+      "error": null,
+      "dry_run": true
+    },
+    {
+      "task_id": "SE-007",
+      "category": "software-engineering",
+      "score": 60.9,
+      "raw_output": "# Mock Response (Dry-Run Mode)\n\nThis is a simulated LLM response for testing purposes.\nNo actual API calls were made.\n\n## User Journey Map\n### Stage 1: Discovery\n- **Action**: User searches for solution\n- **Emotion**: Curious but skeptical\n- **Pain Point**: Too many options, unclear differentiation\n- **Moment of Delight**: Clear value proposition in first 10 seconds\n### Stage 2: Onboarding\n- **Action**: Signs up, completes profile\n- **Emotion**: Hopeful but anxious about complexity\n- **Pain Point**: Long setup process\n- **Moment of Delight**: Quick wins within first 5 minutes",
+      "grading_details": {
+        "grading_method": "rubric",
+        "total_score": 60.9,
+        "criterion_scores": [
+          {
+            "name": "Type Safety",
+            "score": 6.3,
+            "max_score": 10.0,
+            "weight": 0.3,
+            "rationale": "[Dry-run mock] Score based on output length (582 chars) and keyword overlap."
+          },
+          {
+            "name": "Discriminated Unions",
+            "score": 6.0,
+            "max_score": 10.0,
+            "weight": 0.2,
+            "rationale": "[Dry-run mock] Score based on output length (582 chars) and keyword overlap."
+          },
+          {
+            "name": "Interface Design",
+            "score": 6.0,
+            "max_score": 10.0,
+            "weight": 0.25,
+            "rationale": "[Dry-run mock] Score based on output length (582 chars) and keyword overlap."
+          },
+          {
+            "name": "Backward Compatibility",
+            "score": 6.0,
+            "max_score": 10.0,
+            "weight": 0.15,
+            "rationale": "[Dry-run mock] Score based on output length (582 chars) and keyword overlap."
+          },
+          {
+            "name": "Code Quality",
+            "score": 6.0,
+            "max_score": 10.0,
+            "weight": 0.1,
+            "rationale": "[Dry-run mock] Score based on output length (582 chars) and keyword overlap."
+          }
+        ],
+        "reference_match_type": null,
+        "rationale": "[Dry-run mock] Grading based on heuristics, not LLM evaluation."
+      },
+      "error": null,
+      "dry_run": true
+    },
+    {
+      "task_id": "SE-008",
+      "category": "software-engineering",
+      "score": 61.8,
+      "raw_output": "# Mock Response (Dry-Run Mode)\n\nThis is a simulated LLM response for testing purposes.\nNo actual API calls were made.\n\n## User Journey Map\n### Stage 1: Discovery\n- **Action**: User searches for solution\n- **Emotion**: Curious but skeptical\n- **Pain Point**: Too many options, unclear differentiation\n- **Moment of Delight**: Clear value proposition in first 10 seconds\n### Stage 2: Onboarding\n- **Action**: Signs up, completes profile\n- **Emotion**: Hopeful but anxious about complexity\n- **Pain Point**: Long setup process\n- **Moment of Delight**: Quick wins within first 5 minutes",
+      "grading_details": {
+        "grading_method": "rubric",
+        "total_score": 61.8,
+        "criterion_scores": [
+          {
+            "name": "Pydantic Models",
+            "score": 6.0,
+            "max_score": 10.0,
+            "weight": 0.25,
+            "rationale": "[Dry-run mock] Score based on output length (582 chars) and keyword overlap."
+          },
+          {
+            "name": "Validation Logic",
+            "score": 6.0,
+            "max_score": 10.0,
+            "weight": 0.25,
+            "rationale": "[Dry-run mock] Score based on output length (582 chars) and keyword overlap."
+          },
+          {
+            "name": "Error Responses",
+            "score": 6.3,
+            "max_score": 10.0,
+            "weight": 0.2,
+            "rationale": "[Dry-run mock] Score based on output length (582 chars) and keyword overlap."
+          },
+          {
+            "name": "API Design",
+            "score": 6.4,
+            "max_score": 10.0,
+            "weight": 0.15,
+            "rationale": "[Dry-run mock] Score based on output length (582 chars) and keyword overlap."
+          },
+          {
+            "name": "Code Quality",
+            "score": 6.4,
+            "max_score": 10.0,
+            "weight": 0.15,
+            "rationale": "[Dry-run mock] Score based on output length (582 chars) and keyword overlap."
+          }
+        ],
+        "reference_match_type": null,
+        "rationale": "[Dry-run mock] Grading based on heuristics, not LLM evaluation."
+      },
+      "error": null,
+      "dry_run": true
+    },
+    {
+      "task_id": "SE-009",
+      "category": "software-engineering",
+      "score": 0.0,
+      "raw_output": "# Mock Response (Dry-Run Mode)\n\nThis is a simulated LLM response for testing purposes.\nNo actual API calls were made.\n\n## Response\nBased on the requirements provided, here is my analysis and recommendation.\n\n1. The core issue is balancing complexity with maintainability\n2. I recommend following established patterns from the referenced project\n3. Implementation should proceed in phases with clear milestones\n\nThis approach provides a solid foundation while allowing iteration.",
+      "grading_details": {
+        "grading_method": "auto",
+        "total_score": 0.0,
+        "criterion_scores": [],
+        "reference_match_type": "none",
+        "rationale": "Match type: none. Found 0% of key elements."
+      },
+      "error": null,
+      "dry_run": true
+    },
+    {
+      "task_id": "SE-010",
+      "category": "software-engineering",
+      "score": 65.3,
+      "raw_output": "# Mock Response (Dry-Run Mode)\n\nThis is a simulated LLM response for testing purposes.\nNo actual API calls were made.\n\n## Analysis\nThe race condition occurs because multiple async tasks access shared state concurrently.\n## Solution\nUse asyncio.Lock() to serialize access to the shared resource.\n```python\nimport asyncio\n\nlock = asyncio.Lock()\n\nasync def safe_operation():\n    async with lock:\n        # perform git operation\n        pass\n```",
+      "grading_details": {
+        "grading_method": "rubric",
+        "total_score": 65.3,
+        "criterion_scores": [
+          {
+            "name": "Concurrent Execution",
+            "score": 7.3,
+            "max_score": 10.0,
+            "weight": 0.25,
+            "rationale": "[Dry-run mock] Score based on output length (441 chars) and keyword overlap."
+          },
+          {
+            "name": "First-Success Pattern",
+            "score": 6.4,
+            "max_score": 10.0,
+            "weight": 0.25,
+            "rationale": "[Dry-run mock] Score based on output length (441 chars) and keyword overlap."
+          },
+          {
+            "name": "Error Aggregation",
+            "score": 6.0,
+            "max_score": 10.0,
+            "weight": 0.2,
+            "rationale": "[Dry-run mock] Score based on output length (441 chars) and keyword overlap."
+          },
+          {
+            "name": "Timeout Handling",
+            "score": 6.0,
+            "max_score": 10.0,
+            "weight": 0.15,
+            "rationale": "[Dry-run mock] Score based on output length (441 chars) and keyword overlap."
+          },
+          {
+            "name": "API Design",
+            "score": 6.7,
+            "max_score": 10.0,
+            "weight": 0.15,
+            "rationale": "[Dry-run mock] Score based on output length (441 chars) and keyword overlap."
+          }
+        ],
+        "reference_match_type": null,
+        "rationale": "[Dry-run mock] Grading based on heuristics, not LLM evaluation."
+      },
+      "error": null,
+      "dry_run": true
+    },
+    {
+      "task_id": "SE-011",
+      "category": "software-engineering",
+      "score": 62.6,
+      "raw_output": "# Mock Response (Dry-Run Mode)\n\nThis is a simulated LLM response for testing purposes.\nNo actual API calls were made.\n\n## Analysis\nThe race condition occurs because multiple async tasks access shared state concurrently.\n## Solution\nUse asyncio.Lock() to serialize access to the shared resource.\n```python\nimport asyncio\n\nlock = asyncio.Lock()\n\nasync def safe_operation():\n    async with lock:\n        # perform git operation\n        pass\n```",
+      "grading_details": {
+        "grading_method": "rubric",
+        "total_score": 62.6,
+        "criterion_scores": [
+          {
+            "name": "Rate Limiting",
+            "score": 6.5,
+            "max_score": 10.0,
+            "weight": 0.2,
+            "rationale": "[Dry-run mock] Score based on output length (441 chars) and keyword overlap."
+          },
+          {
+            "name": "Error Handling",
+            "score": 6.0,
+            "max_score": 10.0,
+            "weight": 0.25,
+            "rationale": "[Dry-run mock] Score based on output length (441 chars) and keyword overlap."
+          },
+          {
+            "name": "Data Extraction",
+            "score": 6.4,
+            "max_score": 10.0,
+            "weight": 0.25,
+            "rationale": "[Dry-run mock] Score based on output length (441 chars) and keyword overlap."
+          },
+          {
+            "name": "Code Structure",
+            "score": 6.4,
+            "max_score": 10.0,
+            "weight": 0.15,
+            "rationale": "[Dry-run mock] Score based on output length (441 chars) and keyword overlap."
+          },
+          {
+            "name": "Documentation",
+            "score": 6.0,
+            "max_score": 10.0,
+            "weight": 0.15,
+            "rationale": "[Dry-run mock] Score based on output length (441 chars) and keyword overlap."
+          }
+        ],
+        "reference_match_type": null,
+        "rationale": "[Dry-run mock] Grading based on heuristics, not LLM evaluation."
+      },
+      "error": null,
+      "dry_run": true
+    },
+    {
+      "task_id": "SE-012",
+      "category": "software-engineering",
+      "score": 67.1,
+      "raw_output": "# Mock Response (Dry-Run Mode)\n\nThis is a simulated LLM response for testing purposes.\nNo actual API calls were made.\n\n## Architecture Decision\nBased on the requirements, I recommend a layered architecture.\n1. **API Layer**: REST endpoints with authentication middleware\n2. **Service Layer**: Business logic with tenant isolation\n3. **Data Layer**: PostgreSQL with schema-per-tenant for isolation\n## Scaling Plan\n- Phase 1: Single server, schema-per-tenant\n- Phase 2: Read replicas, connection pooling\n- Phase 3: Horizontal sharding for 10K+ tenants",
+      "grading_details": {
+        "grading_method": "rubric",
+        "total_score": 67.1,
+        "criterion_scores": [
+          {
+            "name": "Server Implementation",
+            "score": 7.5,
+            "max_score": 10.0,
+            "weight": 0.25,
+            "rationale": "[Dry-run mock] Score based on output length (549 chars) and keyword overlap."
+          },
+          {
+            "name": "Client Hook",
+            "score": 6.7,
+            "max_score": 10.0,
+            "weight": 0.2,
+            "rationale": "[Dry-run mock] Score based on output length (549 chars) and keyword overlap."
+          },
+          {
+            "name": "Conflict Resolution",
+            "score": 6.3,
+            "max_score": 10.0,
+            "weight": 0.25,
+            "rationale": "[Dry-run mock] Score based on output length (549 chars) and keyword overlap."
+          },
+          {
+            "name": "Type Safety",
+            "score": 6.4,
+            "max_score": 10.0,
+            "weight": 0.15,
+            "rationale": "[Dry-run mock] Score based on output length (549 chars) and keyword overlap."
+          },
+          {
+            "name": "Edge Cases",
+            "score": 6.4,
+            "max_score": 10.0,
+            "weight": 0.15,
+            "rationale": "[Dry-run mock] Score based on output length (549 chars) and keyword overlap."
+          }
+        ],
+        "reference_match_type": null,
+        "rationale": "[Dry-run mock] Grading based on heuristics, not LLM evaluation."
+      },
+      "error": null,
+      "dry_run": true
+    },
+    {
+      "task_id": "START-001",
+      "category": "startup-mind",
+      "score": 66.0,
+      "raw_output": "# Mock Response (Dry-Run Mode)\n\nThis is a simulated LLM response for testing purposes.\nNo actual API calls were made.\n\n## Business Model Canvas\n### Customer Segments\n- Primary: AI agent developers (indie to mid-size teams)\n- Secondary: Enterprise AI platform companies\n### Value Proposition\n- Reduce engineering time by 10x for agent memory infrastructure\n- MCP integration enables instant agent connectivity\n### Revenue Model\n- Free tier: 1K API calls/month\n- Pro: $49/month, 50K calls\n- Enterprise: Custom pricing",
+      "grading_details": {
+        "grading_method": "rubric",
+        "total_score": 66.0,
+        "criterion_scores": [
+          {
+            "name": "Customer Segments",
+            "score": 6.9,
+            "max_score": 10.0,
+            "weight": 0.2,
+            "rationale": "[Dry-run mock] Score based on output length (515 chars) and keyword overlap."
+          },
+          {
+            "name": "Value Proposition",
+            "score": 6.0,
+            "max_score": 10.0,
+            "weight": 0.2,
+            "rationale": "[Dry-run mock] Score based on output length (515 chars) and keyword overlap."
+          },
+          {
+            "name": "Revenue Model",
+            "score": 6.6,
+            "max_score": 10.0,
+            "weight": 0.2,
+            "rationale": "[Dry-run mock] Score based on output length (515 chars) and keyword overlap."
+          },
+          {
+            "name": "BMC Completeness",
+            "score": 6.0,
+            "max_score": 10.0,
+            "weight": 0.2,
+            "rationale": "[Dry-run mock] Score based on output length (515 chars) and keyword overlap."
+          },
+          {
+            "name": "Platon-Specific",
+            "score": 7.5,
+            "max_score": 10.0,
+            "weight": 0.2,
+            "rationale": "[Dry-run mock] Score based on output length (515 chars) and keyword overlap."
+          }
+        ],
+        "reference_match_type": null,
+        "rationale": "[Dry-run mock] Grading based on heuristics, not LLM evaluation."
+      },
+      "error": null,
+      "dry_run": true
+    },
+    {
+      "task_id": "START-002",
+      "category": "startup-mind",
+      "score": 63.1,
+      "raw_output": "# Mock Response (Dry-Run Mode)\n\nThis is a simulated LLM response for testing purposes.\nNo actual API calls were made.\n\n## Business Model Canvas\n### Customer Segments\n- Primary: AI agent developers (indie to mid-size teams)\n- Secondary: Enterprise AI platform companies\n### Value Proposition\n- Reduce engineering time by 10x for agent memory infrastructure\n- MCP integration enables instant agent connectivity\n### Revenue Model\n- Free tier: 1K API calls/month\n- Pro: $49/month, 50K calls\n- Enterprise: Custom pricing",
+      "grading_details": {
+        "grading_method": "rubric",
+        "total_score": 63.1,
+        "criterion_scores": [
+          {
+            "name": "Market Entry Strategy",
+            "score": 6.0,
+            "max_score": 10.0,
+            "weight": 0.2,
+            "rationale": "[Dry-run mock] Score based on output length (515 chars) and keyword overlap."
+          },
+          {
+            "name": "Channel Analysis",
+            "score": 6.7,
+            "max_score": 10.0,
+            "weight": 0.25,
+            "rationale": "[Dry-run mock] Score based on output length (515 chars) and keyword overlap."
+          },
+          {
+            "name": "Pricing Model",
+            "score": 6.4,
+            "max_score": 10.0,
+            "weight": 0.2,
+            "rationale": "[Dry-run mock] Score based on output length (515 chars) and keyword overlap."
+          },
+          {
+            "name": "Adoption Playbook",
+            "score": 6.3,
+            "max_score": 10.0,
+            "weight": 0.2,
+            "rationale": "[Dry-run mock] Score based on output length (515 chars) and keyword overlap."
+          },
+          {
+            "name": "Education Context",
+            "score": 6.0,
+            "max_score": 10.0,
+            "weight": 0.15,
+            "rationale": "[Dry-run mock] Score based on output length (515 chars) and keyword overlap."
+          }
+        ],
+        "reference_match_type": null,
+        "rationale": "[Dry-run mock] Grading based on heuristics, not LLM evaluation."
+      },
+      "error": null,
+      "dry_run": true
+    },
+    {
+      "task_id": "START-003",
+      "category": "startup-mind",
+      "score": 63.9,
+      "raw_output": "# Mock Response (Dry-Run Mode)\n\nThis is a simulated LLM response for testing purposes.\nNo actual API calls were made.\n\n## Architecture Decision\nBased on the requirements, I recommend a layered architecture.\n1. **API Layer**: REST endpoints with authentication middleware\n2. **Service Layer**: Business logic with tenant isolation\n3. **Data Layer**: PostgreSQL with schema-per-tenant for isolation\n## Scaling Plan\n- Phase 1: Single server, schema-per-tenant\n- Phase 2: Read replicas, connection pooling\n- Phase 3: Horizontal sharding for 10K+ tenants",
+      "grading_details": {
+        "grading_method": "rubric",
+        "total_score": 63.9,
+        "criterion_scores": [
+          {
+            "name": "Tier Design",
+            "score": 6.3,
+            "max_score": 10.0,
+            "weight": 0.25,
+            "rationale": "[Dry-run mock] Score based on output length (549 chars) and keyword overlap."
+          },
+          {
+            "name": "Value-Based Pricing",
+            "score": 6.0,
+            "max_score": 10.0,
+            "weight": 0.25,
+            "rationale": "[Dry-run mock] Score based on output length (549 chars) and keyword overlap."
+          },
+          {
+            "name": "Competitive Positioning",
+            "score": 6.0,
+            "max_score": 10.0,
+            "weight": 0.2,
+            "rationale": "[Dry-run mock] Score based on output length (549 chars) and keyword overlap."
+          },
+          {
+            "name": "Experiment Plan",
+            "score": 7.2,
+            "max_score": 10.0,
+            "weight": 0.15,
+            "rationale": "[Dry-run mock] Score based on output length (549 chars) and keyword overlap."
+          },
+          {
+            "name": "Rollout Realism",
+            "score": 6.9,
+            "max_score": 10.0,
+            "weight": 0.15,
+            "rationale": "[Dry-run mock] Score based on output length (549 chars) and keyword overlap."
+          }
+        ],
+        "reference_match_type": null,
+        "rationale": "[Dry-run mock] Grading based on heuristics, not LLM evaluation."
+      },
+      "error": null,
+      "dry_run": true
+    },
+    {
+      "task_id": "START-004",
+      "category": "startup-mind",
+      "score": 65.7,
+      "raw_output": "# Mock Response (Dry-Run Mode)\n\nThis is a simulated LLM response for testing purposes.\nNo actual API calls were made.\n\n## Response\nBased on the requirements provided, here is my analysis and recommendation.\n\n1. The core issue is balancing complexity with maintainability\n2. I recommend following established patterns from the referenced project\n3. Implementation should proceed in phases with clear milestones\n\nThis approach provides a solid foundation while allowing iteration.",
+      "grading_details": {
+        "grading_method": "rubric",
+        "total_score": 65.7,
+        "criterion_scores": [
+          {
+            "name": "Competitor Analysis",
+            "score": 6.7,
+            "max_score": 10.0,
+            "weight": 0.2,
+            "rationale": "[Dry-run mock] Score based on output length (478 chars) and keyword overlap."
+          },
+          {
+            "name": "Differentiation Logic",
+            "score": 6.6,
+            "max_score": 10.0,
+            "weight": 0.25,
+            "rationale": "[Dry-run mock] Score based on output length (478 chars) and keyword overlap."
+          },
+          {
+            "name": "Positioning Statement",
+            "score": 6.8,
+            "max_score": 10.0,
+            "weight": 0.2,
+            "rationale": "[Dry-run mock] Score based on output length (478 chars) and keyword overlap."
+          },
+          {
+            "name": "Market Sizing",
+            "score": 6.8,
+            "max_score": 10.0,
+            "weight": 0.15,
+            "rationale": "[Dry-run mock] Score based on output length (478 chars) and keyword overlap."
+          },
+          {
+            "name": "Moat Strategy",
+            "score": 6.0,
+            "max_score": 10.0,
+            "weight": 0.2,
+            "rationale": "[Dry-run mock] Score based on output length (478 chars) and keyword overlap."
+          }
+        ],
+        "reference_match_type": null,
+        "rationale": "[Dry-run mock] Grading based on heuristics, not LLM evaluation."
+      },
+      "error": null,
+      "dry_run": true
+    },
+    {
+      "task_id": "START-005",
+      "category": "startup-mind",
+      "score": 60.9,
+      "raw_output": "# Mock Response (Dry-Run Mode)\n\nThis is a simulated LLM response for testing purposes.\nNo actual API calls were made.\n\n## User Journey Map\n### Stage 1: Discovery\n- **Action**: User searches for solution\n- **Emotion**: Curious but skeptical\n- **Pain Point**: Too many options, unclear differentiation\n- **Moment of Delight**: Clear value proposition in first 10 seconds\n### Stage 2: Onboarding\n- **Action**: Signs up, completes profile\n- **Emotion**: Hopeful but anxious about complexity\n- **Pain Point**: Long setup process\n- **Moment of Delight**: Quick wins within first 5 minutes",
+      "grading_details": {
+        "grading_method": "rubric",
+        "total_score": 60.9,
+        "criterion_scores": [
+          {
+            "name": "Time Allocation",
+            "score": 6.0,
+            "max_score": 10.0,
+            "weight": 0.25,
+            "rationale": "[Dry-run mock] Score based on output length (582 chars) and keyword overlap."
+          },
+          {
+            "name": "Priority Shifting",
+            "score": 6.0,
+            "max_score": 10.0,
+            "weight": 0.25,
+            "rationale": "[Dry-run mock] Score based on output length (582 chars) and keyword overlap."
+          },
+          {
+            "name": "Deprioritization",
+            "score": 6.0,
+            "max_score": 10.0,
+            "weight": 0.2,
+            "rationale": "[Dry-run mock] Score based on output length (582 chars) and keyword overlap."
+          },
+          {
+            "name": "Milestones",
+            "score": 6.0,
+            "max_score": 10.0,
+            "weight": 0.15,
+            "rationale": "[Dry-run mock] Score based on output length (582 chars) and keyword overlap."
+          },
+          {
+            "name": "Practicality",
+            "score": 6.6,
+            "max_score": 10.0,
+            "weight": 0.15,
+            "rationale": "[Dry-run mock] Score based on output length (582 chars) and keyword overlap."
+          }
+        ],
+        "reference_match_type": null,
+        "rationale": "[Dry-run mock] Grading based on heuristics, not LLM evaluation."
+      },
+      "error": null,
+      "dry_run": true
+    },
+    {
+      "task_id": "START-006",
+      "category": "startup-mind",
+      "score": 62.9,
+      "raw_output": "# Mock Response (Dry-Run Mode)\n\nThis is a simulated LLM response for testing purposes.\nNo actual API calls were made.\n\n## Architecture Decision\nBased on the requirements, I recommend a layered architecture.\n1. **API Layer**: REST endpoints with authentication middleware\n2. **Service Layer**: Business logic with tenant isolation\n3. **Data Layer**: PostgreSQL with schema-per-tenant for isolation\n## Scaling Plan\n- Phase 1: Single server, schema-per-tenant\n- Phase 2: Read replicas, connection pooling\n- Phase 3: Horizontal sharding for 10K+ tenants",
+      "grading_details": {
+        "grading_method": "rubric",
+        "total_score": 62.9,
+        "criterion_scores": [
+          {
+            "name": "Unit Economics",
+            "score": 6.4,
+            "max_score": 10.0,
+            "weight": 0.25,
+            "rationale": "[Dry-run mock] Score based on output length (549 chars) and keyword overlap."
+          },
+          {
+            "name": "Model Selection",
+            "score": 6.5,
+            "max_score": 10.0,
+            "weight": 0.25,
+            "rationale": "[Dry-run mock] Score based on output length (549 chars) and keyword overlap."
+          },
+          {
+            "name": "Pricing Design",
+            "score": 6.0,
+            "max_score": 10.0,
+            "weight": 0.2,
+            "rationale": "[Dry-run mock] Score based on output length (549 chars) and keyword overlap."
+          },
+          {
+            "name": "Growth Plan",
+            "score": 6.4,
+            "max_score": 10.0,
+            "weight": 0.15,
+            "rationale": "[Dry-run mock] Score based on output length (549 chars) and keyword overlap."
+          },
+          {
+            "name": "Risk Awareness",
+            "score": 6.0,
+            "max_score": 10.0,
+            "weight": 0.15,
+            "rationale": "[Dry-run mock] Score based on output length (549 chars) and keyword overlap."
+          }
+        ],
+        "reference_match_type": null,
+        "rationale": "[Dry-run mock] Grading based on heuristics, not LLM evaluation."
+      },
+      "error": null,
+      "dry_run": true
+    },
+    {
+      "task_id": "START-007",
+      "category": "startup-mind",
+      "score": 0.0,
+      "raw_output": "# Mock Response (Dry-Run Mode)\n\nThis is a simulated LLM response for testing purposes.\nNo actual API calls were made.\n\n## Business Model Canvas\n### Customer Segments\n- Primary: AI agent developers (indie to mid-size teams)\n- Secondary: Enterprise AI platform companies\n### Value Proposition\n- Reduce engineering time by 10x for agent memory infrastructure\n- MCP integration enables instant agent connectivity\n### Revenue Model\n- Free tier: 1K API calls/month\n- Pro: $49/month, 50K calls\n- Enterprise: Custom pricing",
+      "grading_details": {
+        "grading_method": "auto",
+        "total_score": 0.0,
+        "criterion_scores": [],
+        "reference_match_type": "none",
+        "rationale": "Match type: none. Found 0% of key elements."
+      },
+      "error": null,
+      "dry_run": true
+    },
+    {
+      "task_id": "START-008",
+      "category": "startup-mind",
+      "score": 61.9,
+      "raw_output": "# Mock Response (Dry-Run Mode)\n\nThis is a simulated LLM response for testing purposes.\nNo actual API calls were made.\n\n## Architecture Decision\nBased on the requirements, I recommend a layered architecture.\n1. **API Layer**: REST endpoints with authentication middleware\n2. **Service Layer**: Business logic with tenant isolation\n3. **Data Layer**: PostgreSQL with schema-per-tenant for isolation\n## Scaling Plan\n- Phase 1: Single server, schema-per-tenant\n- Phase 2: Read replicas, connection pooling\n- Phase 3: Horizontal sharding for 10K+ tenants",
+      "grading_details": {
+        "grading_method": "rubric",
+        "total_score": 61.9,
+        "criterion_scores": [
+          {
+            "name": "Partner Selection",
+            "score": 6.0,
+            "max_score": 10.0,
+            "weight": 0.25,
+            "rationale": "[Dry-run mock] Score based on output length (549 chars) and keyword overlap."
+          },
+          {
+            "name": "Deal Structure",
+            "score": 6.3,
+            "max_score": 10.0,
+            "weight": 0.25,
+            "rationale": "[Dry-run mock] Score based on output length (549 chars) and keyword overlap."
+          },
+          {
+            "name": "Differentiation",
+            "score": 6.3,
+            "max_score": 10.0,
+            "weight": 0.2,
+            "rationale": "[Dry-run mock] Score based on output length (549 chars) and keyword overlap."
+          },
+          {
+            "name": "Outreach Plan",
+            "score": 6.4,
+            "max_score": 10.0,
+            "weight": 0.15,
+            "rationale": "[Dry-run mock] Score based on output length (549 chars) and keyword overlap."
+          },
+          {
+            "name": "Timeline",
+            "score": 6.0,
+            "max_score": 10.0,
+            "weight": 0.15,
+            "rationale": "[Dry-run mock] Score based on output length (549 chars) and keyword overlap."
+          }
+        ],
+        "reference_match_type": null,
+        "rationale": "[Dry-run mock] Grading based on heuristics, not LLM evaluation."
+      },
+      "error": null,
+      "dry_run": true
+    },
+    {
+      "task_id": "START-009",
+      "category": "startup-mind",
+      "score": 67.2,
+      "raw_output": "# Mock Response (Dry-Run Mode)\n\nThis is a simulated LLM response for testing purposes.\nNo actual API calls were made.\n\n## Business Model Canvas\n### Customer Segments\n- Primary: AI agent developers (indie to mid-size teams)\n- Secondary: Enterprise AI platform companies\n### Value Proposition\n- Reduce engineering time by 10x for agent memory infrastructure\n- MCP integration enables instant agent connectivity\n### Revenue Model\n- Free tier: 1K API calls/month\n- Pro: $49/month, 50K calls\n- Enterprise: Custom pricing",
+      "grading_details": {
+        "grading_method": "rubric",
+        "total_score": 67.2,
+        "criterion_scores": [
+          {
+            "name": "Funding Amount",
+            "score": 7.0,
+            "max_score": 10.0,
+            "weight": 0.15,
+            "rationale": "[Dry-run mock] Score based on output length (515 chars) and keyword overlap."
+          },
+          {
+            "name": "Investor Targeting",
+            "score": 6.7,
+            "max_score": 10.0,
+            "weight": 0.2,
+            "rationale": "[Dry-run mock] Score based on output length (515 chars) and keyword overlap."
+          },
+          {
+            "name": "Pitch Narrative",
+            "score": 7.5,
+            "max_score": 10.0,
+            "weight": 0.25,
+            "rationale": "[Dry-run mock] Score based on output length (515 chars) and keyword overlap."
+          },
+          {
+            "name": "Use of Funds",
+            "score": 6.0,
+            "max_score": 10.0,
+            "weight": 0.2,
+            "rationale": "[Dry-run mock] Score based on output length (515 chars) and keyword overlap."
+          },
+          {
+            "name": "Risk Awareness",
+            "score": 6.3,
+            "max_score": 10.0,
+            "weight": 0.2,
+            "rationale": "[Dry-run mock] Score based on output length (515 chars) and keyword overlap."
+          }
+        ],
+        "reference_match_type": null,
+        "rationale": "[Dry-run mock] Grading based on heuristics, not LLM evaluation."
+      },
+      "error": null,
+      "dry_run": true
+    },
+    {
+      "task_id": "START-010",
+      "category": "startup-mind",
+      "score": 62.0,
+      "raw_output": "# Mock Response (Dry-Run Mode)\n\nThis is a simulated LLM response for testing purposes.\nNo actual API calls were made.\n\n## Architecture Decision\nBased on the requirements, I recommend a layered architecture.\n1. **API Layer**: REST endpoints with authentication middleware\n2. **Service Layer**: Business logic with tenant isolation\n3. **Data Layer**: PostgreSQL with schema-per-tenant for isolation\n## Scaling Plan\n- Phase 1: Single server, schema-per-tenant\n- Phase 2: Read replicas, connection pooling\n- Phase 3: Horizontal sharding for 10K+ tenants",
+      "grading_details": {
+        "grading_method": "rubric",
+        "total_score": 62.0,
+        "criterion_scores": [
+          {
+            "name": "Tier Design",
+            "score": 6.0,
+            "max_score": 10.0,
+            "weight": 0.25,
+            "rationale": "[Dry-run mock] Score based on output length (549 chars) and keyword overlap."
+          },
+          {
+            "name": "Pricing Logic",
+            "score": 6.3,
+            "max_score": 10.0,
+            "weight": 0.2,
+            "rationale": "[Dry-run mock] Score based on output length (549 chars) and keyword overlap."
+          },
+          {
+            "name": "Validation Plan",
+            "score": 6.0,
+            "max_score": 10.0,
+            "weight": 0.2,
+            "rationale": "[Dry-run mock] Score based on output length (549 chars) and keyword overlap."
+          },
+          {
+            "name": "Revenue Path",
+            "score": 6.7,
+            "max_score": 10.0,
+            "weight": 0.2,
+            "rationale": "[Dry-run mock] Score based on output length (549 chars) and keyword overlap."
+          },
+          {
+            "name": "OSS Alignment",
+            "score": 6.0,
+            "max_score": 10.0,
+            "weight": 0.15,
+            "rationale": "[Dry-run mock] Score based on output length (549 chars) and keyword overlap."
+          }
+        ],
+        "reference_match_type": null,
+        "rationale": "[Dry-run mock] Grading based on heuristics, not LLM evaluation."
+      },
+      "error": null,
+      "dry_run": true
+    }
+  ],
+  "dry_run": true
+}

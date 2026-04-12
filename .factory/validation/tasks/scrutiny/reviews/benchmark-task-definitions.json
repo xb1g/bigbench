@@ -1,0 +1,26 @@
+{
+  "featureId": "benchmark-task-definitions",
+  "reviewedAt": "2026-04-12T21:00:00Z",
+  "commitId": "347456c",
+  "transcriptSkeletonReviewed": true,
+  "diffReviewed": true,
+  "status": "pass",
+  "codeReview": {
+    "summary": "All 42 benchmark task YAML files created successfully across 4 categories with proper schema validation. Tasks include all required fields (id, category, title, description, difficulty, estimated_minutes, language, project_ref, prompt, input_format, output_format, grading). All tasks have complete grading criteria - 39 use rubric-based grading with weighted criteria summing to 1.0, and 3 use reference_answer grading. All 15 unique project references exist in ~/dev. Language distribution: Python 15 (36%), TypeScript 11 (26%), JavaScript 2 (5%), Go 4 (10%), Rust 4 (10%), SQL 4 (10%), Shell 1 (2%), Swift 1 (2%). Difficulty distribution: easy 13 (31%), medium 21 (50%), hard 8 (19%). Schema.yaml created with comprehensive field types and target distributions.",
+    "issues": []
+  },
+  "sharedStateObservations": [
+    {
+      "area": "skills",
+      "observation": "The 'task-author' skill was not registered/available in the system when the worker attempted to invoke it (transcript shows Skill tool returned error). The worker proceeded using the feature description as guidance. The skill now exists at .factory/skills/task-author/SKILL.md.",
+      "evidence": "Transcript shows: 'The \"task-author\" skill doesn't exist, but the feature description is extremely detailed and self-contained. I have all the specifications I need to proceed.'"
+    },
+    {
+      "area": "skills",
+      "observation": "The task-author skill schema format differs from what was actually implemented. The skill shows 'grading: type: rubric' but actual tasks use 'grading: rubric:' (direct key without type wrapper). This is not a blocking issue as both formats are valid.",
+      "evidence": "SKILL.md shows grading.type: rubric, actual tasks use grading.rubric directly"
+    }
+  ],
+  "addressesFailureFrom": null,
+  "summary": "The benchmark-task-definitions feature successfully created 42 task YAML files across 4 categories (12 SE, 10 planning, 10 product-mind, 10 startup-mind) plus schema.yaml. All validation assertions (VAL-TASK-001 through VAL-TASK-007) pass. All tasks have required fields, proper grading criteria, and reference real ~/dev projects that exist. The worker worked around the missing task-author skill by using the feature description directly. No blocking code issues found."
+}
