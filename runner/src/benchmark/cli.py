@@ -47,6 +47,7 @@ def main() -> None:
 @click.option("--grading-model", help="Model to use for LLM-as-judge grading")
 @click.option("--api-base", help="Custom API base URL")
 @click.option("--api-key", help="Custom API key")
+@click.option("--limit", type=int, default=None, help="Limit number of tasks to run (with --all)")
 def run(
     task_id: Optional[str],
     run_all: bool,
@@ -56,6 +57,7 @@ def run(
     grading_model: Optional[str],
     api_base: Optional[str],
     api_key: Optional[str],
+    limit: Optional[int],
 ) -> None:
     """Execute benchmark tasks against an LLM model."""
     env = _get_env_config()
@@ -132,6 +134,7 @@ def run(
             grading_model=g_model,
             api_base=a_base,
             api_key=a_key,
+            limit=limit,
         )
 
 

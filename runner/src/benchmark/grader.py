@@ -25,6 +25,8 @@ def grade_task(
     raw_output: str,
     grading_model: Optional[str] = None,
     dry_run: bool = False,
+    api_base: Optional[str] = None,
+    api_key: Optional[str] = None,
 ) -> GradingDetails:
     """Grade a task's raw LLM output.
 
@@ -33,6 +35,8 @@ def grade_task(
         raw_output: The raw LLM output to grade
         grading_model: Model to use for LLM-as-judge (if needed)
         dry_run: If True, use mock grading
+        api_base: Custom API base URL for grading model
+        api_key: Custom API key for grading model
 
     Returns:
         GradingDetails with score and breakdown.
@@ -49,7 +53,7 @@ def grade_task(
     elif task.grading_type == "rubric" and task.rubric:
         if dry_run:
             return _grade_rubric_mock(task.rubric, raw_output)
-        return _grade_rubric_llm(task.rubric, raw_output, task.prompt, grading_model)
+        return _grade_rubric_llm(task.rubric, raw_output, task.prompt, grading_model, api_base, api_key)
     else:
         return GradingDetails(
             grading_method="auto",
@@ -191,6 +195,8 @@ def _grade_rubric_llm(
     raw_output: str,
     original_prompt: str,
     grading_model: Optional[str] = None,
+    api_base: Optional[str] = None,
+    api_key: Optional[str] = None,
 ) -> GradingDetails:
     """Grade using LLM-as-judge against rubric criteria.
 
@@ -211,6 +217,8 @@ def _grade_rubric_llm(
             prompt=grading_prompt,
             temperature=0.0,
             max_tokens=2048,
+            api_base=api_base,
+            api_key=api_key,
         )
         return _parse_grading_response(rubric, response)
     except Exception as e:
@@ -264,70 +272,196 @@ Do not include any text before or after the JSON."""
 
 
 def _parse_grading_response(rubric: Rubric, response: str) -> GradingDetails:
-    """Parse the LLM-as-judge response into GradingDetails."""
+    """Parse the LLM-as-judge response into GradingDetails.
+
+    Uses multiple repair strategies to handle malformed JSON from LLMs:
+    1. Direct JSON parse
+    2. Strip markdown fences, then parse
+    3. Repair common issues (unescaped quotes in rationale, trailing commas)
+    4. Regex-based fallback to extract individual criterion scores
+    """
     # Try to extract JSON from the response
-    try:
-        # Find JSON block - might be wrapped in markdown code fences
-        json_match = re.search(r"\{[\s\S]*\}", response)
-        if not json_match:
-            raise ValueError("No JSON object found in grading response")
-
-        data = json.loads(json_match.group())
-
-        criterion_scores: list[CriterionScore] = []
-        criterion_map = {c.name: c for c in rubric.criteria}
-
-        for cs_data in data.get("criterion_scores", []):
-            name = cs_data.get("name", "")
-            criterion = criterion_map.get(name)
-            if not criterion:
-                # Try fuzzy match
-                for cname, cobj in criterion_map.items():
-                    if cname.lower() in name.lower() or name.lower() in cname.lower():
-                        criterion = cobj
-                        break
-
-            if criterion:
-                score = float(cs_data.get("score", 0))
-                score = min(score, criterion.max_score)
-                criterion_scores.append(
-                    CriterionScore(
-                        name=criterion.name,
-                        score=score,
-                        max_score=criterion.max_score,
-                        weight=criterion.weight,
-                        rationale=cs_data.get("rationale", ""),
-                    )
-                )
-
-        # If we didn't get all criteria scored, fill in missing ones with 0
-        scored_names = {cs.name for cs in criterion_scores}
-        for criterion in rubric.criteria:
-            if criterion.name not in scored_names:
-                criterion_scores.append(
-                    CriterionScore(
-                        name=criterion.name,
-                        score=0.0,
-                        max_score=criterion.max_score,
-                        weight=criterion.weight,
-                        rationale="Not scored by LLM judge.",
-                    )
-                )
-
-        # Calculate weighted total
-        total = sum(cs.score / cs.max_score * cs.weight for cs in criterion_scores) * 100
-        total = round(min(total, 100.0), 1)
-
-        return GradingDetails(
-            grading_method="rubric",
-            total_score=total,
-            criterion_scores=criterion_scores,
-            rationale=data.get("overall_rationale", ""),
-        )
-
-    except (json.JSONDecodeError, ValueError) as e:
+    json_str = _extract_json_string(response)
+    if not json_str:
         return GradingDetails(
             grading_method="rubric",
             total_score=0.0,
-            rationale=f"Failed to parse grading response: {e}",
+            rationale="No JSON object found in grading response.",
         )
+
+    # Try parsing with progressive repair strategies
+    data = None
+    parse_errors: list[str] = []
+
+    # Strategy 1: Direct parse
+    try:
+        data = json.loads(json_str)
+    except json.JSONDecodeError as e:
+        parse_errors.append(f"direct: {e}")
+
+    # Strategy 2: Strip markdown code fences and parse
+    if data is None:
+        stripped = re.sub(r"```(?:json)?\s*", "", json_str).strip()
+        try:
+            data = json.loads(stripped)
+        except json.JSONDecodeError as e:
+            parse_errors.append(f"strip-fences: {e}")
+
+    # Strategy 3: Fix trailing commas before } or ]
+    if data is None:
+        fixed = re.sub(r",\s*([}\]])", r"\1", json_str)
+        try:
+            data = json.loads(fixed)
+        except json.JSONDecodeError as e:
+            parse_errors.append(f"fix-trailing-commas: {e}")
+
+    # Strategy 4: Regex fallback - extract scores directly
+    if data is None:
+        criterion_scores = _regex_extract_scores(rubric, response)
+        if criterion_scores:
+            total = sum(cs.score / cs.max_score * cs.weight for cs in criterion_scores) * 100
+            total = round(min(total, 100.0), 1)
+            return GradingDetails(
+                grading_method="rubric",
+                total_score=total,
+                criterion_scores=criterion_scores,
+                rationale="[Regex fallback] Parsed from malformed JSON response.",
+            )
+        return GradingDetails(
+            grading_method="rubric",
+            total_score=0.0,
+            rationale=f"Failed to parse grading response: {'; '.join(parse_errors)}",
+        )
+
+    return _build_grading_details_from_data(rubric, data)
+
+
+def _extract_json_string(response: str) -> Optional[str]:
+    """Extract the JSON block from the grading response."""
+    # Try to find JSON wrapped in markdown code fences first
+    fence_match = re.search(r"```(?:json)?\s*(\{[\s\S]*?\})\s*```", response)
+    if fence_match:
+        return fence_match.group(1)
+
+    # Fall back to finding any JSON object
+    json_match = re.search(r"\{[\s\S]*\}", response)
+    if json_match:
+        return json_match.group()
+
+    return None
+
+
+def _regex_extract_scores(rubric: Rubric, response: str) -> list[CriterionScore]:
+    """Fallback: extract criterion scores using regex when JSON parsing fails.
+
+    Looks for patterns like "name": "...", "score": N in the response.
+    """
+    criterion_scores: list[CriterionScore] = []
+    criterion_map = {c.name.lower(): c for c in rubric.criteria}
+
+    # Find all score-like patterns: "score": <number>
+    score_pattern = re.compile(r'"(?:name|criterion)"\s*:\s*"([^"]+)"[^}]*?"score"\s*:\s*(\d+(?:\.\d+)?)', re.IGNORECASE)
+    # Also try the reverse order
+    score_pattern2 = re.compile(r'"score"\s*:\s*(\d+(?:\.\d+)?)[^}]*?"(?:name|criterion)"\s*:\s*"([^"]+)"', re.IGNORECASE)
+
+    found: dict[str, float] = {}
+
+    for match in score_pattern.finditer(response):
+        name = match.group(1).lower()
+        score = float(match.group(2))
+        found[name] = score
+
+    for match in score_pattern2.finditer(response):
+        score = float(match.group(1))
+        name = match.group(2).lower()
+        found[name] = score
+
+    for name_lower, score in found.items():
+        # Match to rubric criterion (fuzzy)
+        criterion = None
+        for cname_lower, cobj in criterion_map.items():
+            if cname_lower in name_lower or name_lower in cname_lower:
+                criterion = cobj
+                break
+
+        if criterion:
+            score = min(score, criterion.max_score)
+            criterion_scores.append(
+                CriterionScore(
+                    name=criterion.name,
+                    score=score,
+                    max_score=criterion.max_score,
+                    weight=criterion.weight,
+                    rationale="[Regex fallback] Score extracted from malformed JSON.",
+                )
+            )
+
+    # Fill in missing criteria with 0
+    scored_names = {cs.name for cs in criterion_scores}
+    for criterion in rubric.criteria:
+        if criterion.name not in scored_names:
+            criterion_scores.append(
+                CriterionScore(
+                    name=criterion.name,
+                    score=0.0,
+                    max_score=criterion.max_score,
+                    weight=criterion.weight,
+                    rationale="Not scored by LLM judge (regex fallback).",
+                )
+            )
+
+    return criterion_scores
+
+
+def _build_grading_details_from_data(rubric: Rubric, data: dict) -> GradingDetails:
+    """Build GradingDetails from parsed JSON data."""
+    criterion_scores: list[CriterionScore] = []
+    criterion_map = {c.name: c for c in rubric.criteria}
+
+    for cs_data in data.get("criterion_scores", []):
+        name = cs_data.get("name", "")
+        criterion = criterion_map.get(name)
+        if not criterion:
+            # Try fuzzy match
+            for cname, cobj in criterion_map.items():
+                if cname.lower() in name.lower() or name.lower() in cname.lower():
+                    criterion = cobj
+                    break
+
+        if criterion:
+            score = float(cs_data.get("score", 0))
+            score = min(score, criterion.max_score)
+            criterion_scores.append(
+                CriterionScore(
+                    name=criterion.name,
+                    score=score,
+                    max_score=criterion.max_score,
+                    weight=criterion.weight,
+                    rationale=cs_data.get("rationale", ""),
+                )
+            )
+
+    # If we didn't get all criteria scored, fill in missing ones with 0
+    scored_names = {cs.name for cs in criterion_scores}
+    for criterion in rubric.criteria:
+        if criterion.name not in scored_names:
+            criterion_scores.append(
+                CriterionScore(
+                    name=criterion.name,
+                    score=0.0,
+                    max_score=criterion.max_score,
+                    weight=criterion.weight,
+                    rationale="Not scored by LLM judge.",
+                )
+            )
+
+    # Calculate weighted total
+    total = sum(cs.score / cs.max_score * cs.weight for cs in criterion_scores) * 100
+    total = round(min(total, 100.0), 1)
+
+    return GradingDetails(
+        grading_method="rubric",
+        total_score=total,
+        criterion_scores=criterion_scores,
+        rationale=data.get("overall_rationale", ""),
+    )

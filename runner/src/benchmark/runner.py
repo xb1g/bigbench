@@ -89,6 +89,8 @@ def run_single_task(
             raw_output=raw_output,
             grading_model=grading_model,
             dry_run=dry_run,
+            api_base=api_base,
+            api_key=api_key,
         )
     except Exception as e:
         return TaskResult(
@@ -118,6 +120,7 @@ def run_all_tasks(
     api_base: Optional[str] = None,
     api_key: Optional[str] = None,
     tasks_dir: Optional[str] = None,
+    limit: Optional[int] = None,
 ) -> RunResults:
     """Execute all benchmark tasks and produce combined results.
 
@@ -131,6 +134,7 @@ def run_all_tasks(
         api_base: Custom API base URL
         api_key: Custom API key
         tasks_dir: Override tasks directory
+        limit: Max number of tasks to run (None = all)
 
     Returns:
         RunResults with all scores and category breakdowns.
@@ -140,6 +144,10 @@ def run_all_tasks(
     # Load all tasks
     tdir = Path(tasks_dir) if tasks_dir else None
     tasks = load_all_tasks(tdir)
+
+    # Apply limit if specified
+    if limit and limit > 0:
+        tasks = tasks[:limit]
 
     run_id = generate_run_id()
     model_info = get_model_info(model)
