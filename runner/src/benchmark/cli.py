@@ -424,106 +424,60 @@ grading:
     console.print("[dim]Edit the file to add your task content.[/dim]")
 
 
-@main.command()
-@click.option("--run-id", required=True, help="Run ID to export")
+@main.group(invoke_without_command=True)
+@click.pass_context
+def report(ctx: click.Context) -> None:
+    """Export and manage benchmark reports."""
+    if ctx.invoked_subcommand is None:
+        # Show help when no subcommand given
+        console.print(ctx.get_help())
+
+
+@report.command("export")
+@click.option("--run-id", multiple=True,
+              help="Run ID(s) to export (can be repeated). Omit for all runs.")
 @click.option(
     "--format", "fmt",
     type=click.Choice(["markdown", "json"]),
     default="markdown",
     help="Export format",
 )
-@click.option("--output", "-o", help="Output file path (default: report_<run_id>.md)")
-def report(run_id: str, fmt: str, output: Optional[str]) -> None:
-    """Export benchmark results as a formatted report."""
-    try:
-        r = load_results(run_id)
-    except FileNotFoundError:
-        console.print(f"[red]Run not found: {run_id}[/red]")
-        raise SystemExit(1)
+@click.option("--output", "-o", help="Output file path (default: report.md or report.json)")
+def report_export(run_id: tuple[str, ...], fmt: str, output: Optional[str]) -> None:
+    """Export benchmark results as a formatted report.
+
+    Generates a report with Executive Summary, Per-Category Analysis,
+    Per-Model Breakdown, and Recommendations.
+
+    Use --run-id multiple times to compare specific runs, or omit to compare all.
+    """
+    from .report import generate_json_report, generate_markdown_report
+
+    run_ids = list(run_id) if run_id else None
+
+    # Validate that specified run IDs exist
+    if run_ids:
+        for rid in run_ids:
+            try:
+                load_results(rid)
+            except FileNotFoundError:
+                console.print(f"[red]Run not found: {rid}[/red]")
+                raise SystemExit(1)
 
     if fmt == "json":
-        # Export as JSON (just copy results)
-        out_path = output or f"report_{run_id}.json"
+        out_path = output or "report.json"
         from pathlib import Path
-        Path(out_path).write_text(r.model_dump_json(indent=2) + "\n")
+        json_content = generate_json_report(run_ids=run_ids)
+        Path(out_path).write_text(json_content)
         console.print(f"[green]✓ JSON report exported:[/green] {out_path}")
         return
 
     # Markdown report
-    out_path = output or f"report_{run_id}.md"
-    md = _generate_markdown_report(r)
+    out_path = output or "report.md"
     from pathlib import Path
+    md = generate_markdown_report(run_ids=run_ids)
     Path(out_path).write_text(md)
     console.print(f"[green]✓ Markdown report exported:[/green] {out_path}")
-
-
-def _generate_markdown_report(r) -> str:
-    """Generate a formatted markdown report from run results."""
-    from .models import CATEGORY_WEIGHTS
-
-    lines = [
-        "# LLM Benchmark Report",
-        "",
-        f"**Run ID:** {r.run_id}",
-        f"**Model:** {r.model_name}",
-        f"**Date:** {r.timestamp[:10]}",
-        f"**Overall Score:** {r.overall_score:.1f}/100",
-        "",
-    ]
-
-    if r.dry_run:
-        lines.append("> ⚠ **Note:** Results are from dry-run mode (mock LLM responses)")
-        lines.append("")
-
-    # Executive Summary
-    lines.extend([
-        "## Executive Summary",
-        "",
-        "| Category | Score | Weight | Weighted |",
-        "|----------|-------|--------|----------|",
-    ])
-
-    cs = r.category_scores
-    for name, score, key in [
-        ("Software Engineering", cs.software_engineering, "software_engineering"),
-        ("Planning", cs.planning, "planning"),
-        ("Product Mind", cs.product_mind, "product_mind"),
-        ("Startup Mind", cs.startup_mind, "startup_mind"),
-    ]:
-        weight = CATEGORY_WEIGHTS[key]
-        lines.append(f"| {name} | {score:.1f} | {weight:.0%} | {score * weight:.1f} |")
-
-    lines.append(f"| **Overall** | **{r.overall_score:.1f}** | | **{r.overall_score:.1f}** |")
-    lines.append("")
-
-    # Per-task results
-    lines.extend([
-        "## Per-Task Results",
-        "",
-        "| Task ID | Category | Difficulty | Score |",
-        "|---------|----------|------------|-------|",
-    ])
-
-    for tr in r.per_task_results:
-        status = "✓" if not tr.error else "✗"
-        lines.append(f"| {tr.task_id} | {tr.category} | | {tr.score:.1f} {status} |")
-
-    lines.append("")
-
-    # Top and bottom performers
-    successful = [tr for tr in r.per_task_results if not tr.error]
-    if successful:
-        sorted_tasks = sorted(successful, key=lambda t: t.score, reverse=True)
-        lines.extend(["### Top 3 Tasks", ""])
-        for tr in sorted_tasks[:3]:
-            lines.append(f"- **{tr.task_id}** ({tr.category}): {tr.score:.1f}")
-
-        lines.extend(["", "### Bottom 3 Tasks", ""])
-        for tr in sorted_tasks[-3:]:
-            lines.append(f"- **{tr.task_id}** ({tr.category}): {tr.score:.1f}")
-
-    lines.append("")
-    return "\n".join(lines)
 
 
 if __name__ == "__main__":

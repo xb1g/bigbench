@@ -21,6 +21,11 @@ class TestMainHelp:
         assert "task" in result.output
         assert "report" in result.output
 
+    def test_report_subcommand_help(self, runner):
+        result = runner.invoke(main, ["report", "--help"])
+        assert result.exit_code == 0
+        assert "export" in result.output
+
     def test_version(self, runner):
         result = runner.invoke(main, ["--version"])
         assert result.exit_code == 0
