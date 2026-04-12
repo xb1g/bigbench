@@ -1,8 +1,16 @@
-"""LLM client wrapper using litellm with retry support."""
+"""LLM client wrapper using litellm with retry support.
+
+Supports multiple model prefixes for routing:
+  - ollama/*    → Ollama local API (localhost:11434)
+  - local/*     → Generic OpenAI-compatible server (localhost:8080)
+  - fireworks/* → Fireworks AI (api.fireworks.ai)
+  - Standard litellm identifiers (gpt-4o, claude-sonnet-4, etc.)
+"""
 
 from __future__ import annotations
 
 import logging
+import os
 from typing import Optional
 
 import litellm
@@ -33,10 +41,126 @@ except AttributeError:
     pass
 
 
+# ── Model presets ───────────────────────────────────────────────────────────
+
+MODEL_PRESETS: dict[str, dict[str, str]] = {
+    "ollama/llama3": {
+        "provider": "ollama",
+        "litellm_model": "ollama/llama3",
+        "default_api_base": "http://localhost:11434",
+        "default_api_key": "not-needed",
+        "instructions": "Run: ollama serve  (or ollama run llama3)",
+    },
+    "ollama/codellama": {
+        "provider": "ollama",
+        "litellm_model": "ollama/codellama",
+        "default_api_base": "http://localhost:11434",
+        "default_api_key": "not-needed",
+        "instructions": "Run: ollama serve  (or ollama run codellama)",
+    },
+    "ollama/mistral": {
+        "provider": "ollama",
+        "litellm_model": "ollama/mistral",
+        "default_api_base": "http://localhost:11434",
+        "default_api_key": "not-needed",
+        "instructions": "Run: ollama serve  (or ollama run mistral)",
+    },
+    "local/llama3": {
+        "provider": "local",
+        "litellm_model": "openai/llama3",
+        "default_api_base": "http://localhost:8080/v1",
+        "default_api_key": "not-needed",
+        "instructions": "Start any OpenAI-compatible server on :8080 (vLLM, llama.cpp, LM Studio)",
+    },
+    "local/mistral": {
+        "provider": "local",
+        "litellm_model": "openai/mistral",
+        "default_api_base": "http://localhost:8080/v1",
+        "default_api_key": "not-needed",
+        "instructions": "Start any OpenAI-compatible server on :8080 (vLLM, llama.cpp, LM Studio)",
+    },
+    "fireworks/kimi-k2p5-turbo": {
+        "provider": "fireworks",
+        "litellm_model": "openai/accounts/fireworks/routers/kimi-k2p5-turbo",
+        "default_api_base": "https://api.fireworks.ai/inference/v1",
+        "default_api_key": "",  # from env FIREWORKS_API_KEY
+        "instructions": "Set FIREWORKS_API_KEY env var",
+    },
+}
+
+
 def _get_logger():
     """Get a logger for retry attempts."""
     import logging
     return logging.getLogger(__name__)
+
+
+def resolve_model_config(
+    model: str,
+    api_base: Optional[str] = None,
+    api_key: Optional[str] = None,
+) -> dict[str, Optional[str]]:
+    """Resolve a model identifier into litellm-compatible config.
+
+    Handles the ollama/*, local/*, and fireworks/* prefixes by mapping
+    them to the appropriate litellm model name, api_base, and api_key.
+    CLI --api-base and --api-key flags always take precedence.
+
+    Args:
+        model: Model identifier (may include prefix like ollama/, local/, fireworks/)
+        api_base: Optional override from CLI --api-base
+        api_key: Optional override from CLI --api-key
+
+    Returns:
+        Dict with keys: litellm_model, api_base, api_key
+    """
+    # Check for preset first (exact match)
+    if model in MODEL_PRESETS:
+        preset = MODEL_PRESETS[model]
+        resolved_key = api_key or preset.get("default_api_key", "")
+        # For fireworks, fall back to env var if no key given
+        if preset["provider"] == "fireworks" and not resolved_key:
+            resolved_key = os.environ.get("FIREWORKS_API_KEY", "")
+        return {
+            "litellm_model": preset["litellm_model"],
+            "api_base": api_base or preset["default_api_base"],
+            "api_key": resolved_key,
+        }
+
+    # Check for prefix-based routing (e.g. ollama/mymodel not in presets)
+    if model.startswith("ollama/"):
+        return {
+            "litellm_model": model,  # litellm natively supports ollama/*
+            "api_base": api_base or "http://localhost:11434",
+            "api_key": api_key or "not-needed",
+        }
+
+    if model.startswith("local/"):
+        local_model = model.removeprefix("local/")
+        return {
+            "litellm_model": f"openai/{local_model}",
+            "api_base": api_base or "http://localhost:8080/v1",
+            "api_key": api_key or "not-needed",
+        }
+
+    if model.startswith("fireworks/"):
+        fw_model = model.removeprefix("fireworks/")
+        return {
+            "litellm_model": f"openai/accounts/fireworks/{fw_model}",
+            "api_base": api_base or "https://api.fireworks.ai/inference/v1",
+            "api_key": api_key or os.environ.get("FIREWORKS_API_KEY", ""),
+        }
+
+    # Standard litellm model (gpt-4o, claude-sonnet-4, gemini/gemini-2.5-pro, etc.)
+    # Use env-based FIREWORKS config as fallback for backwards compatibility
+    resolved_base = api_base or os.environ.get("FIREWORKS_API_BASE")
+    resolved_key = api_key or os.environ.get("FIREWORKS_API_KEY")
+
+    return {
+        "litellm_model": model,
+        "api_base": resolved_base,
+        "api_key": resolved_key,
+    }
 
 
 @retry(
@@ -61,13 +185,13 @@ def call_llm(
     Retries up to 3 times with exponential backoff on rate limits, timeouts, and server errors.
 
     Args:
-        model: Model identifier (e.g., 'gpt-4o', 'claude-sonnet-4', 'gemini/gemini-2.5-pro')
+        model: Model identifier (e.g., 'gpt-4o', 'claude-sonnet-4', 'ollama/llama3', 'local/mistral')
         prompt: The prompt text
         temperature: Sampling temperature (0 for deterministic)
         max_tokens: Maximum tokens in response
         dry_run: If True, return a mock response without calling the API
-        api_base: Optional custom API base URL
-        api_key: Optional API key (otherwise uses env vars)
+        api_base: Optional custom API base URL (overrides model prefix default)
+        api_key: Optional API key (overrides model prefix default; 'not-needed' for local models)
 
     Returns:
         The LLM response text.
@@ -75,20 +199,23 @@ def call_llm(
     if dry_run:
         return _mock_response(prompt)
 
+    # Resolve model prefix → litellm model, api_base, api_key
+    config = resolve_model_config(model, api_base=api_base, api_key=api_key)
+
     kwargs: dict = {
-        "model": model,
+        "model": config["litellm_model"],
         "messages": [{"role": "user", "content": prompt}],
         "temperature": temperature,
         "max_tokens": max_tokens,
     }
 
-    # Set API base if provided (e.g., Fireworks AI)
-    if api_base:
-        kwargs["api_base"] = api_base
+    # Set API base if resolved
+    if config.get("api_base"):
+        kwargs["api_base"] = config["api_base"]
 
-    # Set API key if provided
-    if api_key:
-        kwargs["api_key"] = api_key
+    # Set API key if resolved
+    if config.get("api_key"):
+        kwargs["api_key"] = config["api_key"]
 
     response = litellm.completion(**kwargs)
 
@@ -195,7 +322,13 @@ def get_model_info(model: str) -> dict[str, str]:
     """Return basic info about a model identifier for display purposes."""
     info: dict[str, str] = {"model": model}
 
-    if (
+    if model.startswith("ollama/"):
+        info["provider"] = "ollama"
+    elif model.startswith("local/"):
+        info["provider"] = "local"
+    elif model.startswith("fireworks/"):
+        info["provider"] = "fireworks"
+    elif (
         model.startswith("gpt")
         or model.startswith("o1")
         or model.startswith("o3")

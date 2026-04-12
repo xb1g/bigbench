@@ -20,6 +20,7 @@ class TestMainHelp:
         assert "results" in result.output
         assert "task" in result.output
         assert "report" in result.output
+        assert "model" in result.output
 
     def test_report_subcommand_help(self, runner):
         result = runner.invoke(main, ["report", "--help"])
@@ -55,6 +56,32 @@ class TestRunCommand:
         for model in ["gpt-4o", "claude-sonnet-4", "gemini/gemini-2.5-pro"]:
             result = runner.invoke(main, ["run", "--task", "SE-001", "--model", model, "--dry-run"])
             assert result.exit_code == 0
+
+    def test_run_with_api_base_and_api_key_flags(self, runner):
+        """Test --api-base and --api-key CLI flags."""
+        result = runner.invoke(main, [
+            "run", "--task", "SE-001", "--model", "ollama/llama3",
+            "--api-base", "http://localhost:11434",
+            "--api-key", "not-needed",
+            "--dry-run",
+        ])
+        assert result.exit_code == 0
+
+    def test_run_with_local_model(self, runner):
+        """Test running with local/* model prefix."""
+        result = runner.invoke(main, [
+            "run", "--task", "SE-001", "--model", "local/llama3",
+            "--dry-run",
+        ])
+        assert result.exit_code == 0
+
+    def test_run_with_fireworks_model(self, runner):
+        """Test running with fireworks/* model prefix."""
+        result = runner.invoke(main, [
+            "run", "--task", "SE-001", "--model", "fireworks/kimi-k2p5-turbo",
+            "--dry-run",
+        ])
+        assert result.exit_code == 0
 
 
 class TestResultsCommand:
@@ -93,3 +120,37 @@ class TestTaskCommand:
         result = runner.invoke(main, ["task", "validate", "--help"])
         assert result.exit_code == 0
         assert "Validate" in result.output
+
+
+class TestModelCommand:
+    def test_model_default_lists_presets(self, runner):
+        """Invoking 'model' without subcommand defaults to listing."""
+        result = runner.invoke(main, ["model"])
+        assert result.exit_code == 0
+        assert "ollama/llama3" in result.output
+        # Rich table may wrap long IDs like fireworks/kimi-k2p5-turbo
+        assert "fireworks" in result.output
+        assert "kimi" in result.output
+
+    def test_model_list(self, runner):
+        result = runner.invoke(main, ["model", "list"])
+        assert result.exit_code == 0
+        assert "Model Presets" in result.output
+        assert "ollama/llama3" in result.output
+        assert "ollama/codellama" in result.output
+        assert "ollama/mistral" in result.output
+        assert "local/llama3" in result.output
+        assert "local/mistral" in result.output
+        # Rich table may wrap long IDs
+        assert "fireworks" in result.output
+        assert "kimi" in result.output
+
+    def test_model_list_shows_instructions(self, runner):
+        result = runner.invoke(main, ["model", "list"])
+        assert result.exit_code == 0
+        assert "ollama serve" in result.output.lower() or "Ollama" in result.output
+
+    def test_model_list_shows_api_base_hint(self, runner):
+        result = runner.invoke(main, ["model", "list"])
+        assert result.exit_code == 0
+        assert "--api-base" in result.output

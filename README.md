@@ -114,6 +114,77 @@ llm-bench report export --format json        # Export all runs as report.json
 llm-bench report export --run-id 20260412_132807 --run-id 20260412_133131 --format markdown
 ```
 
+## Local LLM Testing
+
+The benchmark supports running against local LLM servers (Ollama, vLLM, llama.cpp, LM Studio, etc.) and cloud providers via model prefixes.
+
+### Model Presets
+
+View all available presets:
+
+```bash
+llm-bench model list
+```
+
+| Preset ID | Provider | Default API Base | How to Start |
+|---|---|---|---|
+| `ollama/llama3` | Ollama | `http://localhost:11434` | `ollama serve` or `ollama run llama3` |
+| `ollama/codellama` | Ollama | `http://localhost:11434` | `ollama serve` or `ollama run codellama` |
+| `ollama/mistral` | Ollama | `http://localhost:11434` | `ollama serve` or `ollama run mistral` |
+| `local/llama3` | OpenAI-compatible | `http://localhost:8080/v1` | Start any OpenAI-compatible server on port 8080 |
+| `local/mistral` | OpenAI-compatible | `http://localhost:8080/v1` | Start any OpenAI-compatible server on port 8080 |
+| `fireworks/kimi-k2p5-turbo` | Fireworks AI | `https://api.fireworks.ai/inference/v1` | Set `FIREWORKS_API_KEY` env var |
+
+### Ollama
+
+```bash
+# Start Ollama server
+ollama serve
+
+# Run benchmark with Ollama
+llm-bench run --all --model ollama/llama3 --limit 5
+
+# Specify a different Ollama host
+llm-bench run --all --model ollama/llama3 --api-base http://192.168.1.100:11434 --limit 5
+```
+
+### vLLM / llama.cpp / LM Studio (OpenAI-compatible)
+
+Any server that exposes an OpenAI-compatible API works with the `local/` prefix:
+
+```bash
+# vLLM example (starts on port 8080)
+python -m vllm.entrypoints.openai.api_server --model meta-llama/Llama-3-8B --port 8080
+
+# Run benchmark
+llm-bench run --all --model local/llama3 --limit 5
+
+# Custom port or path
+llm-bench run --all --model local/llama3 --api-base http://localhost:1234/v1 --limit 5
+
+# Any model name with custom server
+llm-bench run --task SE-001 --model local/my-model --api-base http://localhost:1234/v1 --api-key not-needed
+```
+
+### Fireworks AI
+
+```bash
+# Set API key (or use FIREWORKS_API_KEY env var)
+llm-bench run --all --model fireworks/kimi-k2p5-turbo
+
+# Override API key via flag
+llm-bench run --all --model fireworks/kimi-k2p5-turbo --api-key fw_your_key_here
+```
+
+### Custom API Base & Key
+
+The `--api-base` and `--api-key` flags work with any model, overriding the defaults:
+
+```bash
+llm-bench run --all --model ollama/custom-model --api-base http://remote:11434 --limit 5
+llm-bench run --all --model local/any-model --api-base http://localhost:9999/v1 --api-key my-secret-key
+```
+
 ## Fireworks AI Setup
 
 The benchmark uses Fireworks AI as the primary model provider. Configure the following environment variables:

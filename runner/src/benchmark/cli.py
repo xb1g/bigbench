@@ -263,6 +263,52 @@ def results(run_id: Optional[str], list_runs_flag: bool) -> None:
 
 @main.group(invoke_without_command=True)
 @click.pass_context
+def model(ctx: click.Context) -> None:
+    """Manage model presets and configuration."""
+    if ctx.invoked_subcommand is None:
+        # Default to 'list' when no subcommand given
+        _list_models()
+
+
+@model.command("list")
+def model_list() -> None:
+    """List available model presets with usage instructions."""
+    _list_models()
+
+
+def _list_models() -> None:
+    """List available model presets with usage instructions."""
+    from .llm_client import MODEL_PRESETS
+
+    table = Table(title="Model Presets", show_header=True, header_style="bold")
+    table.add_column("Preset ID", style="cyan")
+    table.add_column("Provider", style="green")
+    table.add_column("Default API Base", style="yellow")
+    table.add_column("Instructions", style="dim")
+
+    for preset_id, preset in MODEL_PRESETS.items():
+        table.add_row(
+            preset_id,
+            preset["provider"],
+            preset.get("default_api_base", ""),
+            preset.get("instructions", ""),
+        )
+
+    console.print(table)
+    console.print(
+        "\n[dim]Override defaults with --api-base and --api-key flags.[/dim]"
+    )
+    console.print(
+        "[dim]Example: llm-bench run --all --model ollama/llama3 --limit 5[/dim]"
+    )
+    console.print(
+        "[dim]Custom: llm-bench run --task SE-001 --model local/my-model "
+        "--api-base http://localhost:1234/v1[/dim]"
+    )
+
+
+@main.group(invoke_without_command=True)
+@click.pass_context
 def task(ctx: click.Context) -> None:
     """Manage benchmark tasks (list, create, validate)."""
     if ctx.invoked_subcommand is None:

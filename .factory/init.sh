@@ -27,6 +27,15 @@ DEFAULT_MODEL=openai/accounts/fireworks/routers/kimi-k2p5-turbo
 # OPENAI_API_KEY=sk-...
 # ANTHROPIC_API_KEY=sk-ant-...
 
+# Local LLM support (use model prefix: ollama/*, local/*, fireworks/*)
+# Ollama - run 'ollama serve' first
+# DEFAULT_MODEL=ollama/llama3
+# OLLAMA_API_BASE=http://localhost:11434
+
+# Generic OpenAI-compatible (vLLM, llama.cpp, LM Studio)
+# DEFAULT_MODEL=local/llama3
+# LOCAL_API_BASE=http://localhost:8080/v1
+
 # Grading model (uses same Fireworks model by default)
 # GRADING_MODEL=openai/accounts/fireworks/routers/kimi-k2p5-turbo
 
