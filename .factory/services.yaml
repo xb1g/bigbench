@@ -1,10 +1,14 @@
 commands:
-  install: cd /Users/bunyasit/dev/llm-benchmark/runner && pip install -e ".[dev]"
+  install: /Users/bunyasit/dev/llm-benchmark/runner/.venv/bin/pip install -e "/Users/bunyasit/dev/llm-benchmark/runner[dev]"
   install-web: cd /Users/bunyasit/dev/llm-benchmark/web && pnpm install
-  test: cd /Users/bunyasit/dev/llm-benchmark/runner && pytest -v --tb=short 2
-  lint: cd /Users/bunyasit/dev/llm-benchmark/runner && ruff check .
-  typecheck: cd /Users/bunyasit/dev/llm-benchmark/runner && mypy src/
-  validate-tasks: cd /Users/bunyasit/dev/llm-benchmark && python3 -m benchmark.cli task validate
+  test: /Users/bunyasit/dev/llm-benchmark/runner/.venv/bin/python -m pytest -v --tb=short
+  lint: /Users/bunyasit/dev/llm-benchmark/runner/.venv/bin/ruff check /Users/bunyasit/dev/llm-benchmark/runner/src/
+  typecheck: /Users/bunyasit/dev/llm-benchmark/runner/.venv/bin/mypy /Users/bunyasit/dev/llm-benchmark/runner/src/
+  run-dry: /Users/bunyasit/dev/llm-benchmark/runner/.venv/bin/llm-bench run --all --model gpt-4o --dry-run
+  run-single: /Users/bunyasit/dev/llm-benchmark/runner/.venv/bin/llm-bench run --task SE-001 --model gpt-4o --dry-run
+  bench-help: /Users/bunyasit/dev/llm-benchmark/runner/.venv/bin/llm-bench --help
+  list-results: /Users/bunyasit/dev/llm-benchmark/runner/.venv/bin/llm-bench results --list
+  list-tasks: /Users/bunyasit/dev/llm-benchmark/runner/.venv/bin/llm-bench task
 
 services:
   web:

@@ -2,5 +2,9 @@
 results/
 __pycache__/
 *.egg-info
+.venv/
 node_modules/
 .next/
+.ruff_cache/
+.mypy_cache/
+.pytest_cache/
