@@ -23,7 +23,7 @@ def _get_env_config() -> dict:
         "api_base": os.environ.get("FIREWORKS_API_BASE"),
         "api_key": os.environ.get("FIREWORKS_API_KEY"),
         "default_model": os.environ.get("DEFAULT_MODEL", "gpt-4o"),
-        "grading_model": os.environ.get("GRADING_MODEL", os.environ.get("DEFAULT_MODEL", "gpt-4o")),
+        "grading_model": os.environ.get("GRADING_MODEL"),  # No default - will fall back to execution model
         "temperature": float(os.environ.get("DEFAULT_TEMPERATURE", "0")),
     }
 
@@ -65,7 +65,8 @@ def run(
     # Resolve model
     model = model or env["default_model"]
     temp = temperature if temperature is not None else env["temperature"]
-    g_model = grading_model or env["grading_model"]
+    # Default grading model to the execution model if not explicitly provided
+    g_model = grading_model or env["grading_model"] or model
     a_base = api_base or env["api_base"]
     a_key = api_key or env["api_key"]
 
